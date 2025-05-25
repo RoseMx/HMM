@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hermanitos Muebles de Melamina</title>
+  <!-- Enlace al archivo de estilos -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- ENCABEZADO CON MENÚ DE NAVEGACIÓN -->
   <header>
     <div class="logo">HMM</div>
     <nav>
@@ -16,36 +18,58 @@
     </nav>
   </header>
 
+  <!-- SECCIÓN HERO / PRESENTACIÓN -->
   <section id="inicio" class="hero">
     <h1>Diseña tu mueble de melamina</h1>
     <p>Calidad y estilo a tu medida. Personaliza el espacio que te representa.</p>
     <a href="#catalogo" class="btn">Ver Catálogo</a>
   </section>
 
+  <!-- CATÁLOGO PRINCIPAL CON SOLO UNA IMAGEN REPRESENTATIVA -->
   <section id="catalogo" class="catalogo">
     <h2>Catálogo de Muebles</h2>
     <div class="grid">
+      <!-- Tarjeta principal que redirige a los detalles del producto -->
       <div class="card">
-        <img src="img/Francfort-02-1.png" alt="Francfort 02-1" />
-        <h3>Francfort 02-1</h3>
-      </div>
-      <div class="card">
-        <img src="img/Francfort-02.png" alt="Francfort 02" />
-        <h3>Francfort 02</h3>
-      </div>
-      <div class="card">
-        <img src="img/Francfort-04-1024x1024.png" alt="Francfort 04" />
-        <h3>Francfort 04</h3>
+        <a href="#francfort-detalles">
+          <img src="img/Francfort-02.png" alt="Francfort Modelo Principal" />
+          <h3>Francfort</h3>
+        </a>
       </div>
     </div>
   </section>
 
+  <!-- DETALLES DEL PRODUCTO FRANCFORT -->
+  <section id="francfort-detalles" class="detalle-producto">
+    <h2>Francfort – Detalles del producto</h2>
+    <div class="detalle-contenido">
+      <!-- Imagen alterna o vista extendida -->
+      <img src="img/Francfort-02-1.png" alt="Francfort Vista Alternativa" />
+
+      <!-- Información descriptiva del producto -->
+      <div class="info">
+        <p><strong>Modelo:</strong> Francfort 02</p>
+        <p><strong>Precio:</strong> $3,200 MXN</p>
+        <p><strong>Descripción:</strong> Clóset compacto en melamina color nogal. Ideal para espacios reducidos.</p>
+        <p><strong>Dimensiones:</strong> 90cm ancho × 180cm alto × 45cm fondo</p>
+        <p><strong>Envío:</strong> Disponible en Hermosillo y alrededores</p>
+
+        <!-- Botón de WhatsApp con mensaje personalizado -->
+        <a class="btn" href="https://wa.me/526624125786?text=Hola%2C%20estoy%20interesado%20en%20el%20modelo%20Francfort%20de%20melamina">
+          Solicitar cotización
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE CONTACTO GENERAL -->
   <section id="contacto">
     <h2>Contacto</h2>
     <p>¿Tienes alguna duda o quieres un diseño personalizado?</p>
     <a href="https://wa.me/526624125786" class="btn">Escríbenos por WhatsApp</a>
   </section>
 
+  <!-- PIE DE PÁGINA -->
   <footer>
     <p>&copy; 2025 Hermanitos Muebles de Melamina</p>
   </footer>
