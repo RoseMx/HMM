@@ -1,8 +1,7 @@
-/* ======= VARIABLES DE COLOR Y FUENTE ======= */
 :root {
-  --primary: #4a3c28;      /* Marrón elegante */
-  --accent: #dfa94a;       /* Dorado/mostaza */
-  --bg: #f7f7f7;           /* Fondo suave */
+  --primary: #4a3c28;
+  --accent: #dfa94a;
+  --bg: #f7f7f7;
   --white: #fff;
   --shadow: 0 4px 16px rgba(0,0,0,0.10);
   --text: #222;
@@ -25,7 +24,6 @@ body {
   line-height: 1.6;
 }
 
-/* ===== HEADER ===== */
 header {
   background: var(--white);
   box-shadow: var(--shadow);
@@ -65,7 +63,6 @@ nav a.active {
   color: var(--white);
 }
 
-/* ===== HERO ===== */
 .hero {
   background: var(--accent);
   color: var(--white);
@@ -87,7 +84,6 @@ nav a.active {
   padding: 14px 32px;
 }
 
-/* ===== BOTÓN UNIVERSAL ===== */
 .btn {
   display: inline-block;
   padding: 12px 28px;
@@ -106,7 +102,6 @@ nav a.active {
   background: #2d2415;
 }
 
-/* ===== CATÁLOGO ===== */
 .catalogo {
   padding: 64px 16px;
   background: var(--white);
@@ -157,8 +152,13 @@ nav a.active {
 .card .btn {
   margin: 18px 0 18px 0;
 }
+.price {
+  color: var(--accent);
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 1.09rem;
+}
 
-/* ===== SLIDER DE IMÁGENES ===== */
 .slider {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -188,7 +188,6 @@ nav a.active {
   border: 1px solid #e3e3e3;
 }
 
-/* ===== DETALLE DE PRODUCTO ===== */
 .detalle-producto {
   padding: 64px 16px;
   background: #faf9f6;
@@ -220,7 +219,30 @@ nav a.active {
   margin-top: 22px;
 }
 
-/* ===== CONTACTO ===== */
+.diseno3d {
+  background: #e7e2d9;
+  padding: 54px 16px;
+  text-align: center;
+}
+.diseno3d h2 {
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+.modulo3d {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.preview-3d {
+  background: #bbb4a6;
+  border-radius: var(--radius);
+  padding: 42px 0;
+  margin-top: 20px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 section#contacto {
   padding: 54px 16px;
   text-align: center;
@@ -232,7 +254,6 @@ section#contacto h2 {
   color: var(--primary);
 }
 
-/* ===== PIE DE PÁGINA ===== */
 footer {
   text-align: center;
   padding: 22px 0 10px 0;
@@ -242,7 +263,6 @@ footer {
   margin-top: 20px;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (min-width: 768px) {
   .hero h1 { font-size: 3rem; }
   .detalle-contenido { flex-direction: row; }
