@@ -20,32 +20,48 @@
     </div>
   </header>
 
-  <!-- ===== INICIO / HERO ===== -->
+  <!-- ===== HERO ===== -->
   <section id="inicio" class="hero">
-    <h1>Muebles que inspiran tu espacio</h1>
-    <p>Especialistas en muebles de melamina personalizados, calidad y diseño para tu hogar o negocio.</p>
-    <a href="#catalogo" class="btn">Ver catálogo</a>
+    <div class="hero-content">
+      <h1>Transforma tu espacio<br>con muebles de melamina</h1>
+      <p>Crea ambientes modernos y funcionales con diseños a tu medida.<br>
+         Calidad, estilo y asesoría personalizada en cada proyecto.</p>
+      <a href="#catalogo" class="btn btn-lg">Ver catálogo</a>
+    </div>
+    <div class="hero-img">
+      <img src="img/hero-melamina.jpg" alt="Muebles modernos" />
+    </div>
   </section>
 
-  <!-- ===== CATÁLOGO PRINCIPAL ===== -->
+  <!-- ===== CATÁLOGO ===== -->
   <section id="catalogo" class="catalogo">
-    <h2>Catálogo de Muebles</h2>
+    <h2>Catálogo Destacado</h2>
     <div class="grid">
-      <!-- PRODUCTO 1 - DUPLICA Y EDITA PARA MÁS PRODUCTOS -->
+      <!-- PRODUCTO EJEMPLO -->
       <div class="card">
-        <img src="img/francfort/vista1.png" alt="Francfort modelo 1">
-        <h3>Francfort</h3>
-        <p class="price">$3,200 MXN</p>
-        <a href="#francfort-detalle" class="btn">Ver detalles</a>
+        <div class="card-img-wrap">
+          <img src="img/francfort/vista1.png" alt="Francfort modelo 1">
+        </div>
+        <div class="card-body">
+          <h3>Francfort</h3>
+          <p class="price">$3,200 MXN</p>
+          <p class="short-desc">Clóset compacto en melamina color nogal. Ideal para espacios reducidos.</p>
+          <a href="#francfort-detalle" class="btn btn-mini">Ver detalles</a>
+        </div>
       </div>
       <!-- PRODUCTO 2 -->
       <div class="card">
-        <img src="img/hanover/vista1.png" alt="Hanover modelo 1">
-        <h3>Hanover</h3>
-        <p class="price">$2,950 MXN</p>
-        <a href="#hanover-detalle" class="btn">Ver detalles</a>
+        <div class="card-img-wrap">
+          <img src="img/hanover/vista1.png" alt="Hanover modelo 1">
+        </div>
+        <div class="card-body">
+          <h3>Hanover</h3>
+          <p class="price">$2,950 MXN</p>
+          <p class="short-desc">Librero moderno, adaptable para oficinas o sala.</p>
+          <a href="#hanover-detalle" class="btn btn-mini">Ver detalles</a>
+        </div>
       </div>
-      <!-- AGREGA MÁS PRODUCTOS AQUÍ USANDO SUBCARPETAS img/nombreproducto/vistaX.png -->
+      <!-- AGREGA MÁS PRODUCTOS AQUÍ -->
     </div>
   </section>
 
@@ -53,7 +69,6 @@
   <section id="francfort-detalle" class="detalle-producto">
     <h2>Francfort – Detalles</h2>
     <div class="detalle-contenido">
-      <!-- Carrusel manual: agrega o quita imágenes según tu inventario -->
       <div class="slider">
         <div class="slider-track">
           <img src="img/francfort/vista1.png" alt="Francfort vista 1">
@@ -62,17 +77,20 @@
         </div>
       </div>
       <div class="info">
-        <p><strong>Modelo:</strong> Francfort 02</p>
-        <p><strong>Precio:</strong> $3,200 MXN</p>
-        <p><strong>Descripción:</strong> Clóset compacto en melamina color nogal, ideal para espacios reducidos.</p>
-        <p><strong>Dimensiones:</strong> 90x180x45 cm</p>
-        <p><strong>Envío:</strong> Hermosillo y alrededores</p>
-        <a class="btn" href="https://wa.me/526624125786?text=Hola%2C%20estoy%20interesado%20en%20el%20modelo%20Francfort">Cotizar por WhatsApp</a>
+        <ul class="product-info-list">
+          <li><strong>Modelo:</strong> Francfort 02</li>
+          <li><strong>Precio:</strong> $3,200 MXN</li>
+          <li><strong>Dimensiones:</strong> 90x180x45 cm</li>
+          <li><strong>Color:</strong> Nogal</li>
+          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+        </ul>
+        <p class="desc">Clóset compacto, perfecto para habitaciones o departamentos pequeños. Melamina premium, fácil de limpiar y resistente.</p>
+        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola%2C%20estoy%20interesado%20en%20el%20modelo%20Francfort">Cotizar por WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== DETALLE DE PRODUCTO HANOVER (EJEMPLO, DUPLICA PARA MÁS) ===== -->
+  <!-- ===== DETALLE DE PRODUCTO HANOVER ===== -->
   <section id="hanover-detalle" class="detalle-producto">
     <h2>Hanover – Detalles</h2>
     <div class="detalle-contenido">
@@ -83,35 +101,39 @@
         </div>
       </div>
       <div class="info">
-        <p><strong>Modelo:</strong> Hanover 01</p>
-        <p><strong>Precio:</strong> $2,950 MXN</p>
-        <p><strong>Descripción:</strong> Librero moderno de melamina, ideal para oficinas o sala.</p>
-        <p><strong>Dimensiones:</strong> 80x160x35 cm</p>
-        <p><strong>Envío:</strong> Hermosillo y alrededores</p>
-        <a class="btn" href="https://wa.me/526624125786?text=Hola%2C%20estoy%20interesado%20en%20el%20modelo%20Hanover">Cotizar por WhatsApp</a>
+        <ul class="product-info-list">
+          <li><strong>Modelo:</strong> Hanover 01</li>
+          <li><strong>Precio:</strong> $2,950 MXN</li>
+          <li><strong>Dimensiones:</strong> 80x160x35 cm</li>
+          <li><strong>Color:</strong> Blanco</li>
+          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+        </ul>
+        <p class="desc">Librero minimalista en melamina, perfecto para organizar libros y decoraciones. Elegancia y resistencia en un solo mueble.</p>
+        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola%2C%20estoy%20interesado%20en%20el%20modelo%20Hanover">Cotizar por WhatsApp</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== APARTADO DISEÑO 3D (Módulo placeholder) ===== -->
+  <!-- ===== APARTADO DISEÑO 3D (PRÓXIMAMENTE) ===== -->
   <section id="diseno3d" class="diseno3d">
     <h2>Diseña tu mueble en 3D</h2>
     <div class="modulo3d">
-      <p>Próximamente podrás visualizar y personalizar tus muebles en un entorno 3D interactivo.</p>
-      <div class="preview-3d">[Módulo 3D en desarrollo]</div>
+      <p>¡Muy pronto! Visualiza y personaliza tus muebles en nuestro entorno 3D interactivo.</p>
+      <div class="preview-3d">[ Módulo 3D en desarrollo ]</div>
     </div>
   </section>
 
   <!-- ===== CONTACTO ===== -->
   <section id="contacto">
     <h2>Contacto</h2>
-    <p>¿Tienes dudas o quieres cotizar un diseño personalizado? Escríbenos directo a WhatsApp.</p>
-    <a class="btn" href="https://wa.me/526624125786">Contactar</a>
+    <p>¿Dudas? ¿Quieres un diseño especial? ¡Escríbenos por WhatsApp y recibe atención inmediata!</p>
+    <a class="btn btn-contact" href="https://wa.me/526624125786">Contactar</a>
   </section>
 
-  <!-- ===== PIE DE PÁGINA ===== -->
+  <!-- ===== FOOTER ===== -->
   <footer>
-    <p>&copy; 2025 Hermanitos Muebles de Melamina</p>
+    <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
   </footer>
 </body>
 </html>
+
