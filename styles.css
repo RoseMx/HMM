@@ -1,86 +1,238 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hermanitos Muebles de Melamina</title>
-  <!-- Enlace al archivo de estilos -->
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <!-- ENCABEZADO CON MENÚ DE NAVEGACIÓN -->
-  <header>
-    <div class="logo">HMM</div>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#catalogo">Catálogo</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+/* ======= VARIABLES GLOBALES ======= */
+:root {
+  --primary: #6B4F4F;
+  --accent: #D9B382;
+  --bg: #fafafa;
+  --text: #333;
+}
 
-  <!-- SECCIÓN HERO / PRESENTACIÓN -->
-  <section id="inicio" class="hero">
-    <h1>Diseña tu mueble de melamina</h1>
-    <p>Calidad y estilo a tu medida. Personaliza el espacio que te representa.</p>
-    <a href="#catalogo" class="btn">Ver Catálogo</a>
-  </section>
+/* ======= RESET Y CONFIGURACIÓN GENERAL ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 
-  <!-- CATÁLOGO PRINCIPAL CON SOLO UNA IMAGEN REPRESENTATIVA -->
-  <section id="catalogo" class="catalogo">
-    <h2>Catálogo de Muebles</h2>
-    <div class="grid">
-      <!-- Tarjeta principal que redirige a los detalles del producto -->
-      <div class="card">
-        <a href="#francfort-detalles">
-          <img src="img/Francfort-02.png" alt="Francfort Modelo Principal" />
-          <h3>Francfort</h3>
-        </a>
-        <a href="#francfort-detalles" class="btn">Ver detalles</a>
-      </div>
-    </div>
-  </section>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
 
-  <!-- DETALLES DEL PRODUCTO FRANCFORT CON SLIDER DE IMÁGENES -->
-  <section id="francfort-detalles" class="detalle-producto">
-    <h2>Francfort – Detalles del producto</h2>
+/* ======= ENCABEZADO (HEADER) ======= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-    <div class="detalle-contenido">
-      <!-- Carrusel de imágenes -->
-      <div class="slider">
-        <div class="slider-track">
-          <!-- Agrega aquí todas las vistas del producto -->
-          <img src="img/Francfort-02.png" alt="Vista 1">
-          <img src="img/Francfort-02-1.png" alt="Vista 2">
-          <img src="img/Francfort-04-1024x1024.png" alt="Vista 3">
-        </div>
-      </div>
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--primary);
+}
 
-      <!-- Información descriptiva del producto -->
-      <div class="info">
-        <p><strong>Modelo:</strong> Francfort 02</p>
-        <p><strong>Precio:</strong> $3,200 MXN</p>
-        <p><strong>Descripción:</strong> Clóset compacto en melamina color nogal. Ideal para espacios reducidos.</p>
-        <p><strong>Dimensiones:</strong> 90cm ancho × 180cm alto × 45cm fondo</p>
-        <p><strong>Envío:</strong> Disponible en Hermosillo y alrededores</p>
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+}
 
-        <!-- Botón de WhatsApp con mensaje personalizado -->
-        <a class="btn" href="https://wa.me/526624125786?text=Hola%2C%20estoy%20interesado%20en%20el%20modelo%20Francfort%20de%20melamina">
-          Solicitar cotización
-        </a>
-      </div>
-    </div>
-  </section>
+/* ======= HERO PRINCIPAL ======= */
+.hero {
+  padding: 80px 20px;
+  text-align: center;
+  background: var(--accent);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  <!-- SECCIÓN DE CONTACTO GENERAL -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>¿Tienes alguna duda o quieres un diseño personalizado?</p>
-    <a href="https://wa.me/526624125786" class="btn">Escríbenos por WhatsApp</a>
-  </section>
+.hero h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
 
-  <!-- PIE DE PÁGINA -->
-  <footer>
-    <p>&copy; 2025 Hermanitos Muebles de Melamina</p>
-  </footer>
-</body>
-</html>
+.hero p {
+  font-size: 1.1rem;
+}
+
+/* ======= BOTÓN UNIVERSAL ======= */
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: var(--primary);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #5a3d3d;
+}
+
+/* ======= SECCIÓN CATÁLOGO ======= */
+.catalogo {
+  padding: 60px 20px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.catalogo h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: var(--primary);
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding: 0 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 1.2rem;
+  padding: 10px;
+  color: var(--primary);
+}
+
+.card .btn {
+  margin: 10px;
+  align-self: center;
+}
+
+/* ======= SECCIÓN DETALLE DE PRODUCTO ======= */
+.detalle-producto {
+  padding: 60px 20px;
+  background: #fefefe;
+  min-height: 100vh;
+}
+
+.detalle-producto h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.detalle-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ======= SLIDER DE IMÁGENES ======= */
+.slider {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.slider-track {
+  display: flex;
+  animation: scrollSlider 12s infinite linear;
+}
+
+.slider-track img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  height: 300px;
+}
+
+@keyframes scrollSlider {
+  0% { transform: translateX(0); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0); }
+}
+
+.detalle-producto .info p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+.detalle-producto .btn {
+  margin-top: 20px;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .detalle-contenido {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .slider {
+    width: 50%;
+  }
+
+  .detalle-contenido .info {
+    width: 50%;
+    padding-left: 20px;
+  }
+}
+
+/* ======= SECCIÓN CONTACTO ======= */
+section#contacto {
+  padding: 60px 20px;
+  text-align: center;
+  background: white;
+  min-height: 60vh;
+}
+
+section#contacto h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+/* ======= PIE DE PÁGINA ======= */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #f0f0f0;
+  font-size: 0.9rem;
+  color: #666;
+}
