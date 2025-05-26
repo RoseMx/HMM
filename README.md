@@ -10,7 +10,6 @@ Diseñado con un enfoque limpio, visual y profesional para ayudar a los clientes
 
 - 📷 Catálogo visual con imágenes reales de muebles
 - 🎨 Diseño responsive (adaptable a móvil y PC)
-- 🧩 Listo para integrar módulo 3D personalizado
 - 📱 Contacto directo vía WhatsApp
 - 🚀 Desplegado automáticamente con GitHub + Vercel
 
