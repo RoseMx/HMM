@@ -165,10 +165,10 @@ nav a.active {
   box-shadow: 0 12px 32px rgba(0,0,0,0.18);
 }
 
-/* === AJUSTE PRO PARA IMÁGENES DE CATÁLOGO (paleta HMM) === */
+/* === AJUSTE PRO PARA IMÁGENES DE CATÁLOGO === */
 .card-img-wrap {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Proporción cuadrada (cambia a 4/3 o 16/9 si prefieres) */
+  aspect-ratio: 1 / 1;
   background: #232532;
   display: flex;
   align-items: center;
@@ -181,7 +181,7 @@ nav a.active {
 .card-img-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: contain;    /* No distorsiona */
+  object-fit: contain;
   object-position: center center;
   background: #282a36;
   transition: transform .23s, box-shadow .23s;
@@ -215,42 +215,88 @@ nav a.active {
   margin-bottom: 18px;
 }
 
-/* === SLIDER DE DETALLES: imágenes uniformes también === */
+/* === SLIDER DE DETALLES: GALERÍA PERSONALIZADA CON FLECHAS === */
 .slider {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  position: relative;
   display: flex;
-  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
+  max-width: 350px;
+  margin: 0 auto 20px auto;
+  background: #232532;
   border-radius: var(--radius);
-  max-width: 100%;
-  padding-bottom: 10px;
-  -webkit-overflow-scrolling: touch;
-  background: #252631;
-  margin-bottom: 20px;
+  box-shadow: 0 3px 16px #0d0e1733;
+  padding: 10px 0;
 }
 .slider-track {
   display: flex;
-  gap: 15px;
+  transition: transform 0.45s cubic-bezier(0.44, 1.3, 0.56, 1), opacity 0.15s;
+  will-change: transform;
 }
-.slider img {
-  scroll-snap-align: start;
-  flex: 0 0 auto;
+.slider-img-container {
+  flex: 0 0 250px;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  background: #252531;
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px #0a0a1020;
+  border: 2px solid #292a34;
+}
+.slider-img-container img {
   width: 100%;
-  max-width: 270px;
-  aspect-ratio: 1 / 1;   /* Cuadrado; cambia si quieres otro formato */
-  height: auto;
-  object-fit: contain;   /* No distorsiona la imagen */
-  border-radius: 9px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
-  background: #282a36;
-  border: 1px solid #232532;
-  transition: transform .23s, box-shadow .23s;
+  height: 100%;
+  object-fit: contain;
+  background: #232532;
+  transition: transform .23s;
 }
-.slider img:hover {
+.slider-img-container img:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 22px #36c27344;
+}
+.slider-arrow {
+  width: 42px;
+  height: 42px;
+  background: #21232a;
+  color: var(--primary);
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 1px 8px #0003;
+  z-index: 10;
+  transition: background 0.17s, color 0.17s, box-shadow 0.19s;
+  opacity: 0.9;
+}
+.slider-arrow:hover:not(:disabled) {
+  background: var(--primary);
+  color: #21232a;
+  opacity: 1;
+  box-shadow: 0 4px 16px #36c27350;
+}
+.slider-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.slider-arrow.left { left: -22px; }
+.slider-arrow.right { right: -22px; }
+@media (max-width: 600px) {
+  .slider, .slider-img-container { max-width: 98vw; min-width: 140px; }
+  .slider-img-container, .slider-img-container img { width: 140px; height: 140px; }
+  .slider-arrow { width: 32px; height: 32px; font-size: 1.3rem; left: -10px; right: -10px;}
 }
 
+/* === DETALLES DE PRODUCTOS === */
 .detalle-producto {
   padding: 70px 14px 56px 14px;
   background: #23242b;
@@ -288,30 +334,7 @@ nav a.active {
   margin-top: 12px;
 }
 
-.diseno3d {
-  background: #1d1f26;
-  padding: 54px 16px;
-  text-align: center;
-}
-.diseno3d h2 {
-  color: var(--primary);
-  font-size: 2rem;
-  margin-bottom: 16px;
-}
-.modulo3d {
-  max-width: 500px;
-  margin: 0 auto;
-}
-.preview-3d {
-  background: #33384a;
-  border-radius: var(--radius);
-  padding: 42px 0;
-  margin-top: 20px;
-  color: #8affc1;
-  font-weight: bold;
-  font-size: 1.18rem;
-}
-
+/* === CONTACTO Y FOOTER === */
 section#contacto {
   padding: 54px 16px;
   text-align: center;
