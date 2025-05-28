@@ -5,59 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hermanitos Muebles de Melamina</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* --- Estilos personalizados para el visor 3D --- */
-    .visor3d-section {
-      background: linear-gradient(135deg, #faf7f4 70%, #eed7c5 100%);
-      padding: 2.5rem 0 2.2rem 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 2rem;
-      margin: 2rem auto 2.5rem auto;
-      box-shadow: 0 6px 32px #e7cbb69c;
-      width: 96%;
-      max-width: 860px;
-    }
-    .visor3d-title {
-      font-size: 2rem;
-      color: #9b7744;
-      letter-spacing: 1px;
-      font-weight: bold;
-      margin-bottom: .4rem;
-      font-family: 'Segoe UI', SegoeUI, sans-serif;
-      text-align: center;
-    }
-    .visor3d-desc {
-      font-size: 1.1rem;
-      color: #614122;
-      margin-bottom: 1.3rem;
-      text-align: center;
-      max-width: 580px;
-    }
-    #viewer3d {
-      width: 99%;
-      height: 390px;
-      max-width: 690px;
-      border-radius: 1.7rem;
-      background: #e4d1be;
-      margin: 0 auto 1rem auto;
-      box-shadow: 0 3px 18px #b8936095;
-      overflow: hidden;
-      border: 3px solid #cfb183;
-      /* Animación de sombra sutil */
-      transition: box-shadow .3s;
-    }
-    #viewer3d:hover {
-      box-shadow: 0 8px 42px #bb8a4f59;
-      border-color: #9b7744;
-    }
-    @media (max-width: 700px) {
-      .visor3d-section { padding: 1.3rem 0; }
-      #viewer3d { height: 240px; }
-      .visor3d-title { font-size: 1.3rem; }
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -82,25 +29,10 @@
     </div>
   </section>
 
-  <!-- ===== VISOR 3D DE MUEBLES ===== -->
-  <section class="visor3d-section">
-    <div class="visor3d-title">Explora tu mueble en 3D</div>
-    <div class="visor3d-desc">
-      Interactúa con el modelo 3D: puedes girar, acercar o alejar el mueble.<br>
-      <b>¿Quieres ver tu propio diseño aquí? Envíanos tu idea y la modelamos para ti.</b>
-    </div>
-    <div id="viewer3d"></div>
-  </section>
-  <!-- ===== FIN VISOR 3D ===== -->
-
   <!-- ========== CATÁLOGO ========= -->
   <section id="catalogo" class="catalogo">
     <h2>Catálogo Destacado</h2>
     <div class="grid">
-
-      <!-- ... (tus cards de productos) ... -->
-      <!-- Todo el código de catálogo tal como lo tenías -->
-      <!-- ... (copiado igual que tu código original) ... -->
 
       <!-- Francfort -->
       <div class="card">
@@ -111,10 +43,10 @@
           <h3>Francfort</h3>
           <p class="price">$1000 MXN</p>
           <p class="short-desc">Clóset compacto, nogal</p>
-          <a href="#Francfort-detalle" class="btn btn-mini">Ver detalles</a>
+          <a href="#Francfort-detalle" class="btn btn-mini ver-detalles">Ver detalles</a>
         </div>
       </div>
-      <!-- ...resto del catálogo igual... -->
+
       <!-- Hanover -->
       <div class="card">
         <div class="card-img-wrap">
@@ -124,9 +56,10 @@
           <h3>Hanover</h3>
           <p class="price">$1000 MXN</p>
           <p class="short-desc">Librero moderno</p>
-          <a href="#Hanover-detalle" class="btn btn-mini">Ver detalles</a>
+          <a href="#Hanover-detalle" class="btn btn-mini ver-detalles">Ver detalles</a>
         </div>
       </div>
+
       <!-- Bremen -->
       <div class="card">
         <div class="card-img-wrap">
@@ -136,9 +69,10 @@
           <h3>Bremen</h3>
           <p class="price">$1000 MXN</p>
           <p class="short-desc">Repisa melamina roble</p>
-          <a href="#Bremen-detalle" class="btn btn-mini">Ver detalles</a>
+          <a href="#Bremen-detalle" class="btn btn-mini ver-detalles">Ver detalles</a>
         </div>
       </div>
+
       <!-- Atenas -->
       <div class="card">
         <div class="card-img-wrap">
@@ -148,9 +82,10 @@
           <h3>Atenas</h3>
           <p class="price">$1000 MXN</p>
           <p class="short-desc">Mesa lateral</p>
-          <a href="#Atenas-detalle" class="btn btn-mini">Ver detalles</a>
+          <a href="#Atenas-detalle" class="btn btn-mini ver-detalles">Ver detalles</a>
         </div>
       </div>
+
       <!-- Duisburgo -->
       <div class="card">
         <div class="card-img-wrap">
@@ -160,16 +95,141 @@
           <h3>Duisburgo</h3>
           <p class="price">$1000 MXN</p>
           <p class="short-desc">Estante/Libreria</p>
-          <a href="#Duisburgo-detalle" class="btn btn-mini">Ver detalles</a>
+          <a href="#Duisburgo-detalle" class="btn btn-mini ver-detalles">Ver detalles</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========== DETALLES DE PRODUCTOS ========= -->
-  <!-- ...todo tu código de detalle de producto tal cual... -->
+  <!-- Francfort Detalle -->
+  <section id="Francfort-detalle" class="detalle-producto">
+    <h2>Francfort – Detalles</h2>
+    <div class="detalle-contenido">
+      <div class="slider">
+        <div class="slider-track">
+          <img src="img/Francfort/Francfort1.png" alt="Francfort1">
+          <img src="img/Francfort/Francfort2.png" alt="Francfort2">
+          <img src="img/Francfort/Francfort3.png" alt="Francfort3">
+        </div>
+      </div>
+      <div class="info">
+        <ul class="product-info-list">
+          <li><strong>Modelo:</strong> Francfort</li>
+          <li><strong>Precio:</strong> $1000 MXN</li>
+          <li><strong>Dimensiones:</strong> 90x180x45 cm</li>
+          <li><strong>Color:</strong> Nogal</li>
+          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+        </ul>
+        <p class="desc">Clóset compacto y resistente, ideal para espacios pequeños.</p>
+        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Francfort">Cotizar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
 
-  <!-- (no lo repito aquí por espacio, pero puedes copiarlo tal cual como en tu archivo) -->
+  <!-- Hanover Detalle -->
+  <section id="Hanover-detalle" class="detalle-producto">
+    <h2>Hanover – Detalles</h2>
+    <div class="detalle-contenido">
+      <div class="slider">
+        <div class="slider-track">
+          <img src="img/Hanover/Hanover1.png" alt="Hanover1">
+          <img src="img/Hanover/Hanover2.png" alt="Hanover2">
+          <img src="img/Hanover/Hanover3.png" alt="Hanover3">
+          <img src="img/Hanover/Hanover4.png" alt="Hanover4">
+        </div>
+      </div>
+      <div class="info">
+        <ul class="product-info-list">
+          <li><strong>Modelo:</strong> Hanover</li>
+          <li><strong>Precio:</strong> $1000 MXN</li>
+          <li><strong>Dimensiones:</strong> 80x160x35 cm</li>
+          <li><strong>Color:</strong> Blanco</li>
+          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+        </ul>
+        <p class="desc">Librero minimalista, perfecto para oficinas y sala.</p>
+        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Hanover">Cotizar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bremen Detalle -->
+  <section id="Bremen-detalle" class="detalle-producto">
+    <h2>Bremen – Detalles</h2>
+    <div class="detalle-contenido">
+      <div class="slider">
+        <div class="slider-track">
+          <img src="img/Bremen/Bremen1.png" alt="Bremen1">
+          <img src="img/Bremen/Bremen2.png" alt="Bremen2">
+          <img src="img/Bremen/Bremen3.png" alt="Bremen3">
+          <img src="img/Bremen/Bremen4.png" alt="Bremen4">
+        </div>
+      </div>
+      <div class="info">
+        <ul class="product-info-list">
+          <li><strong>Modelo:</strong> Bremen</li>
+          <li><strong>Precio:</strong> $1000 MXN</li>
+          <li><strong>Dimensiones:</strong> 60x150x35 cm</li>
+          <li><strong>Color:</strong> Roble</li>
+          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+        </ul>
+        <p class="desc">Repisa moderna y versátil para cualquier ambiente.</p>
+        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Bremen">Cotizar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atenas Detalle -->
+  <section id="Atenas-detalle" class="detalle-producto">
+    <h2>Atenas – Detalles</h2>
+    <div class="detalle-contenido">
+      <div class="slider">
+        <div class="slider-track">
+          <img src="img/Atenas/Atenas1.png" alt="Atenas1">
+          <img src="img/Atenas/Atenas2.png" alt="Atenas2">
+          <img src="img/Atenas/Atenas3.png" alt="Atenas3">
+          <img src="img/Atenas/Atenas4.png" alt="Atenas4">
+        </div>
+      </div>
+      <div class="info">
+        <ul class="product-info-list">
+          <li><strong>Modelo:</strong> Atenas</li>
+          <li><strong>Precio:</strong> $1000 MXN</li>
+          <li><strong>Dimensiones:</strong> 60x150x35 cm</li>
+          <li><strong>Color:</strong> Nogal</li>
+          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+        </ul>
+        <p class="desc">Mesa lateral ideal para cualquier rincón del hogar.</p>
+        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Atenas">Cotizar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Duisburgo Detalle -->
+  <section id="Duisburgo-detalle" class="detalle-producto">
+    <h2>Duisburgo – Detalles</h2>
+    <div class="detalle-contenido">
+      <div class="slider">
+        <div class="slider-track">
+          <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo1">
+          <img src="img/Duisburgo/Duisburgo2.png" alt="Duisburgo2">
+          <img src="img/Duisburgo/Duisburgo3.png" alt="Duisburgo3">
+          <img src="img/Duisburgo/Duisburgo4.png" alt="Duisburgo4">
+        </div>
+      </div>
+      <div class="info">
+        <ul class="product-info-list">
+          <li><strong>Modelo:</strong> Duisburgo</li>
+          <li><strong>Precio:</strong> $1000 MXN</li>
+          <li><strong>Dimensiones:</strong> 60x150x35 cm</li>
+          <li><strong>Color:</strong> Blanco</li>
+          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+        </ul>
+        <p class="desc">Estante versátil para organización y exhibición.</p>
+        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Duisburgo">Cotizar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
 
   <!-- CONTACTO -->
   <section id="contacto">
@@ -182,85 +242,49 @@
     <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
   </footer>
 
-  <!-- ======= SCRIPTS PARA EL VISOR 3D (Three.js) ======= -->
-  <script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
-  <script src="https://unpkg.com/three@0.154.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="https://unpkg.com/three@0.154.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- JS para mostrar solo el detalle seleccionado -->
   <script>
-    // --- Configuración del visor 3D ---
-    const container = document.getElementById('viewer3d');
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-
-    // Escena y cámara
-    const scene = new THREE.Scene();
-    // Fondo tipo madera claro para dar calidez visual
-    scene.background = new THREE.Color("#f6eddc");
-
-    const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 100);
-    camera.position.set(1.8, 1.4, 3.5);
-
-    // Renderizador
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    container.appendChild(renderer.domElement);
-
-    // Iluminación cálida y elegante
-    const ambient = new THREE.AmbientLight(0xffffff, 1.08); // luz blanca neutra
-    scene.add(ambient);
-    const warmLight = new THREE.DirectionalLight(0xf7c27a, 0.7); // luz tono nogal
-    warmLight.position.set(3, 8, 7);
-    scene.add(warmLight);
-    const fillLight = new THREE.DirectionalLight(0xffffff, 0.23); // relleno sutil
-    fillLight.position.set(-6, 3, 0);
-    scene.add(fillLight);
-
-    // Controles de cámara (girar, zoom)
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.09;
-    controls.target.set(0, 0.6, 0);
-
-    // Cargar modelo 3D (prueba: Box.glb en /models/)
-    const loader = new THREE.GLTFLoader();
-    loader.load(
-      'models/Box.glb', // Cambia aquí el modelo por el tuyo (por ejemplo: 'models/Francfort.glb')
-      function(gltf) {
-        const model = gltf.scene;
-        model.position.set(0, 0, 0);
-        model.scale.set(1.25, 1.25, 1.25); // Ajusta la escala según el modelo
-        model.traverse((child) => {
-          if (child.isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-          }
-        });
-        scene.add(model);
-        animate();
-      },
-      undefined,
-      function (error) {
-        container.innerHTML = "<div style='color:#b0752c;text-align:center;font-size:1.1rem;'>No se pudo cargar el modelo 3D.<br>¿Subiste el archivo a <b>/models/Box.glb</b>?</div>";
-        console.error(error);
+  document.querySelectorAll('.ver-detalles').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.detalle-producto').forEach(sec => {
+        sec.style.display = 'none';
+      });
+      // Muestra solo el detalle correspondiente
+      const id = btn.getAttribute('href').replace('#', '');
+      const target = document.getElementById(id);
+      if (target) {
+        target.style.display = 'block';
+        target.scrollIntoView({behavior:'smooth'});
       }
-    );
-
-    // Animación del render
-    function animate() {
-      requestAnimationFrame(animate);
-      controls.update();
-      renderer.render(scene, camera);
-    }
-
-    // Responsivo: Ajusta tamaño al cambiar ventana
-    window.addEventListener('resize', () => {
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      // Oculta el catálogo
+      document.querySelector('.catalogo').style.display = 'none';
+      // Botón para volver al catálogo
+      let volverBtn = document.getElementById('volver-catalogo');
+      if (!volverBtn) {
+        volverBtn = document.createElement('button');
+        volverBtn.textContent = "← Volver al catálogo";
+        volverBtn.id = "volver-catalogo";
+        volverBtn.className = "btn btn-mini";
+        volverBtn.style = "margin: 40px auto 0 auto;display:block";
+        target.parentNode.insertBefore(volverBtn, target);
+        volverBtn.addEventListener('click', function() {
+          document.querySelectorAll('.detalle-producto').forEach(sec => {
+            sec.style.display = 'none';
+          });
+          document.querySelector('.catalogo').style.display = 'block';
+          volverBtn.remove();
+          window.scrollTo({top: document.querySelector('.catalogo').offsetTop, behavior:'smooth'});
+        });
+      }
     });
+  });
+  // Por defecto, oculta todos los detalles
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.detalle-producto').forEach(sec => {
+      sec.style.display = 'none';
+    });
+  });
   </script>
 </body>
 </html>
