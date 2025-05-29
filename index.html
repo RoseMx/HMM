@@ -11,189 +11,202 @@
     <div class="container">
       <div class="logo">HMM</div>
       <nav>
-        <a href="#inicio" class="active">Inicio</a>
-        <a href="#catalogo">Catálogo</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#inicio" class="active nav-link" data-seccion="inicio">Inicio</a>
+        <a href="#catalogo" class="nav-link" data-seccion="catalogo">Catálogo</a>
+        <a href="#contacto" class="nav-link" data-seccion="contacto">Contacto</a>
       </nav>
     </div>
   </header>
 
-  <section id="inicio" class="hero">
-    <div class="hero-content">
-      <h1>Transforma tu espacio con muebles de melamina</h1>
-      <p>Ambientes modernos y funcionales, calidad y estilo a tu medida.</p>
-      <a href="#catalogo" class="btn btn-lg">Ver catálogo</a>
-    </div>
-    <div class="hero-img">
-      <img src="img/Francfort/Francfort1.png" alt="Muebles modernos" />
-    </div>
-  </section>
+  <main>
+    <section id="inicio" class="hero seccion">
+      <div class="hero-content">
+        <h1>Transforma tu espacio con muebles de melamina</h1>
+        <p>Ambientes modernos y funcionales, calidad y estilo a tu medida.</p>
+        <a href="#catalogo" class="btn btn-lg nav-link" data-seccion="catalogo">Ver catálogo</a>
+      </div>
+      <div class="hero-img">
+        <img src="img/Francfort/Francfort1.png" alt="Muebles modernos" />
+      </div>
+    </section>
 
-  <!-- ========== CATÁLOGO ========= -->
-  <section id="catalogo" class="catalogo">
-    <h2>Catálogo Destacado</h2>
-    <div class="grid">
+    <!-- ========== CATÁLOGO ========= -->
+    <section id="catalogo" class="catalogo seccion" style="display: none;">
+      <h2>Catálogo Destacado</h2>
+      <div class="grid">
 
-      <!-- Francfort -->
-      <div class="card">
-        <div class="card-img-wrap">
-          <img src="img/Francfort/Francfort1.png" alt="Francfort modelo 1">
-        </div>
-        <div class="card-body">
-          <h3>Francfort</h3>
-          <p class="price">$1000 MXN</p>
-          <p class="short-desc">Clóset compacto, nogal</p>
-          <button class="btn btn-mini ver-detalles" data-detalle="Francfort-detalle">Ver detalles</button>
-        </div>
-      </div>
-      <!-- Hanover -->
-      <div class="card">
-        <div class="card-img-wrap">
-          <img src="img/Hanover/Hanover1.png" alt="Hanover modelo 1">
-        </div>
-        <div class="card-body">
-          <h3>Hanover</h3>
-          <p class="price">$1000 MXN</p>
-          <p class="short-desc">Librero moderno</p>
-          <button class="btn btn-mini ver-detalles" data-detalle="Hanover-detalle">Ver detalles</button>
-        </div>
-      </div>
-      <!-- Bremen -->
-      <div class="card">
-        <div class="card-img-wrap">
-          <img src="img/Bremen/Bremen1.png" alt="Bremen modelo 1">
-        </div>
-        <div class="card-body">
-          <h3>Bremen</h3>
-          <p class="price">$1000 MXN</p>
-          <p class="short-desc">Repisa melamina roble</p>
-          <button class="btn btn-mini ver-detalles" data-detalle="Bremen-detalle">Ver detalles</button>
-        </div>
-      </div>
-      <!-- Atenas -->
-      <div class="card">
-        <div class="card-img-wrap">
-          <img src="img/Atenas/Atenas1.png" alt="Atenas modelo 1">
-        </div>
-        <div class="card-body">
-          <h3>Atenas</h3>
-          <p class="price">$1000 MXN</p>
-          <p class="short-desc">Mesa lateral</p>
-          <button class="btn btn-mini ver-detalles" data-detalle="Atenas-detalle">Ver detalles</button>
-        </div>
-      </div>
-      <!-- Duisburgo -->
-      <div class="card">
-        <div class="card-img-wrap">
-          <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo modelo 1">
-        </div>
-        <div class="card-body">
-          <h3>Duisburgo</h3>
-          <p class="price">$1000 MXN</p>
-          <p class="short-desc">Estante/Libreria</p>
-          <button class="btn btn-mini ver-detalles" data-detalle="Duisburgo-detalle">Ver detalles</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== DETALLES DE PRODUCTOS CON SLIDER CENTRADO ========== -->
-
-  <!-- Francfort Detalle -->
-  <section id="Francfort-detalle" class="detalle-producto">
-    <h2>Francfort – Detalles</h2>
-    <div class="detalle-contenido">
-      <div class="slider" data-slider>
-        <button class="slider-arrow left" data-arrow="left">&#8592;</button>
-        <div class="slider-viewport">
-          <div class="slider-track" data-track>
-            <div class="slider-img-container"><img src="img/Francfort/Francfort1.png" alt="Francfort1"></div>
-            <div class="slider-img-container"><img src="img/Francfort/Francfort2.png" alt="Francfort2"></div>
-            <div class="slider-img-container"><img src="img/Francfort/Francfort3.png" alt="Francfort3"></div>
+        <!-- Francfort -->
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="img/Francfort/Francfort1.png" alt="Francfort modelo 1">
+          </div>
+          <div class="card-body">
+            <h3>Francfort</h3>
+            <p class="price">$1000 MXN</p>
+            <p class="short-desc">Clóset compacto, nogal</p>
+            <button class="btn btn-mini ver-detalles" data-detalle="Francfort-detalle">Ver detalles</button>
           </div>
         </div>
-        <button class="slider-arrow right" data-arrow="right">&#8594;</button>
-      </div>
-      <div class="info">
-        <ul class="product-info-list">
-          <li><strong>Modelo:</strong> Francfort</li>
-          <li><strong>Precio:</strong> $1000 MXN</li>
-          <li><strong>Dimensiones:</strong> 90x180x45 cm</li>
-          <li><strong>Color:</strong> Nogal</li>
-          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
-        </ul>
-        <p class="desc">Clóset compacto y resistente, ideal para espacios pequeños.</p>
-        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Francfort" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
-      </div>
-    </div>
-  </section>
-  <!-- ...REPETIR PARA Hanover, Bremen, Atenas, Duisburgo... (idéntico, solo cambia el id e imágenes) -->
-
-  <!-- Hanover Detalle -->
-  <section id="Hanover-detalle" class="detalle-producto">
-    <h2>Hanover – Detalles</h2>
-    <div class="detalle-contenido">
-      <div class="slider" data-slider>
-        <button class="slider-arrow left" data-arrow="left">&#8592;</button>
-        <div class="slider-viewport">
-          <div class="slider-track" data-track>
-            <div class="slider-img-container"><img src="img/Hanover/Hanover1.png" alt="Hanover1"></div>
-            <div class="slider-img-container"><img src="img/Hanover/Hanover2.png" alt="Hanover2"></div>
-            <div class="slider-img-container"><img src="img/Hanover/Hanover3.png" alt="Hanover3"></div>
-            <div class="slider-img-container"><img src="img/Hanover/Hanover4.png" alt="Hanover4"></div>
+        <!-- Hanover -->
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="img/Hanover/Hanover1.png" alt="Hanover modelo 1">
+          </div>
+          <div class="card-body">
+            <h3>Hanover</h3>
+            <p class="price">$1000 MXN</p>
+            <p class="short-desc">Librero moderno</p>
+            <button class="btn btn-mini ver-detalles" data-detalle="Hanover-detalle">Ver detalles</button>
           </div>
         </div>
-        <button class="slider-arrow right" data-arrow="right">&#8594;</button>
+        <!-- Bremen -->
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="img/Bremen/Bremen1.png" alt="Bremen modelo 1">
+          </div>
+          <div class="card-body">
+            <h3>Bremen</h3>
+            <p class="price">$1000 MXN</p>
+            <p class="short-desc">Repisa melamina roble</p>
+            <button class="btn btn-mini ver-detalles" data-detalle="Bremen-detalle">Ver detalles</button>
+          </div>
+        </div>
+        <!-- Atenas -->
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="img/Atenas/Atenas1.png" alt="Atenas modelo 1">
+          </div>
+          <div class="card-body">
+            <h3>Atenas</h3>
+            <p class="price">$1000 MXN</p>
+            <p class="short-desc">Mesa lateral</p>
+            <button class="btn btn-mini ver-detalles" data-detalle="Atenas-detalle">Ver detalles</button>
+          </div>
+        </div>
+        <!-- Duisburgo -->
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo modelo 1">
+          </div>
+          <div class="card-body">
+            <h3>Duisburgo</h3>
+            <p class="price">$1000 MXN</p>
+            <p class="short-desc">Estante/Libreria</p>
+            <button class="btn btn-mini ver-detalles" data-detalle="Duisburgo-detalle">Ver detalles</button>
+          </div>
+        </div>
       </div>
-      <div class="info">
-        <ul class="product-info-list">
-          <li><strong>Modelo:</strong> Hanover</li>
-          <li><strong>Precio:</strong> $1000 MXN</li>
-          <li><strong>Dimensiones:</strong> 80x160x35 cm</li>
-          <li><strong>Color:</strong> Blanco</li>
-          <li><strong>Envío:</strong> Hermosillo y alrededores</li>
-        </ul>
-        <p class="desc">Librero minimalista, perfecto para oficinas y sala.</p>
-        <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Hanover" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+    </section>
+
+    <!-- ========== DETALLES DE PRODUCTOS (igual, ocultos al inicio) ========== -->
+    <!-- Francfort Detalle -->
+    <section id="Francfort-detalle" class="detalle-producto seccion" style="display: none;">
+      <h2>Francfort – Detalles</h2>
+      <div class="detalle-contenido">
+        <div class="slider" data-slider>
+          <button class="slider-arrow left" data-arrow="left">&#8592;</button>
+          <div class="slider-viewport">
+            <div class="slider-track" data-track>
+              <div class="slider-img-container"><img src="img/Francfort/Francfort1.png" alt="Francfort1"></div>
+              <div class="slider-img-container"><img src="img/Francfort/Francfort2.png" alt="Francfort2"></div>
+              <div class="slider-img-container"><img src="img/Francfort/Francfort3.png" alt="Francfort3"></div>
+            </div>
+          </div>
+          <button class="slider-arrow right" data-arrow="right">&#8594;</button>
+        </div>
+        <div class="info">
+          <ul class="product-info-list">
+            <li><strong>Modelo:</strong> Francfort</li>
+            <li><strong>Precio:</strong> $1000 MXN</li>
+            <li><strong>Dimensiones:</strong> 90x180x45 cm</li>
+            <li><strong>Color:</strong> Nogal</li>
+            <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+          </ul>
+          <p class="desc">Clóset compacto y resistente, ideal para espacios pequeños.</p>
+          <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Francfort" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <!-- ...REPETIR LOS DEMÁS DETALLES igual y todos con style="display: none;" ... -->
 
-  <!-- ...(Resto de modelos igual, no los copio aquí por espacio, pero es igual al anterior)... -->
+    <!-- Hanover Detalle -->
+    <section id="Hanover-detalle" class="detalle-producto seccion" style="display: none;">
+      <h2>Hanover – Detalles</h2>
+      <div class="detalle-contenido">
+        <div class="slider" data-slider>
+          <button class="slider-arrow left" data-arrow="left">&#8592;</button>
+          <div class="slider-viewport">
+            <div class="slider-track" data-track>
+              <div class="slider-img-container"><img src="img/Hanover/Hanover1.png" alt="Hanover1"></div>
+              <div class="slider-img-container"><img src="img/Hanover/Hanover2.png" alt="Hanover2"></div>
+              <div class="slider-img-container"><img src="img/Hanover/Hanover3.png" alt="Hanover3"></div>
+              <div class="slider-img-container"><img src="img/Hanover/Hanover4.png" alt="Hanover4"></div>
+            </div>
+          </div>
+          <button class="slider-arrow right" data-arrow="right">&#8594;</button>
+        </div>
+        <div class="info">
+          <ul class="product-info-list">
+            <li><strong>Modelo:</strong> Hanover</li>
+            <li><strong>Precio:</strong> $1000 MXN</li>
+            <li><strong>Dimensiones:</strong> 80x160x35 cm</li>
+            <li><strong>Color:</strong> Blanco</li>
+            <li><strong>Envío:</strong> Hermosillo y alrededores</li>
+          </ul>
+          <p class="desc">Librero minimalista, perfecto para oficinas y sala.</p>
+          <a class="btn btn-contact" href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Hanover" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+        </div>
+      </div>
+    </section>
+    <!-- ...Lo mismo para Bremen, Atenas y Duisburgo detalle... -->
 
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>¿Dudas? ¿Quieres un diseño especial? ¡Escríbenos por WhatsApp y recibe atención inmediata!</p>
-    <a class="btn btn-contact" href="https://wa.me/526624125786" target="_blank" rel="noopener">Contactar</a>
-  </section>
+    <!-- CONTACTO -->
+    <section id="contacto" class="seccion" style="display: none;">
+      <h2>Contacto</h2>
+      <p>¿Dudas? ¿Quieres un diseño especial? ¡Escríbenos por WhatsApp y recibe atención inmediata!</p>
+      <a class="btn btn-contact" href="https://wa.me/526624125786" target="_blank" rel="noopener">Contactar</a>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
   </footer>
 
-  <!-- ===== JS PARA FUNCIONAMIENTO ===== -->
   <script>
-  // Siempre espera a que cargue el DOM
   document.addEventListener('DOMContentLoaded', function() {
-    // Mostrar detalle solo del modelo seleccionado y regresar al catálogo
-    document.querySelectorAll('.detalle-producto').forEach(sec => {
-      sec.style.display = 'none';
+    // --- Navegación entre secciones ---
+    function mostrarSolo(seccionId) {
+      document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
+      // OJO: Si es detalle producto, debes mostrar ese detalle. Si es catálogo o contacto, muestra ese.
+      let sec = document.getElementById(seccionId);
+      if(sec) sec.style.display = 'block';
+    }
+    // Menú navegación superior y "ver catálogo" en hero
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Si es un detalle, oculta todos los detalles primero
+        mostrarSolo(this.getAttribute('data-seccion'));
+        document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+        this.classList.add('active');
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
     });
 
+    // --- Detalles de productos ---
+    document.querySelectorAll('.detalle-producto').forEach(sec => sec.style.display = 'none');
     document.querySelectorAll('.ver-detalles').forEach(btn => {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelectorAll('.detalle-producto').forEach(sec => {
-          sec.style.display = 'none';
-        });
-        const id = btn.getAttribute('data-detalle');
-        const target = document.getElementById(id);
-        if (target) {
-          target.style.display = 'block';
-          target.scrollIntoView({behavior:'smooth'});
-        }
-        document.querySelector('.catalogo').style.display = 'none';
+        document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
+        let id = btn.getAttribute('data-detalle');
+        let target = document.getElementById(id);
+        if (target) target.style.display = 'block';
+        window.scrollTo({top:0,behavior:'smooth'});
+        // Marcar menú como "catálogo" activo
+        document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+        document.querySelector('[data-seccion="catalogo"]').classList.add('active');
+        // Botón volver
         let volverBtn = document.getElementById('volver-catalogo');
         if (!volverBtn) {
           volverBtn = document.createElement('button');
@@ -203,18 +216,19 @@
           volverBtn.style = "margin: 40px auto 0 auto;display:block";
           target.parentNode.insertBefore(volverBtn, target);
           volverBtn.addEventListener('click', function() {
-            document.querySelectorAll('.detalle-producto').forEach(sec => {
-              sec.style.display = 'none';
-            });
-            document.querySelector('.catalogo').style.display = 'block';
+            document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
+            document.getElementById('catalogo').style.display = 'block';
             volverBtn.remove();
-            window.scrollTo({top: document.querySelector('.catalogo').offsetTop, behavior:'smooth'});
+            window.scrollTo({top:0,behavior:'smooth'});
+            // Marcar menú como catálogo activo
+            document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+            document.querySelector('[data-seccion="catalogo"]').classList.add('active');
           });
         }
       });
     });
 
-    // GALERÍA CON FLECHAS Y DESPLAZAMIENTO SUAVE (solo 1 imagen a la vez)
+    // --- Slider de detalles (igual que antes) ---
     document.querySelectorAll('[data-slider]').forEach(slider => {
       const track = slider.querySelector('[data-track]');
       const items = Array.from(track.children);
@@ -247,6 +261,9 @@
 
       window.addEventListener('resize', updateSlider);
     });
+
+    // Mostrar solo INICIO al cargar
+    mostrarSolo('inicio');
   });
   </script>
 </body>
