@@ -19,114 +19,30 @@
   </header>
 
   <main>
+    <!-- ========== INICIO (mejorado) ========== -->
     <section id="inicio" class="hero seccion">
       <div class="hero-content">
-        <h1>Transforma tu espacio con muebles de melamina</h1>
-        <p>Ambientes modernos y funcionales, calidad y estilo a tu medida.</p>
-        <!-- Carrusel animado -->
-        <div class="carousel-container">
-          <div class="carousel-track">
-            <img src="img/Francfort/Francfort1.png" alt="Francfort" />
-            <img src="img/Hanover/Hanover1.png" alt="Hanover" />
-            <img src="img/Bremen/Bremen1.png" alt="Bremen" />
-            <img src="img/Atenas/Atenas1.png" alt="Atenas" />
-            <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
-            <!-- Duplicadas para efecto infinito -->
-            <img src="img/Francfort/Francfort1.png" alt="Francfort" />
-            <img src="img/Hanover/Hanover1.png" alt="Hanover" />
-            <img src="img/Bremen/Bremen1.png" alt="Bremen" />
-            <img src="img/Atenas/Atenas1.png" alt="Atenas" />
-            <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
-          </div>
-        </div>
-        <!-- Fin Carrusel -->
+        <h1>Transforma tu espacio<br>
+          <span style="color:#43cea2">con muebles de melamina</span>
+        </h1>
+        <p>Ambientes modernos y funcionales.<br>
+          Calidad y estilo a tu medida.
+        </p>
         <a href="#catalogo" class="btn btn-lg nav-link" data-seccion="catalogo">Ver catálogo</a>
       </div>
-      <div class="hero-img">
-        <img src="img/Francfort/Francfort1.png" alt="Muebles modernos" />
-      </div>
-    </section>
-
-    <!-- ========== CATÁLOGO INTERACTIVO Y MODAL DE PRODUCTO ========== -->
-    <section id="catalogo" class="catalogo seccion" style="display:none;">
-      <h2>Catálogo Destacado</h2>
-      <div class="catalogo-grid">
-        <!-- CARD FRANCFORT -->
-        <div class="cat-card" data-modelo="Francfort">
-          <div class="cat-img" style="background-image: url('img/Francfort/Francfort1.png');"></div>
-          <div class="cat-content">
-            <h3>Francfort</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Clóset compacto, nogal</p>
-          </div>
-        </div>
-        <!-- CARD HANOVER -->
-        <div class="cat-card" data-modelo="Hanover">
-          <div class="cat-img" style="background-image: url('img/Hanover/Hanover1.png');"></div>
-          <div class="cat-content">
-            <h3>Hanover</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Librero moderno</p>
-          </div>
-        </div>
-        <!-- CARD BREMEN -->
-        <div class="cat-card" data-modelo="Bremen">
-          <div class="cat-img" style="background-image: url('img/Bremen/Bremen1.png');"></div>
-          <div class="cat-content">
-            <h3>Bremen</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Repisa melamina roble</p>
-          </div>
-        </div>
-        <!-- CARD ATENAS -->
-        <div class="cat-card" data-modelo="Atenas">
-          <div class="cat-img" style="background-image: url('img/Atenas/Atenas1.png');"></div>
-          <div class="cat-content">
-            <h3>Atenas</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Mesa lateral</p>
-          </div>
-        </div>
-        <!-- CARD DUISBURGO -->
-        <div class="cat-card" data-modelo="Duisburgo">
-          <div class="cat-img" style="background-image: url('img/Duisburgo/Duisburgo1.png');"></div>
-          <div class="cat-content">
-            <h3>Duisburgo</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Estante/Libreria</p>
-          </div>
+      <div class="hero-carousel">
+        <div class="carousel-track" id="inicio-carousel-track">
+          <img src="img/Francfort/Francfort1.png" alt="Francfort" />
+          <img src="img/Hanover/Hanover1.png" alt="Hanover" />
+          <img src="img/Bremen/Bremen1.png" alt="Bremen" />
+          <img src="img/Atenas/Atenas1.png" alt="Atenas" />
+          <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
+          <!-- Duplicada para efecto infinito -->
+          <img src="img/Francfort/Francfort1.png" alt="Francfort repeat" />
         </div>
       </div>
     </section>
-
-    <!-- MODAL/VENTANA DE PRODUCTO -->
-    <div id="modal-producto" class="modal-producto">
-      <div class="modal-bg" id="close-modal"></div>
-      <div class="modal-content">
-        <button class="cerrar-modal" id="close-modal-btn">&times;</button>
-        <div class="modal-body">
-          <div class="modal-info" id="modal-info">
-            <!-- Aquí se rellena la info con JS -->
-          </div>
-          <div class="modal-galeria">
-            <button class="arrow left" id="galeria-prev">&#8592;</button>
-            <div class="galeria-viewport">
-              <div class="galeria-track" id="galeria-track">
-                <!-- Aquí se insertan las imágenes con JS -->
-              </div>
-            </div>
-            <button class="arrow right" id="galeria-next">&#8594;</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="seccion" style="display: none;">
-      <h2>Contacto</h2>
-      <p>¿Dudas? ¿Quieres un diseño especial? ¡Escríbenos por WhatsApp y recibe atención inmediata!</p>
-      <a class="btn btn-contact" href="https://wa.me/526624125786" target="_blank" rel="noopener">Contactar</a>
-    </section>
+    <!-- (Aquí irá catálogo y contacto después) -->
   </main>
 
   <footer>
@@ -134,12 +50,12 @@
   </footer>
 
   <script>
-  // --- SPA NAV ---
+  // --- SPA NAV (sólo INICIO por ahora) ---
   document.addEventListener('DOMContentLoaded', function() {
     function mostrarSolo(seccionId) {
       document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
       let sec = document.getElementById(seccionId);
-      if(sec) sec.style.display = 'block';
+      if(sec) sec.style.display = 'flex';
     }
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function(e) {
@@ -152,153 +68,6 @@
     });
     mostrarSolo('inicio');
   });
-
-  // ============ MODAL PRODUCTO Y GALERÍA =============
-  const productos = {
-    Francfort: {
-      nombre: "Francfort",
-      precio: "$1000 MXN",
-      desc: "Clóset compacto, nogal.",
-      detalles: [
-        "Modelo: Francfort",
-        "Dimensiones: 90x180x45 cm",
-        "Color: Nogal",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Francfort",
-      fotos: [
-        "img/Francfort/Francfort1.png",
-        "img/Francfort/Francfort2.png",
-        "img/Francfort/Francfort3.png"
-      ]
-    },
-    Hanover: {
-      nombre: "Hanover",
-      precio: "$1000 MXN",
-      desc: "Librero moderno.",
-      detalles: [
-        "Modelo: Hanover",
-        "Dimensiones: 80x160x35 cm",
-        "Color: Blanco",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Hanover",
-      fotos: [
-        "img/Hanover/Hanover1.png",
-        "img/Hanover/Hanover2.png",
-        "img/Hanover/Hanover3.png",
-        "img/Hanover/Hanover4.png"
-      ]
-    },
-    Bremen: {
-      nombre: "Bremen",
-      precio: "$1000 MXN",
-      desc: "Repisa melamina roble.",
-      detalles: [
-        "Modelo: Bremen",
-        "Dimensiones: 60x150x35 cm",
-        "Color: Roble",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Bremen",
-      fotos: [
-        "img/Bremen/Bremen1.png",
-        "img/Bremen/Bremen2.png",
-        "img/Bremen/Bremen3.png",
-        "img/Bremen/Bremen4.png"
-      ]
-    },
-    Atenas: {
-      nombre: "Atenas",
-      precio: "$1000 MXN",
-      desc: "Mesa lateral.",
-      detalles: [
-        "Modelo: Atenas",
-        "Dimensiones: 60x150x35 cm",
-        "Color: Nogal",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Atenas",
-      fotos: [
-        "img/Atenas/Atenas1.png",
-        "img/Atenas/Atenas2.png",
-        "img/Atenas/Atenas3.png",
-        "img/Atenas/Atenas4.png"
-      ]
-    },
-    Duisburgo: {
-      nombre: "Duisburgo",
-      precio: "$1000 MXN",
-      desc: "Estante/Libreria.",
-      detalles: [
-        "Modelo: Duisburgo",
-        "Dimensiones: 60x150x35 cm",
-        "Color: Blanco",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Duisburgo",
-      fotos: [
-        "img/Duisburgo/Duisburgo1.png",
-        "img/Duisburgo/Duisburgo2.png",
-        "img/Duisburgo/Duisburgo3.png",
-        "img/Duisburgo/Duisburgo4.png"
-      ]
-    }
-  };
-
-  const modal = document.getElementById("modal-producto");
-  const modalInfo = document.getElementById("modal-info");
-  const galeriaTrack = document.getElementById("galeria-track");
-  let galeriaIdx = 0, galeriaFotos = [];
-
-  function abrirModalProducto(modelo) {
-    const prod = productos[modelo];
-    if (!prod) return;
-    modalInfo.innerHTML = `
-      <h3>${prod.nombre}</h3>
-      <div class="precio">${prod.precio}</div>
-      <div class="desc">${prod.desc}</div>
-      <ul>${prod.detalles.map(t=>`<li>${t}</li>`).join("")}</ul>
-      <a class="btn btn-contact" href="${prod.whatsapp}" target="_blank">Cotizar por WhatsApp</a>
-    `;
-    galeriaTrack.innerHTML = prod.fotos.map(src=>`<img src="${src}" alt="${prod.nombre}">`).join('');
-    galeriaFotos = prod.fotos;
-    galeriaIdx = 0;
-    moverGaleria();
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
-  function cerrarModalProducto() {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-  function moverGaleria() {
-    galeriaTrack.style.transform = `translateX(-${galeriaIdx * galeriaTrack.offsetWidth}px)`;
-    document.getElementById("galeria-prev").disabled = galeriaIdx === 0;
-    document.getElementById("galeria-next").disabled = galeriaIdx === galeriaFotos.length-1;
-  }
-  document.querySelectorAll(".cat-card").forEach(card=>{
-    card.onclick = ()=>abrirModalProducto(card.dataset.modelo);
-  });
-  document.getElementById("close-modal").onclick = cerrarModalProducto;
-  document.getElementById("close-modal-btn").onclick = cerrarModalProducto;
-  document.getElementById("galeria-prev").onclick = ()=>{
-    if (galeriaIdx>0) { galeriaIdx--; moverGaleria(); }
-  };
-  document.getElementById("galeria-next").onclick = ()=>{
-    if (galeriaIdx<galeriaFotos.length-1) { galeriaIdx++; moverGaleria(); }
-  };
-  galeriaTrack.addEventListener("touchstart", function(e){
-    this._x = e.touches[0].clientX;
-  });
-  galeriaTrack.addEventListener("touchend", function(e){
-    let dx = e.changedTouches[0].clientX - this._x;
-    if (dx > 40 && galeriaIdx > 0) { galeriaIdx--; moverGaleria(); }
-    if (dx < -40 && galeriaIdx < galeriaFotos.length-1) { galeriaIdx++; moverGaleria(); }
-  });
-  window.addEventListener("resize", moverGaleria);
-
-  // Carrusel animado de inicio (solo CSS pero dejamos por claridad)
   </script>
 </body>
 </html>
