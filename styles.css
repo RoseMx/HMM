@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: #232a34; /* Fondo azul gris oscuro, acabado mate */
+  background: #232a34;
   color: #f2f4f8;
 }
 header {
@@ -102,7 +102,7 @@ nav a:hover {
 .hero-carousel {
   flex: 1 1 350px;
   min-width: 330px;
-  max-width: 450px;
+  max-width: 540px;
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 4px 18px #232a3428;
@@ -115,9 +115,14 @@ nav a:hover {
 .carousel-track {
   display: flex;
   width: fit-content;
-  animation: scroll-left 18s linear infinite;
   align-items: center;
   height: 100%;
+  transition: transform 0.23s cubic-bezier(.4,.88,.42,1.13);
+}
+.carousel-track a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .carousel-track img {
   height: 220px;
@@ -130,6 +135,7 @@ nav a:hover {
   transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
   border: 1.5px solid #232a34;
   filter: brightness(0.93);
+  cursor: pointer;
 }
 .carousel-track img:hover {
   transform: scale(1.07) rotate(-2deg);
@@ -213,7 +219,7 @@ nav a:hover {
   filter: brightness(0.98);
 }
 
-/* === MODAL PRODUCTO === */
+/* === MODAL PRODUCTO / GALERÍA === */
 .modal-producto {
   display: none;
   position: fixed;
@@ -231,15 +237,65 @@ nav a:hover {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-.modal-content {
-  background: #303841;
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 40px #232a3459;
-  padding: 2.3rem 1.6rem 1.7rem 1.6rem;
-  max-width: 650px;
+.modal-content-gallery {
   width: 98vw;
-  position: relative;
-  color: #f2f4f8;
+  max-width: 560px;
+  background: #21242aee;
+  box-shadow: 0 8px 40px #000a;
+  border-radius: 1.3rem;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+}
+.modal-body-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+.gallery-main {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.gallery-viewport {
+  width: 320px; height: 220px;
+  background: #303841;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 20px #1a1a1a33;
+  border: 1.5px solid #59a89933;
+}
+#gallery-main-img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 1rem;
+  object-fit: contain;
+  background: #232a34;
+}
+.gallery-thumbs {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+.gallery-thumbs img {
+  width: 56px;
+  height: 40px;
+  border-radius: 0.6rem;
+  object-fit: cover;
+  background: #303841;
+  border: 2.5px solid transparent;
+  box-shadow: 0 1px 8px #0003;
+  cursor: pointer;
+  transition: border 0.16s, filter 0.22s;
+  filter: brightness(0.8);
+}
+.gallery-thumbs img.active,
+.gallery-thumbs img:hover {
+  border: 2.5px solid #59a899;
+  filter: brightness(1.1);
 }
 .cerrar-modal {
   position: absolute;
@@ -253,63 +309,41 @@ nav a:hover {
   transition: color 0.15s;
 }
 .cerrar-modal:hover { color: #236371; }
-.modal-body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
 .modal-info h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.7rem;
+  font-size: 1.23rem;
+  margin-bottom: 0.5rem;
   color: #59a899;
   letter-spacing: 1px;
+  text-align: center;
 }
 .modal-info .precio {
   color: #f2f4f8;
-  font-size: 1.14rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.07rem;
+  margin-bottom: 0.35rem;
+  text-align: center;
 }
 .modal-info .desc {
   color: #c4c7ce;
-  margin-bottom: 0.4rem;
-  font-size: 0.97rem;
+  margin-bottom: 0.2rem;
+  font-size: 0.96rem;
+  text-align: center;
 }
 .modal-info ul {
   list-style: none;
   padding: 0;
   color: #c4c7ce;
-  margin-bottom: 0.6rem;
-  font-size: 0.99rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.96rem;
+  text-align: center;
 }
 .modal-info ul li::before {
   content: "• ";
   color: #59a899;
 }
-.modal-galeria {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.galeria-viewport {
-  overflow: hidden;
-  width: 260px;
-  height: 185px;
-  border-radius: 0.7rem;
-  background: #242b34;
-  border: 1.5px solid #263544;
-  box-shadow: 0 2px 12px #26354426;
-}
-.galeria-track {
-  display: flex;
-  transition: transform 0.3s;
-  height: 100%;
-}
-.galeria-track img {
-  width: 260px;
-  height: 185px;
-  object-fit: cover;
-  border-radius: 0.7rem;
-  background: #242b34;
+.btn-contact {
+  margin: 0.6rem auto 0 auto;
+  display: block;
+  width: fit-content;
 }
 .arrow {
   background: #263544;
@@ -334,12 +368,13 @@ nav a:hover {
   color: #232a34;
 }
 
+/* Responsive */
 @media (max-width: 900px) {
   .hero { flex-direction: column-reverse; gap: 1.5rem; }
   .hero-carousel { min-width: 90vw; max-width: 98vw; }
   .catalogo-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-  .modal-content { max-width: 98vw; }
-  .galeria-viewport, .galeria-track img { width: 180px; height: 120px; }
+  .modal-content-gallery { max-width: 99vw; }
+  .gallery-viewport { width: 200px; height: 120px; }
 }
 @media (max-width: 600px) {
   .container { flex-direction: column; gap: 0.6rem; }
@@ -349,7 +384,8 @@ nav a:hover {
   .hero-content p { font-size: 1rem; }
   .hero-carousel { height: 150px; }
   .carousel-track img { height: 90px; margin: 0 0.5rem; }
-  .galeria-viewport, .galeria-track img { width: 120px; height: 80px; }
+  .gallery-viewport { width: 120px; height: 80px; }
+  .gallery-thumbs img { width: 32px; height: 24px; }
 }
 footer {
   background: #2a3440;
