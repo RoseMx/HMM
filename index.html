@@ -41,7 +41,6 @@
               <div class="carousel-mini-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
               <div class="carousel-mini-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
               <div class="carousel-mini-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
-              <!-- Agrega más modelos aquí si los tienes -->
             </div>
             <button class="carr-btn down" id="carousel-down">&#9660;</button>
           </div>
@@ -96,6 +95,28 @@
       </div>
     </section>
 
+    <!-- MODAL PREMIUM -->
+    <div id="modal-producto" class="modal-producto">
+      <div class="modal-bg" id="close-modal"></div>
+      <div class="modal-popup">
+        <button class="close-btn" id="close-modal-btn" title="Cerrar">&times;</button>
+        <div class="modal-columns">
+          <!-- Galería columna izquierda -->
+          <div class="modal-gallery">
+            <div class="main-img-wrap" id="main-img-wrap">
+              <img id="gallery-main-img" src="" alt="Producto" />
+              <button id="zoom-btn" class="zoom-btn" title="Zoom">&#128269;</button>
+              <button class="arrow left" id="galeria-prev">&#8592;</button>
+              <button class="arrow right" id="galeria-next">&#8594;</button>
+            </div>
+            <div class="mini-thumbs" id="gallery-thumbs"></div>
+          </div>
+          <!-- Info columna derecha -->
+          <div class="modal-info" id="modal-info"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- CONTACTO -->
     <section id="contacto" class="seccion" style="display: none;">
       <div class="contact-card">
@@ -122,7 +143,7 @@
   </footer>
 
   <script>
-  // SPA NAV
+  // ---------------- SPA NAV -----------------
   document.addEventListener('DOMContentLoaded', function() {
     function mostrarSolo(seccionId) {
       document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
@@ -141,7 +162,7 @@
     mostrarSolo('inicio');
   });
 
-  // Carrusel vertical compacto
+  // ------------ Carrusel Vertical Elegante -----------
   document.addEventListener('DOMContentLoaded', function(){
     const track = document.getElementById('carousel-mini-track');
     const imgs = track.querySelectorAll('.carousel-mini-img');
@@ -157,14 +178,195 @@
     document.getElementById('carousel-down').onclick = () => {
       if (current < imgs.length - visible) { current++; updateCarousel(); }
     };
-    // Abre modal o lo que necesites al hacer click
     imgs.forEach(el => {
       el.onclick = function() {
-        alert('Aquí se abriría el modal de ' + this.dataset.modelo);
+        abrirModalProducto(this.dataset.modelo);
       };
     });
     updateCarousel();
   });
+
+  // ------------------ MODAL PREMIUM -------------------
+
+  // Datos de los productos y sus fotos
+  const productos = {
+    Francfort: {
+      nombre: "Francfort",
+      precio: "$1000 MXN",
+      desc: "Clóset compacto, nogal.",
+      detalles: [
+        "Modelo: Francfort",
+        "Dimensiones: 90x180x45 cm",
+        "Color: Nogal",
+        "Envío: Hermosillo y alrededores"
+      ],
+      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Francfort",
+      fotos: [
+        "img/Francfort/Francfort1.png",
+        "img/Francfort/Francfort2.png",
+        "img/Francfort/Francfort3.png"
+      ]
+    },
+    Hanover: {
+      nombre: "Hanover",
+      precio: "$1000 MXN",
+      desc: "Librero moderno.",
+      detalles: [
+        "Modelo: Hanover",
+        "Dimensiones: 80x160x35 cm",
+        "Color: Blanco",
+        "Envío: Hermosillo y alrededores"
+      ],
+      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Hanover",
+      fotos: [
+        "img/Hanover/Hanover1.png",
+        "img/Hanover/Hanover2.png",
+        "img/Hanover/Hanover3.png",
+        "img/Hanover/Hanover4.png"
+      ]
+    },
+    Bremen: {
+      nombre: "Bremen",
+      precio: "$1000 MXN",
+      desc: "Repisa melamina roble.",
+      detalles: [
+        "Modelo: Bremen",
+        "Dimensiones: 60x150x35 cm",
+        "Color: Roble",
+        "Envío: Hermosillo y alrededores"
+      ],
+      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Bremen",
+      fotos: [
+        "img/Bremen/Bremen1.png",
+        "img/Bremen/Bremen2.png",
+        "img/Bremen/Bremen3.png",
+        "img/Bremen/Bremen4.png"
+      ]
+    },
+    Atenas: {
+      nombre: "Atenas",
+      precio: "$1000 MXN",
+      desc: "Mesa lateral.",
+      detalles: [
+        "Modelo: Atenas",
+        "Dimensiones: 60x150x35 cm",
+        "Color: Nogal",
+        "Envío: Hermosillo y alrededores"
+      ],
+      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Atenas",
+      fotos: [
+        "img/Atenas/Atenas1.png",
+        "img/Atenas/Atenas2.png",
+        "img/Atenas/Atenas3.png",
+        "img/Atenas/Atenas4.png"
+      ]
+    },
+    Duisburgo: {
+      nombre: "Duisburgo",
+      precio: "$1000 MXN",
+      desc: "Estante/Libreria.",
+      detalles: [
+        "Modelo: Duisburgo",
+        "Dimensiones: 60x150x35 cm",
+        "Color: Blanco",
+        "Envío: Hermosillo y alrededores"
+      ],
+      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Duisburgo",
+      fotos: [
+        "img/Duisburgo/Duisburgo1.png",
+        "img/Duisburgo/Duisburgo2.png",
+        "img/Duisburgo/Duisburgo3.png",
+        "img/Duisburgo/Duisburgo4.png"
+      ]
+    }
+  };
+
+  // Modal funciones
+  const modal = document.getElementById("modal-producto");
+  const modalInfo = document.getElementById("modal-info");
+  const galeriaTrack = document.getElementById("gallery-thumbs");
+  const mainImg = document.getElementById("gallery-main-img");
+  let galeriaIdx = 0, galeriaFotos = [];
+
+  function abrirModalProducto(modelo) {
+    const prod = productos[modelo];
+    if (!prod) return;
+    modalInfo.innerHTML = `
+      <h3>${prod.nombre}</h3>
+      <div class="precio">${prod.precio}</div>
+      <div class="desc">${prod.desc}</div>
+      <ul>${prod.detalles.map(t=>`<li>${t}</li>`).join("")}</ul>
+      <a class="btn btn-contact" href="${prod.whatsapp}" target="_blank">Cotizar por WhatsApp</a>
+    `;
+    galeriaFotos = prod.fotos;
+    galeriaIdx = 0;
+    renderGaleria();
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function cerrarModalProducto() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+    document.getElementById('main-img-wrap').classList.remove('zoomed');
+  }
+
+  function renderGaleria() {
+    mainImg.src = galeriaFotos[galeriaIdx];
+    galeriaTrack.innerHTML = galeriaFotos.map((src, i) =>
+      `<img src="${src}" class="${i===galeriaIdx?'active':''}" data-idx="${i}">`
+    ).join('');
+    document.getElementById("galeria-prev").disabled = galeriaIdx === 0;
+    document.getElementById("galeria-next").disabled = galeriaIdx === galeriaFotos.length-1;
+  }
+
+  document.getElementById("close-modal").onclick = cerrarModalProducto;
+  document.getElementById("close-modal-btn").onclick = cerrarModalProducto;
+  document.getElementById("galeria-prev").onclick = ()=>{
+    if (galeriaIdx>0) { galeriaIdx--; renderGaleria(); }
+  };
+  document.getElementById("galeria-next").onclick = ()=>{
+    if (galeriaIdx<galeriaFotos.length-1) { galeriaIdx++; renderGaleria(); }
+  };
+
+  galeriaTrack.addEventListener('click', function(e){
+    if(e.target.tagName === 'IMG') {
+      galeriaIdx = Number(e.target.dataset.idx);
+      renderGaleria();
+    }
+  });
+
+  // Zoom
+  const mainImgWrap = document.getElementById('main-img-wrap');
+  document.getElementById('zoom-btn').onclick = function() {
+    mainImgWrap.classList.toggle('zoomed');
+  };
+  mainImg.onclick = function() {
+    mainImgWrap.classList.toggle('zoomed');
+  };
+  mainImgWrap.onmousemove = function(e) {
+    if(mainImgWrap.classList.contains('zoomed')) {
+      const rect = mainImg.getBoundingClientRect();
+      const x = ((e.clientX-rect.left)/rect.width - 0.5) * 100;
+      const y = ((e.clientY-rect.top)/rect.height - 0.5) * 100;
+      mainImg.style.setProperty('--zoom-x', `${-x}px`);
+      mainImg.style.setProperty('--zoom-y', `${-y}px`);
+    }
+  };
+  mainImgWrap.onmouseleave = function() {
+    mainImg.style.setProperty('--zoom-x', `0px`);
+    mainImg.style.setProperty('--zoom-y', `0px`);
+  };
+
+  // Catálogo: click para abrir modal
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.cat-card').forEach(el => {
+      el.onclick = function() {
+        abrirModalProducto(this.dataset.modelo);
+      };
+    });
+  });
+
   </script>
 </body>
 </html>
