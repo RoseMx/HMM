@@ -23,13 +23,24 @@
     <section id="inicio" class="hero seccion">
       <div class="hero-flex">
         <div class="hero-content">
-          <h1>Transforma tu espacio<br>
-            <span>con muebles de melamina</span>
-          </h1>
-          <p>Ambientes modernos y funcionales.<br>
-            Calidad y estilo a tu medida.
+          <h1><span>Transforma tu espacio</span> con muebles de melamina</h1>
+          <p class="hero-sub">
+            Descubre muebles modernos, duraderos y hechos a tu gusto.<br>
+            Eleva tu hogar con soluciones prácticas y elegantes.
           </p>
-          <a href="#catalogo" class="btn btn-lg nav-link" data-seccion="catalogo">Ver catálogo</a>
+          <ul class="hero-benefits">
+            <li>✅ Hechos a medida</li>
+            <li>✅ Materiales de calidad</li>
+            <li>✅ Envíos rápidos en Hermosillo</li>
+          </ul>
+          <div class="hero-btns">
+            <a href="#catalogo" class="btn btn-lg nav-link" data-seccion="catalogo">Ver catálogo</a>
+            <a href="#contacto" class="btn btn-secondary nav-link" data-seccion="contacto">Solicita tu diseño</a>
+          </div>
+          <div class="hero-testimonial">
+            <em>“Un servicio excelente y el mueble llegó tal como lo imaginé.”</em>
+            <span>— Andrea, cliente de Hermosillo</span>
+          </div>
         </div>
         <aside class="carousel-vertical-auto-area">
           <div class="carousel-title">Modelos Destacados</div>
@@ -167,7 +178,7 @@
     const imgs = track.querySelectorAll('.carousel-auto-img');
     let pos = 0;
     let speed = 0.6;
-    const imgHeight = 120 + 13; // altura imagen + gap (ajustado a 120px)
+    const imgHeight = 208 + 17; // 208 alto + 17px gap (30% más grande)
 
     function loop() {
       pos += speed;
