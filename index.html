@@ -1,403 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hermanitos Muebles de Melamina</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Catálogo con Modal Funcional</title>
   <style>
-    .modal-float {
-      position: fixed;
-      z-index: 9999;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(22,24,32,0.95);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity .2s;
-    }
-    .modal-float.oculto { display: none; }
-    .modal-float-content {
-      background: #22262b;
-      border-radius: 18px;
-      padding: 26px 14px 19px 14px;
-      box-shadow: 0 4px 28px #20242a82;
-      max-width: 410px;
-      width: 96vw;
-      position: relative;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      animation: aparecer .18s;
-    }
-    @keyframes aparecer { from{transform:scale(.91);opacity:0} to{transform:scale(1);opacity:1}}
-    .modal-float-close {
-      position: absolute;
-      top: 13px; right: 16px;
-      font-size: 2.2rem;
-      color: #fec260;
-      cursor: pointer;
-      z-index: 1;
-      transition: color .16s;
-    }
-    .modal-float-close:hover { color: #fff; }
-    .slider-container {
-      position: relative;
-      width: 335px;
-      max-width: 82vw;
-      margin: 0 auto 8px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #232832;
-      border-radius: 1em;
-      overflow: hidden;
-      box-shadow: 0 3px 18px #0006;
-    }
-    .slider-img {
-      width: 100%;
-      max-height: 225px;
-      object-fit: contain;
-      border-radius: 1em;
-      background: #181818;
-      transition: opacity .2s;
-      display: block;
-      margin: 0 auto;
-    }
-    .slider-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2.0rem;
-      color: #fec260;
-      background: rgba(40,40,40,0.7);
-      border: none;
-      cursor: pointer;
-      z-index: 2;
-      padding: 0 10px;
-      border-radius: 1em;
-      transition: background .18s;
-      user-select: none;
-    }
-    .slider-arrow.left { left: 8px; }
-    .slider-arrow.right { right: 8px; }
-    .slider-arrow:hover { background: #fec260; color: #222; }
-    .slider-dots {
-      display: flex;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 7px;
-    }
-    .slider-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #fec26054;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      transition: background .18s;
-    }
-    .slider-dot.active { background: #fec260; }
-    .modal-title { color: #25d366; font-size: 1.25rem; font-weight: bold; margin-top: 7px;}
-    .modal-price { color: #fec260; font-size: 1.09rem; font-weight: bold; margin-bottom:2px;}
-    .modal-desc { color: #c4c7ce; font-size: 1.05rem; margin-bottom: 6px;}
-    .modal-float-contact-btn {
-      display: block;
-      width: 100%;
-      background: linear-gradient(90deg,#25d366 60%,#128c7e 100%);
-      color: #fff;
-      border: none;
-      padding: 12px 0;
-      border-radius: 10px;
-      font-size: 1.12rem;
-      font-weight: 700;
-      text-align: center;
-      text-decoration: none;
-      margin-top: 11px;
-      box-shadow: 0 2px 8px #25d36633;
-      transition: background 0.21s;
-    }
-    .modal-float-contact-btn:hover { background: linear-gradient(90deg,#128c7e 60%,#25d366 100%);}
-    @media (max-width: 400px) {
-      .slider-container { width: 99vw; }
-    }
+    body { font-family: Arial; background: #232a34; color: #f2f4f8;}
+    .cat-card { background: #2b313b; display: inline-block; width:170px; margin:12px; border-radius:8px; cursor:pointer; padding:14px; box-shadow:0 2px 12px #0004; }
+    .cat-img { width: 100%; height: 90px; background-size:cover; border-radius:6px;}
+    .modal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; z-index:20;}
+    .modal.open { display:flex; }
+    .modal-content { background:#222; color:#fff; padding:22px 24px 18px 24px; border-radius:12px; box-shadow:0 6px 38px #0008; min-width: 270px; text-align:center; position:relative;}
+    .modal-content img { width:210px; max-width:98vw; border-radius:8px; margin-bottom:13px;}
+    .close { position:absolute; top:7px; right:17px; color:#fec260; font-size:2rem; cursor:pointer;}
+    .modal-btn { display:inline-block; margin-top:15px; background:#25d366; color:#222; padding:10px 23px; border-radius:8px; text-decoration:none; font-weight:700; }
+    .modal-btn:hover { background:#128c7e; color:#fff; }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="logo">HMM</div>
-      <nav>
-        <a href="#inicio" class="active nav-link" data-seccion="inicio">Inicio</a>
-        <a href="#catalogo" class="nav-link" data-seccion="catalogo">Catálogo</a>
-        <a href="#contacto" class="nav-link" data-seccion="contacto">Contacto</a>
-      </nav>
+
+  <div class="cat-card" data-modelo="Francfort" data-img="https://dummyimage.com/300x200/59a899/fff.png&text=Francfort" data-precio="$1,000 MXN" data-desc="Clóset compacto, nogal.">
+    <div class="cat-img" style="background-image:url('https://dummyimage.com/300x200/59a899/fff.png&text=Francfort');"></div>
+    <div>Francfort</div>
+    <div>$1,000 MXN</div>
+  </div>
+  <div class="cat-card" data-modelo="Hanover" data-img="https://dummyimage.com/300x200/25d366/fff.png&text=Hanover" data-precio="$1,000 MXN" data-desc="Librero moderno.">
+    <div class="cat-img" style="background-image:url('https://dummyimage.com/300x200/25d366/fff.png&text=Hanover');"></div>
+    <div>Hanover</div>
+    <div>$1,000 MXN</div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="close" class="close">&times;</span>
+      <img id="modalImg" src="" alt="Mueble">
+      <h2 id="modalTitle"></h2>
+      <div id="modalPrice"></div>
+      <p id="modalDesc"></p>
+      <a id="modalBtn" class="modal-btn" href="#" target="_blank">Contactar por WhatsApp</a>
     </div>
-  </header>
-
-  <main>
-    <!-- INICIO -->
-    <section id="inicio" class="hero seccion">
-      <div class="hero-flex">
-        <div class="hero-content">
-          <h1><span>Transforma tu espacio</span> con muebles de melamina</h1>
-          <p class="hero-sub">
-            Descubre muebles modernos, duraderos y hechos a tu gusto.<br>
-            Eleva tu hogar con soluciones prácticas y elegantes.
-          </p>
-          <ul class="hero-benefits">
-            <li><span class="benefit-icon">✅</span> Hechos a medida</li>
-            <li><span class="benefit-icon">✅</span> Materiales de calidad</li>
-            <li><span class="benefit-icon">✅</span> Envíos rápidos en Hermosillo</li>
-          </ul>
-          <div class="hero-btns">
-            <a href="#catalogo" class="btn btn-lg nav-link" data-seccion="catalogo">Ver catálogo</a>
-            <a href="#contacto" class="btn btn-secondary nav-link" data-seccion="contacto">Solicita tu diseño</a>
-          </div>
-          <div class="hero-testimonial">
-            <em>“Un servicio excelente y el mueble llegó tal como lo imaginé.”</em>
-            <span>— Andrea, cliente de Hermosillo</span>
-          </div>
-        </div>
-        <aside class="carousel-vertical-auto-area">
-          <div class="carousel-title">Modelos Destacados</div>
-          <div class="vertical-carousel-auto" id="vertical-carousel-auto">
-            <div class="carousel-auto-track" id="carousel-auto-track">
-              <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
-              <div class="carousel-auto-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
-              <div class="carousel-auto-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
-              <div class="carousel-auto-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
-              <div class="carousel-auto-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
-              <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- CATÁLOGO -->
-    <section id="catalogo" class="catalogo seccion" style="display:none;">
-      <h2>Catálogo Destacado</h2>
-      <div class="catalogo-grid" id="catalogoGrid">
-        <div class="cat-card" data-modelo="Francfort">
-          <div class="cat-img" style="background-image: url('img/Francfort/Francfort1.png');"></div>
-          <div class="cat-content">
-            <h3>Francfort</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Clóset compacto, nogal</p>
-          </div>
-        </div>
-        <div class="cat-card" data-modelo="Hanover">
-          <div class="cat-img" style="background-image: url('img/Hanover/Hanover1.png');"></div>
-          <div class="cat-content">
-            <h3>Hanover</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Librero moderno</p>
-          </div>
-        </div>
-        <div class="cat-card" data-modelo="Bremen">
-          <div class="cat-img" style="background-image: url('img/Bremen/Bremen1.png');"></div>
-          <div class="cat-content">
-            <h3>Bremen</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Repisa melamina roble</p>
-          </div>
-        </div>
-        <div class="cat-card" data-modelo="Atenas">
-          <div class="cat-img" style="background-image: url('img/Atenas/Atenas1.png');"></div>
-          <div class="cat-content">
-            <h3>Atenas</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Mesa lateral</p>
-          </div>
-        </div>
-        <div class="cat-card" data-modelo="Duisburgo">
-          <div class="cat-img" style="background-image: url('img/Duisburgo/Duisburgo1.png');"></div>
-          <div class="cat-content">
-            <h3>Duisburgo</h3>
-            <span class="cat-price">$1000 MXN</span>
-            <p class="cat-desc">Estante/Libreria</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- MODAL flotante -->
-    <div id="modalFloat" class="modal-float oculto">
-      <div class="modal-float-content">
-        <span class="modal-float-close" id="modalFloatCloseBtn">&times;</span>
-        <div id="modalSlider"></div>
-        <div class="modal-title" id="modalFloatTitle"></div>
-        <div class="modal-price" id="modalFloatPrice"></div>
-        <div class="modal-desc" id="modalFloatDesc"></div>
-        <a href="#" id="modalFloatBtn" class="modal-float-contact-btn" target="_blank">Contactar por WhatsApp</a>
-      </div>
-    </div>
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="seccion" style="display: none;">
-      <div class="contact-card">
-        <h2>Contacto</h2>
-        <p>¿Dudas? ¿Quieres un diseño especial? ¡Escríbenos por WhatsApp y recibe atención inmediata!</p>
-        <a class="btn btn-lg" href="https://wa.me/526624125786" target="_blank" rel="noopener">Contactar</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
-  </footer>
+  </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Define los productos y agrega más imágenes si quieres
-      const productos = {
-        Francfort: {
-          imagenes: [
-            "img/Francfort/Francfort1.png",
-            "img/Francfort/Francfort2.png",
-            "img/Francfort/Francfort3.png"
-          ],
-          titulo: "Francfort",
-          desc: "Clóset compacto, nogal. Hecho a medida para espacios reducidos.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
-        },
-        Hanover: {
-          imagenes: [
-            "img/Hanover/Hanover1.png",
-            "img/Hanover/Hanover2.png"
-          ],
-          titulo: "Hanover",
-          desc: "Librero moderno, ideal para oficina o estudio.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
-        },
-        Bremen: {
-          imagenes: [
-            "img/Bremen/Bremen1.png"
-          ],
-          titulo: "Bremen",
-          desc: "Repisa de melamina estilo roble.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
-        },
-        Atenas: {
-          imagenes: [
-            "img/Atenas/Atenas1.png",
-            "img/Atenas/Atenas2.png"
-          ],
-          titulo: "Atenas",
-          desc: "Mesa lateral práctica y resistente.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
-        },
-        Duisburgo: {
-          imagenes: [
-            "img/Duisburgo/Duisburgo1.png"
-          ],
-          titulo: "Duisburgo",
-          desc: "Estante / Librería de varios niveles.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
-        }
+    // Abre el modal con datos correctos
+    document.querySelectorAll('.cat-card').forEach(card=>{
+      card.onclick = function() {
+        document.getElementById('modal').classList.add('open');
+        document.getElementById('modalImg').src = this.dataset.img;
+        document.getElementById('modalTitle').textContent = this.dataset.modelo;
+        document.getElementById('modalPrice').textContent = this.dataset.precio;
+        document.getElementById('modalDesc').textContent = this.dataset.desc;
+        document.getElementById('modalBtn').href = "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20" + encodeURIComponent(this.dataset.modelo);
       };
-
-      // Slider dentro del modal
-      let sliderIndex = 0;
-      let sliderImgs = [];
-      function renderSlider(imagenes) {
-        sliderImgs = imagenes;
-        sliderIndex = 0;
-        actualizarSlider();
-      }
-      function actualizarSlider() {
-        if(sliderImgs.length === 0) {
-          document.getElementById('modalSlider').innerHTML = '';
-          return;
-        }
-        let html = `
-          <div class="slider-container">
-            ${sliderImgs.length > 1 ? `<button class="slider-arrow left" id="sliderLeft">&#10094;</button>` : ''}
-            <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Mueble" />
-            ${sliderImgs.length > 1 ? `<button class="slider-arrow right" id="sliderRight">&#10095;</button>` : ''}
-          </div>
-          <div class="slider-dots">
-            ${sliderImgs.map((_,i)=>`<button class="slider-dot${i===sliderIndex?' active':''}" data-idx="${i}"></button>`).join('')}
-          </div>
-        `;
-        document.getElementById('modalSlider').innerHTML = html;
-
-        // Botones slider
-        if(sliderImgs.length > 1){
-          document.getElementById('sliderLeft').onclick = function(e){e.stopPropagation(); cambiarSliderImg(-1);};
-          document.getElementById('sliderRight').onclick = function(e){e.stopPropagation(); cambiarSliderImg(1);};
-          document.querySelectorAll('.slider-dot').forEach(dot=>{
-            dot.onclick = function(e){
-              e.stopPropagation();
-              sliderIndex = Number(this.dataset.idx);
-              actualizarSlider();
-            }
-          });
-        }
-      }
-      function cambiarSliderImg(dir) {
-        sliderIndex = (sliderIndex + dir + sliderImgs.length) % sliderImgs.length;
-        actualizarSlider();
-      }
-
-      // Mostrar y cerrar modal
-      function mostrarModal(nombre) {
-        const prod = productos[nombre];
-        if (!prod) return;
-        renderSlider(prod.imagenes);
-        document.getElementById('modalFloatTitle').textContent = prod.titulo;
-        document.getElementById('modalFloatDesc').textContent = prod.desc;
-        document.getElementById('modalFloatPrice').textContent = prod.precio;
-        document.getElementById('modalFloatBtn').href = prod.whatsapp;
-        document.getElementById('modalFloat').classList.remove('oculto');
-        document.body.style.overflow = "hidden";
-      }
-      function cerrarModal() {
-        document.getElementById('modalFloat').classList.add('oculto');
-        document.body.style.overflow = "";
-      }
-
-      // Delegación de clicks para el grid
-      const catalogoGrid = document.getElementById('catalogoGrid');
-      if(catalogoGrid){
-        catalogoGrid.addEventListener('click', function(e) {
-          let card = e.target.closest('.cat-card');
-          if(card && card.hasAttribute('data-modelo')) {
-            mostrarModal(card.getAttribute('data-modelo'));
-          }
-        });
-      }
-      // Botón de cerrar modal
-      document.getElementById('modalFloatCloseBtn').onclick = cerrarModal;
-      // Cierra modal al hacer click fuera del contenido
-      document.getElementById('modalFloat').addEventListener('click', function(e) {
-        if(e.target === this) cerrarModal();
-      });
-
-      // SPA NAV
-      function mostrarSolo(seccionId) {
-        document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
-        let sec = document.getElementById(seccionId);
-        if(sec) sec.style.display = 'block';
-      }
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          mostrarSolo(this.getAttribute('data-seccion'));
-          document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-          this.classList.add('active');
-          window.scrollTo({top:0,behavior:'smooth'});
-        });
-      });
-      mostrarSolo('inicio');
     });
+    // Cierra el modal
+    document.getElementById('close').onclick = function() {
+      document.getElementById('modal').classList.remove('open');
+    };
+    // Cierra al hacer click fuera del contenido
+    document.getElementById('modal').onclick = function(e){
+      if(e.target === this) this.classList.remove('open');
+    };
   </script>
 </body>
 </html>
