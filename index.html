@@ -216,6 +216,7 @@
         }
       };
 
+      // Mostrar detalle de producto
       function mostrarDetalle(nombre) {
         const prod = productos[nombre];
         if (!prod) return;
@@ -229,7 +230,7 @@
         document.getElementById('detalleModal').classList.add('oculto');
       }
 
-      // DELEGACIÓN DE EVENTOS (SIEMPRE ACTIVA)
+      // Delegación SIEMPRE activa
       document.getElementById('catalogoGrid').addEventListener('click', function(e) {
         let card = e.target.closest('.cat-card');
         if(card && card.hasAttribute('data-modelo')) {
