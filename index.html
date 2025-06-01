@@ -5,6 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hermanitos Muebles de Melamina</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilo extra solo para el slider dentro del modal */
+    .slider-container {
+      position: relative;
+      width: 340px;
+      max-width: 90vw;
+      margin: 0 auto 18px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #222;
+      border-radius: 1em;
+      overflow: hidden;
+      box-shadow: 0 3px 18px #0006;
+    }
+    .slider-img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      border-radius: 1em;
+      background: #232323;
+      transition: opacity .2s;
+      display: block;
+      margin: 0 auto;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.1rem;
+      color: #fec260;
+      background: rgba(40,40,40,0.7);
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+      padding: 0 10px;
+      border-radius: 1em;
+      transition: background .18s;
+      user-select: none;
+    }
+    .slider-arrow:hover { background: #ffda88c9; color: #222; }
+    .slider-arrow.left { left: 8px; }
+    .slider-arrow.right { right: 8px; }
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 7px;
+      margin-bottom: 2px;
+    }
+    .slider-dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: #fec2607a;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: background .18s;
+    }
+    .slider-dot.active { background: #fec260; }
+    @media (max-width: 400px) {
+      .slider-container { width: 99vw; }
+    }
+    .modal-float-contact-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(90deg,#25d366 60%,#128c7e 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 0;
+      border-radius: 10px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 16px;
+      box-shadow: 0 2px 8px #25d36633;
+      transition: background 0.21s;
+    }
+    .modal-float-contact-btn:hover {
+      background: linear-gradient(90deg,#128c7e 60%,#25d366 100%);
+      color: #fff;
+    }
+    .modal-price {
+      color: #fec260;
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin: 6px 0 10px 0;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 8px #1c1c1c7a;
+    }
+    .modal-title {
+      color: #25d366;
+      font-size: 1.4rem;
+      margin-bottom: 3px;
+      margin-top: 3px;
+      font-weight: bold;
+    }
+    .modal-desc {
+      color: #c4c7ce;
+      font-size: 1.08rem;
+      margin-bottom: 7px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -51,7 +155,6 @@
               <div class="carousel-auto-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
               <div class="carousel-auto-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
               <div class="carousel-auto-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
-              <!-- Duplicados para efecto loop -->
               <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
             </div>
           </div>
@@ -63,7 +166,6 @@
     <section id="catalogo" class="catalogo seccion" style="display:none;">
       <h2>Catálogo Destacado</h2>
       <div class="catalogo-grid" id="catalogoGrid">
-        <!-- FRANCFORT -->
         <div class="cat-card" data-modelo="Francfort">
           <div class="cat-img" style="background-image: url('img/Francfort/Francfort1.png');"></div>
           <div class="cat-content">
@@ -72,7 +174,6 @@
             <p class="cat-desc">Clóset compacto, nogal</p>
           </div>
         </div>
-        <!-- HANOVER -->
         <div class="cat-card" data-modelo="Hanover">
           <div class="cat-img" style="background-image: url('img/Hanover/Hanover1.png');"></div>
           <div class="cat-content">
@@ -81,7 +182,6 @@
             <p class="cat-desc">Librero moderno</p>
           </div>
         </div>
-        <!-- BREMEN -->
         <div class="cat-card" data-modelo="Bremen">
           <div class="cat-img" style="background-image: url('img/Bremen/Bremen1.png');"></div>
           <div class="cat-content">
@@ -90,7 +190,6 @@
             <p class="cat-desc">Repisa melamina roble</p>
           </div>
         </div>
-        <!-- ATENAS -->
         <div class="cat-card" data-modelo="Atenas">
           <div class="cat-img" style="background-image: url('img/Atenas/Atenas1.png');"></div>
           <div class="cat-content">
@@ -99,7 +198,6 @@
             <p class="cat-desc">Mesa lateral</p>
           </div>
         </div>
-        <!-- DUISBURGO -->
         <div class="cat-card" data-modelo="Duisburgo">
           <div class="cat-img" style="background-image: url('img/Duisburgo/Duisburgo1.png');"></div>
           <div class="cat-content">
@@ -109,12 +207,15 @@
           </div>
         </div>
       </div>
-      <!-- MODAL de detalles -->
+      <!-- MODAL de detalles mejorado -->
       <div id="detalleModal" class="detalle-modal oculto">
-        <div class="detalle-modal-content">
-          <span class="close" id="cerrarDetalleBtn">&times;</span>
-          <div id="detalleImagenes" class="detalle-imagenes"></div>
-          <div id="detalleInfo" class="detalle-info"></div>
+        <div class="detalle-modal-content" style="flex-direction: column; align-items: center; max-width:430px; width:98vw;">
+          <span class="close" id="cerrarDetalleBtn" style="position:absolute;top:10px;right:15px;font-size:2.1rem;">&times;</span>
+          <div id="sliderSection"></div>
+          <div class="modal-title" id="modalTitle"></div>
+          <div class="modal-desc" id="modalDesc"></div>
+          <div class="modal-price" id="modalPrice"></div>
+          <a href="#" target="_blank" id="modalContactBtn" class="modal-float-contact-btn">Contactar por WhatsApp</a>
         </div>
       </div>
     </section>
@@ -136,116 +237,127 @@
   <!-- SCRIPTS -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // --- DETALLES DE CATÁLOGO ---
+      // Define los productos, agrega más imágenes para mostrar el slider:
       const productos = {
         Francfort: {
           imagenes: [
-            "img/Francfort/Francfort1.png"
+            "img/Francfort/Francfort1.png",
+            "img/Francfort/Francfort2.png",
+            "img/Francfort/Francfort3.png"
           ],
-          info: `
-            <h2>Francfort</h2>
-            <p>Clóset compacto, acabado nogal.</p>
-            <ul>
-              <li><b>Precio:</b> $1,000 MXN</li>
-              <li><b>Medidas:</b> 1.80 x 0.60 x 0.45 m</li>
-              <li><b>Material:</b> Melamina</li>
-              <li><b>Entrega:</b> Hermosillo y alrededores</li>
-            </ul>
-            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-          `
+          titulo: "Francfort",
+          desc: "Clóset compacto, acabado nogal. Hecho a medida para espacios reducidos, elegante y funcional.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
         },
         Hanover: {
           imagenes: [
-            "img/Hanover/Hanover1.png"
+            "img/Hanover/Hanover1.png",
+            "img/Hanover/Hanover2.png"
           ],
-          info: `
-            <h2>Hanover</h2>
-            <p>Librero moderno, ideal para oficina o estudio.</p>
-            <ul>
-              <li><b>Precio:</b> $1,000 MXN</li>
-              <li><b>Medidas:</b> 1.20 x 0.30 x 0.80 m</li>
-              <li><b>Material:</b> Melamina</li>
-            </ul>
-            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-          `
+          titulo: "Hanover",
+          desc: "Librero moderno, ideal para oficina o estudio. Diseño resistente y minimalista.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
         },
         Bremen: {
           imagenes: [
             "img/Bremen/Bremen1.png"
           ],
-          info: `
-            <h2>Bremen</h2>
-            <p>Repisa de melamina estilo roble.</p>
-            <ul>
-              <li><b>Precio:</b> $1,000 MXN</li>
-              <li><b>Medidas:</b> 1.00 x 0.25 x 0.25 m</li>
-              <li><b>Material:</b> Melamina</li>
-            </ul>
-            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-          `
+          titulo: "Bremen",
+          desc: "Repisa de melamina estilo roble. Perfecta para libros o decoración.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
         },
         Atenas: {
           imagenes: [
-            "img/Atenas/Atenas1.png"
+            "img/Atenas/Atenas1.png",
+            "img/Atenas/Atenas2.png"
           ],
-          info: `
-            <h2>Atenas</h2>
-            <p>Mesa lateral práctica y resistente.</p>
-            <ul>
-              <li><b>Precio:</b> $1,000 MXN</li>
-              <li><b>Medidas:</b> 0.60 x 0.60 x 0.45 m</li>
-              <li><b>Material:</b> Melamina</li>
-            </ul>
-            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-          `
+          titulo: "Atenas",
+          desc: "Mesa lateral práctica y resistente, ideal para recámaras y salas modernas.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
         },
         Duisburgo: {
           imagenes: [
             "img/Duisburgo/Duisburgo1.png"
           ],
-          info: `
-            <h2>Duisburgo</h2>
-            <p>Estante / Librería de varios niveles.</p>
-            <ul>
-              <li><b>Precio:</b> $1,000 MXN</li>
-              <li><b>Medidas:</b> 1.50 x 0.30 x 1.20 m</li>
-              <li><b>Material:</b> Melamina</li>
-            </ul>
-            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-          `
+          titulo: "Duisburgo",
+          desc: "Estante / Librería de varios niveles. Organiza tu espacio con estilo.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
         }
       };
 
-      // Mostrar detalle de producto
+      // Slider de imágenes dentro del modal flotante
+      let sliderIndex = 0;
+      let sliderImgs = [];
+      function renderSlider(imagenes) {
+        sliderImgs = imagenes;
+        sliderIndex = 0;
+        actualizarSlider();
+      }
+      function actualizarSlider() {
+        if(sliderImgs.length === 0) {
+          document.getElementById('sliderSection').innerHTML = '';
+          return;
+        }
+        let html = `
+          <div class="slider-container">
+            ${sliderImgs.length > 1 ? `<button class="slider-arrow left" onclick="event.stopPropagation();window.cambiarSliderImg(-1)">&#10094;</button>` : ''}
+            <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Mueble" />
+            ${sliderImgs.length > 1 ? `<button class="slider-arrow right" onclick="event.stopPropagation();window.cambiarSliderImg(1)">&#10095;</button>` : ''}
+          </div>
+          <div class="slider-dots">
+            ${sliderImgs.map((_,i)=>`<button class="slider-dot${i===sliderIndex?' active':''}" onclick="event.stopPropagation();window.irSliderImg(${i})"></button>`).join('')}
+          </div>
+        `;
+        document.getElementById('sliderSection').innerHTML = html;
+      }
+      // Para usar con inline onclick:
+      window.cambiarSliderImg = function(dir) {
+        sliderIndex = (sliderIndex + dir + sliderImgs.length) % sliderImgs.length;
+        actualizarSlider();
+      }
+      window.irSliderImg = function(idx) {
+        sliderIndex = idx;
+        actualizarSlider();
+      }
+
+      // Mostrar modal flotante
       function mostrarDetalle(nombre) {
         const prod = productos[nombre];
         if (!prod) return;
-        document.getElementById('detalleImagenes').innerHTML = prod.imagenes.map(
-          img => `<img src="${img}" alt="${nombre}" />`
-        ).join('');
-        document.getElementById('detalleInfo').innerHTML = prod.info;
+        renderSlider(prod.imagenes);
+        document.getElementById('modalTitle').textContent = prod.titulo;
+        document.getElementById('modalDesc').textContent = prod.desc;
+        document.getElementById('modalPrice').textContent = prod.precio;
+        document.getElementById('modalContactBtn').href = prod.whatsapp;
         document.getElementById('detalleModal').classList.remove('oculto');
       }
       function cerrarDetalle() {
         document.getElementById('detalleModal').classList.add('oculto');
       }
 
-      // Delegación SIEMPRE activa
-      document.getElementById('catalogoGrid').addEventListener('click', function(e) {
-        let card = e.target.closest('.cat-card');
-        if(card && card.hasAttribute('data-modelo')) {
-          mostrarDetalle(card.getAttribute('data-modelo'));
-        }
-      });
-
+      // Delegación de clicks para el grid
+      const catalogoGrid = document.getElementById('catalogoGrid');
+      if(catalogoGrid){
+        catalogoGrid.addEventListener('click', function(e) {
+          let card = e.target.closest('.cat-card');
+          if(card && card.hasAttribute('data-modelo')) {
+            mostrarDetalle(card.getAttribute('data-modelo'));
+          }
+        });
+      }
       // Botón de cerrar modal
       document.getElementById('cerrarDetalleBtn').onclick = cerrarDetalle;
-      // Cierra modal al hacer click fuera
+      // Cierra modal al hacer click fuera del contenido
       document.getElementById('detalleModal').addEventListener('click', function(e) {
         if(e.target === this) cerrarDetalle();
       });
 
-      // --- SPA NAV ---
+      // SPA NAV
       function mostrarSolo(seccionId) {
         document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
         let sec = document.getElementById(seccionId);
