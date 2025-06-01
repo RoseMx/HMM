@@ -94,26 +94,24 @@
       </div>
     </section>
 
-    <!-- MODAL PRODUCTO -->
+    <!-- MODAL PRODUCTO PREMIUM -->
     <div id="modal-producto" class="modal-producto">
       <div class="modal-bg" id="close-modal"></div>
-      <div class="modal-content modal-content-gallery">
-        <button class="cerrar-modal" id="close-modal-btn">&times;</button>
-        <div class="modal-body modal-body-gallery">
-          <div class="modal-info" id="modal-info"></div>
-          <div class="gallery-column">
-            <div class="gallery-main">
+      <div class="modal-popup">
+        <button class="close-btn" id="close-modal-btn" title="Cerrar">&times;</button>
+        <div class="modal-columns">
+          <!-- Galería columna izquierda -->
+          <div class="modal-gallery">
+            <div class="main-img-wrap" id="main-img-wrap">
+              <img id="gallery-main-img" src="" alt="Producto" />
+              <button id="zoom-btn" class="zoom-btn" title="Zoom">&#128269;</button>
               <button class="arrow left" id="galeria-prev">&#8592;</button>
-              <div class="gallery-viewport" tabindex="0" title="Haz clic para hacer zoom">
-                <img id="gallery-main-img" src="" alt="" />
-                <div class="zoom-icon" id="zoom-icon" title="Haz clic para hacer zoom">
-                  <svg width="22" height="22" viewBox="0 0 22 22"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><rect x="7" y="9" width="6" height="2" rx="1" fill="currentColor"/><rect x="9" y="7" width="2" height="6" rx="1" fill="currentColor"/></svg>
-                </div>
-              </div>
               <button class="arrow right" id="galeria-next">&#8594;</button>
             </div>
-            <div class="gallery-thumbs" id="gallery-thumbs"></div>
+            <div class="mini-thumbs" id="gallery-thumbs"></div>
           </div>
+          <!-- Info columna derecha -->
+          <div class="modal-info" id="modal-info"></div>
         </div>
       </div>
     </div>
@@ -130,276 +128,6 @@
     <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
   </footer>
 
-  <script>
-  // --- SPA NAV ---
-  document.addEventListener('DOMContentLoaded', function() {
-    function mostrarSolo(seccionId) {
-      document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
-      let sec = document.getElementById(seccionId);
-      if(sec) sec.style.display = (seccionId === 'inicio') ? 'flex' : 'block';
-    }
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        mostrarSolo(this.getAttribute('data-seccion'));
-        document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-        this.classList.add('active');
-        window.scrollTo({top:0,behavior:'smooth'});
-      });
-    });
-    mostrarSolo('inicio');
-  });
-
-  // PRODUCTOS
-  const productos = {
-    Francfort: {
-      nombre: "Francfort",
-      precio: "$1000 MXN",
-      desc: "Clóset compacto, nogal.",
-      detalles: [
-        "Modelo: Francfort",
-        "Dimensiones: 90x180x45 cm",
-        "Color: Nogal",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Francfort",
-      fotos: [
-        "img/Francfort/Francfort1.png",
-        "img/Francfort/Francfort2.png",
-        "img/Francfort/Francfort3.png"
-      ]
-    },
-    Hanover: {
-      nombre: "Hanover",
-      precio: "$1000 MXN",
-      desc: "Librero moderno.",
-      detalles: [
-        "Modelo: Hanover",
-        "Dimensiones: 80x160x35 cm",
-        "Color: Blanco",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Hanover",
-      fotos: [
-        "img/Hanover/Hanover1.png",
-        "img/Hanover/Hanover2.png",
-        "img/Hanover/Hanover3.png",
-        "img/Hanover/Hanover4.png"
-      ]
-    },
-    Bremen: {
-      nombre: "Bremen",
-      precio: "$1000 MXN",
-      desc: "Repisa melamina roble.",
-      detalles: [
-        "Modelo: Bremen",
-        "Dimensiones: 60x150x35 cm",
-        "Color: Roble",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Bremen",
-      fotos: [
-        "img/Bremen/Bremen1.png",
-        "img/Bremen/Bremen2.png",
-        "img/Bremen/Bremen3.png",
-        "img/Bremen/Bremen4.png"
-      ]
-    },
-    Atenas: {
-      nombre: "Atenas",
-      precio: "$1000 MXN",
-      desc: "Mesa lateral.",
-      detalles: [
-        "Modelo: Atenas",
-        "Dimensiones: 60x150x35 cm",
-        "Color: Nogal",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Atenas",
-      fotos: [
-        "img/Atenas/Atenas1.png",
-        "img/Atenas/Atenas2.png",
-        "img/Atenas/Atenas3.png",
-        "img/Atenas/Atenas4.png"
-      ]
-    },
-    Duisburgo: {
-      nombre: "Duisburgo",
-      precio: "$1000 MXN",
-      desc: "Estante/Libreria.",
-      detalles: [
-        "Modelo: Duisburgo",
-        "Dimensiones: 60x150x35 cm",
-        "Color: Blanco",
-        "Envío: Hermosillo y alrededores"
-      ],
-      whatsapp: "https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Duisburgo",
-      fotos: [
-        "img/Duisburgo/Duisburgo1.png",
-        "img/Duisburgo/Duisburgo2.png",
-        "img/Duisburgo/Duisburgo3.png",
-        "img/Duisburgo/Duisburgo4.png"
-      ]
-    }
-  };
-
-  // MODAL PRODUCTO MEJORADO
-  const modal = document.getElementById("modal-producto");
-  const modalInfo = document.getElementById("modal-info");
-  const galleryMainImg = document.getElementById("gallery-main-img");
-  const galleryThumbs = document.getElementById("gallery-thumbs");
-  let galeriaIdx = 0, galeriaFotos = [], galeriaModelo = null;
-
-  function abrirModalProducto(modelo) {
-    const prod = productos[modelo];
-    if (!prod) return;
-    galeriaModelo = modelo;
-    galeriaFotos = prod.fotos;
-    galeriaIdx = 0;
-    // Miniaturas
-    galleryThumbs.innerHTML = prod.fotos.map((src,i)=>`
-      <img src="${src}" alt="" class="gallery-thumb${i===0?' active':''}" data-idx="${i}">
-    `).join('');
-    galleryMainImg.src = prod.fotos[0];
-    // Info
-    modalInfo.innerHTML = `
-      <h3>${prod.nombre}</h3>
-      <div class="precio">${prod.precio}</div>
-      <div class="desc">${prod.desc}</div>
-      <ul>${prod.detalles.map(t=>`<li>${t}</li>`).join("")}</ul>
-      <a class="btn btn-contact" href="${prod.whatsapp}" target="_blank">Cotizar por WhatsApp</a>
-    `;
-    modal.classList.add("active");
-    document.body.style.overflow = "hidden";
-    updateGallery();
-  }
-  function cerrarModalProducto() {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-    galleryViewport.classList.remove('zoomed'); // quita el zoom si está activo
-  }
-  function updateGallery() {
-    galleryMainImg.src = galeriaFotos[galeriaIdx];
-    galleryThumbs.querySelectorAll('img').forEach((el,i)=>{
-      el.classList.toggle('active',i===galeriaIdx);
-    });
-    galleryViewport.classList.remove('zoomed');
-    galleryViewport.style.setProperty('--zoom-x', '0px');
-    galleryViewport.style.setProperty('--zoom-y', '0px');
-    // Reset lupa a modo normal
-    zoomIcon.innerHTML = '<svg width="22" height="22" viewBox="0 0 22 22"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><rect x="7" y="9" width="6" height="2" rx="1" fill="currentColor"/><rect x="9" y="7" width="2" height="6" rx="1" fill="currentColor"/></svg>';
-  }
-  document.getElementById("close-modal").onclick = cerrarModalProducto;
-  document.getElementById("close-modal-btn").onclick = cerrarModalProducto;
-  document.getElementById("galeria-prev").onclick = ()=>{
-    if (galeriaIdx>0) { galeriaIdx--; updateGallery(); }
-  };
-  document.getElementById("galeria-next").onclick = ()=>{
-    if (galeriaIdx<galeriaFotos.length-1) { galeriaIdx++; updateGallery(); }
-  };
-  galleryThumbs.addEventListener('click',e=>{
-    if(e.target.matches('img')) {
-      galeriaIdx = parseInt(e.target.dataset.idx);
-      updateGallery();
-    }
-  });
-
-  // Click en cards del catálogo
-  document.querySelectorAll(".cat-card").forEach(card=>{
-    card.onclick = ()=>abrirModalProducto(card.dataset.modelo);
-  });
-
-  // Click en imágenes del carrusel de inicio
-  document.querySelectorAll('#inicio-carousel-track a').forEach(el => {
-    el.addEventListener('click', function(e){
-      e.preventDefault();
-      abrirModalProducto(this.dataset.modelo);
-    });
-  });
-
-  // CARRUSEL INFINITO
-  (function() {
-    const track = document.getElementById('inicio-carousel-track');
-    let imgWidth = track.querySelector('a').offsetWidth + 24; // img+margin
-    let totalImgs = track.children.length;
-    let pos = 0;
-    let vel = 0;
-    let raf, hovering = false;
-
-    function animate() {
-      pos += vel;
-      if (pos < 0) pos += imgWidth*5;
-      if (pos > imgWidth*5) pos -= imgWidth*5;
-      track.style.transform = `translateX(${-pos}px)`;
-      if (hovering) raf = requestAnimationFrame(animate);
-    }
-    // Mouse interactivo
-    track.parentElement.addEventListener('mousemove', function(e){
-      const rect = this.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const width = rect.width;
-      let rel = (x / width - 0.5) * 2;
-      vel = rel * 2.3;
-      if (!raf) {
-        hovering = true;
-        raf = requestAnimationFrame(animate);
-      }
-    });
-    track.parentElement.addEventListener('mouseleave', function(){
-      hovering = false;
-      cancelAnimationFrame(raf);
-      raf = null;
-      vel = 0;
-    });
-    // Animación auto en móvil
-    let autoAnim = setInterval(() => {
-      if (!hovering && window.innerWidth <= 900) {
-        pos += 1.2;
-        if (pos < 0) pos += imgWidth*5;
-        if (pos > imgWidth*5) pos -= imgWidth*5;
-        track.style.transform = `translateX(${-pos}px)`;
-      }
-    }, 20);
-  })();
-
-  // === ZOOM EN LA IMAGEN PRINCIPAL DEL MODAL CON LUPA ===
-  const galleryViewport = document.querySelector('.gallery-viewport');
-  const zoomIcon = document.getElementById('zoom-icon');
-  let zoomed = false;
-
-  galleryViewport.addEventListener('click', function(e) {
-    zoomed = !zoomed;
-    this.classList.toggle('zoomed', zoomed);
-    // Cambia ícono a menos o lupa
-    zoomIcon.innerHTML = zoomed 
-      ? '<svg width="22" height="22" viewBox="0 0 22 22"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><rect x="7" y="10" width="8" height="2" rx="1" fill="currentColor"/></svg>'
-      : '<svg width="22" height="22" viewBox="0 0 22 22"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><rect x="7" y="9" width="6" height="2" rx="1" fill="currentColor"/><rect x="9" y="7" width="2" height="6" rx="1" fill="currentColor"/></svg>';
-    if (!zoomed) {
-      this.style.setProperty('--zoom-x', '0px');
-      this.style.setProperty('--zoom-y', '0px');
-    }
-  });
-
-  galleryViewport.addEventListener('mousemove', function(e) {
-    if (!zoomed) return;
-    const rect = this.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-    const lim = 0.44;
-    this.style.setProperty('--zoom-x', `${-x*lim*100}%`);
-    this.style.setProperty('--zoom-y', `${-y*lim*100}%`);
-  });
-  galleryViewport.addEventListener('mouseleave', function() {
-    if (zoomed) {
-      this.style.setProperty('--zoom-x', '0px');
-      this.style.setProperty('--zoom-y', '0px');
-    }
-  });
-
-  // Tooltip flotante de la lupa
-  galleryViewport.addEventListener('mouseover', function() {
-    zoomIcon.setAttribute('title', zoomed ? "Haz clic para salir del zoom" : "Haz clic para hacer zoom");
-  });
-  </script>
+  <!-- Incluye aquí el mismo JS que tienes, solo asegúrate de enlazar bien el CSS -->
 </body>
 </html>
