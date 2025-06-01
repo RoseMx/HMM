@@ -166,8 +166,8 @@
     const track = document.getElementById('carousel-auto-track');
     const imgs = track.querySelectorAll('.carousel-auto-img');
     let pos = 0;
-    let speed = 0.6; // menor = más lento, un poco más rápido por ser más grande
-    const imgHeight = 100 + 13; // altura imagen + gap
+    let speed = 0.6;
+    const imgHeight = 120 + 13; // altura imagen + gap (ajustado a 120px)
 
     function loop() {
       pos += speed;
