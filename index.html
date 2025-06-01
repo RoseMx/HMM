@@ -19,7 +19,7 @@
   </header>
 
   <main>
-    <!-- ========== INICIO ========== -->
+    <!-- INICIO -->
     <section id="inicio" class="hero seccion">
       <div class="hero-content">
         <h1>Transforma tu espacio<br>
@@ -32,13 +32,12 @@
       </div>
       <div class="hero-carousel">
         <div class="carousel-track" id="inicio-carousel-track">
-          <!-- Carrusel real, imágenes duplicadas para efecto infinito -->
           <a href="#" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></a>
           <a href="#" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></a>
           <a href="#" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></a>
           <a href="#" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></a>
           <a href="#" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></a>
-          <!-- Repetimos para "loop" -->
+          <!-- Repetidas para infinito -->
           <a href="#" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort repeat" /></a>
           <a href="#" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover repeat" /></a>
           <a href="#" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen repeat" /></a>
@@ -48,11 +47,10 @@
       </div>
     </section>
 
-    <!-- ========== CATÁLOGO ========== -->
+    <!-- CATÁLOGO -->
     <section id="catalogo" class="catalogo seccion" style="display:none;">
       <h2>Catálogo Destacado</h2>
       <div class="catalogo-grid">
-        <!-- CARD FRANCFORT -->
         <div class="cat-card" data-modelo="Francfort">
           <div class="cat-img" style="background-image: url('img/Francfort/Francfort1.png');"></div>
           <div class="cat-content">
@@ -61,7 +59,6 @@
             <p class="cat-desc">Clóset compacto, nogal</p>
           </div>
         </div>
-        <!-- CARD HANOVER -->
         <div class="cat-card" data-modelo="Hanover">
           <div class="cat-img" style="background-image: url('img/Hanover/Hanover1.png');"></div>
           <div class="cat-content">
@@ -70,7 +67,6 @@
             <p class="cat-desc">Librero moderno</p>
           </div>
         </div>
-        <!-- CARD BREMEN -->
         <div class="cat-card" data-modelo="Bremen">
           <div class="cat-img" style="background-image: url('img/Bremen/Bremen1.png');"></div>
           <div class="cat-content">
@@ -79,7 +75,6 @@
             <p class="cat-desc">Repisa melamina roble</p>
           </div>
         </div>
-        <!-- CARD ATENAS -->
         <div class="cat-card" data-modelo="Atenas">
           <div class="cat-img" style="background-image: url('img/Atenas/Atenas1.png');"></div>
           <div class="cat-content">
@@ -88,7 +83,6 @@
             <p class="cat-desc">Mesa lateral</p>
           </div>
         </div>
-        <!-- CARD DUISBURGO -->
         <div class="cat-card" data-modelo="Duisburgo">
           <div class="cat-img" style="background-image: url('img/Duisburgo/Duisburgo1.png');"></div>
           <div class="cat-content">
@@ -100,26 +94,30 @@
       </div>
     </section>
 
-    <!-- MODAL PRODUCTO -->
+    <!-- MODAL PRODUCTO - DOS COLUMNAS -->
     <div id="modal-producto" class="modal-producto">
       <div class="modal-bg" id="close-modal"></div>
       <div class="modal-content modal-content-gallery">
         <button class="cerrar-modal" id="close-modal-btn">&times;</button>
         <div class="modal-body modal-body-gallery">
-          <div class="gallery-main">
-            <button class="arrow left" id="galeria-prev">&#8592;</button>
-            <div class="gallery-viewport">
-              <img id="gallery-main-img" src="" alt="" />
-            </div>
-            <button class="arrow right" id="galeria-next">&#8594;</button>
-          </div>
-          <div class="gallery-thumbs" id="gallery-thumbs"></div>
+          <!-- Info izquierda -->
           <div class="modal-info" id="modal-info"></div>
+          <!-- Galería derecha -->
+          <div class="gallery-column">
+            <div class="gallery-main">
+              <button class="arrow left" id="galeria-prev">&#8592;</button>
+              <div class="gallery-viewport">
+                <img id="gallery-main-img" src="" alt="" />
+              </div>
+              <button class="arrow right" id="galeria-next">&#8594;</button>
+            </div>
+            <div class="gallery-thumbs" id="gallery-thumbs"></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ========== CONTACTO ========== -->
+    <!-- CONTACTO -->
     <section id="contacto" class="seccion" style="display: none;">
       <h2>Contacto</h2>
       <p>¿Dudas? ¿Quieres un diseño especial? ¡Escríbenos por WhatsApp y recibe atención inmediata!</p>
@@ -323,7 +321,7 @@
 
     function animate() {
       pos += vel;
-      if (pos < 0) pos += imgWidth*5; // 5 imágenes originales
+      if (pos < 0) pos += imgWidth*5;
       if (pos > imgWidth*5) pos -= imgWidth*5;
       track.style.transform = `translateX(${-pos}px)`;
       if (hovering) raf = requestAnimationFrame(animate);
@@ -359,3 +357,4 @@
   </script>
 </body>
 </html>
+
