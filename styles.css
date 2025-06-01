@@ -1,13 +1,14 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f5f7fa;
-  color: #232323;
+  background: #eef2f7; /* Azul-gris suave */
+  color: #222b38;
 }
 header {
-  background: #222831;
+  background: #2f3b4a; /* Azul profundo grisáceo */
   color: #fff;
   padding: 0.6rem 0;
+  box-shadow: 0 2px 10px #0001;
 }
 .container {
   display: flex;
@@ -21,6 +22,7 @@ header {
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 2px;
+  color: #9fd6c1;
 }
 nav {
   display: flex;
@@ -32,12 +34,13 @@ nav a {
   font-weight: 500;
   font-size: 1rem;
   border-bottom: 2px solid transparent;
-  transition: border 0.2s;
+  transition: border 0.2s, color 0.2s;
   padding-bottom: 2px;
 }
 nav a.active,
 nav a:hover {
-  border-bottom: 2px solid #43cea2;
+  border-bottom: 2px solid #9fd6c1;
+  color: #9fd6c1;
 }
 
 /* HERO - INICIO */
@@ -48,7 +51,7 @@ nav a:hover {
   align-items: center;
   min-height: 70vh;
   gap: 3rem;
-  background: linear-gradient(120deg, #e0eafc, #cfdef3);
+  background: linear-gradient(120deg, #eef2f7 80%, #fcfcfc 100%);
   padding: 3rem 1rem;
 }
 .hero-content {
@@ -61,14 +64,18 @@ nav a:hover {
   margin-bottom: 1rem;
   font-weight: 800;
   letter-spacing: -2px;
+  color: #2f3b4a;
+}
+.hero-content span {
+  color: #6a98af; /* Azul pastel */
 }
 .hero-content p {
-  font-size: 1.2rem;
+  font-size: 1.18rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: #5c677d;
 }
 .btn {
-  background: linear-gradient(90deg, #43cea2, #185a9d);
+  background: linear-gradient(90deg, #9fd6c1, #6a98af);
   color: #fff;
   padding: 0.75em 2em;
   border: none;
@@ -80,10 +87,11 @@ nav a:hover {
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
+  letter-spacing: 0.5px;
 }
 .btn:hover {
-  background: linear-gradient(90deg, #185a9d, #43cea2);
-  transform: scale(1.06);
+  background: linear-gradient(90deg, #6a98af, #9fd6c1);
+  transform: scale(1.05);
 }
 .hero-carousel {
   flex: 1 1 350px;
@@ -91,8 +99,8 @@ nav a:hover {
   max-width: 450px;
   overflow: hidden;
   border-radius: 1.5rem;
-  box-shadow: 0 4px 18px #0002;
-  background: #fff;
+  box-shadow: 0 4px 18px #2f3b4a15;
+  background: #fcfcfc;
   display: flex;
   align-items: center;
   height: 290px;
@@ -110,12 +118,14 @@ nav a:hover {
   margin: 0 1.2rem;
   border-radius: 1.1rem;
   object-fit: cover;
-  box-shadow: 0 3px 12px #0001;
-  background: #fafafa;
-  transition: transform 0.3s;
+  box-shadow: 0 3px 12px #2f3b4a11;
+  background: #f6f7fa;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1.5px solid #eef2f7;
 }
 .carousel-track img:hover {
   transform: scale(1.07) rotate(-2deg);
+  box-shadow: 0 6px 20px #9fd6c122;
 }
 @keyframes scroll-left {
   0% { transform: translateX(0); }
@@ -137,11 +147,12 @@ nav a:hover {
   .carousel-track img { height: 90px; margin: 0 0.5rem; }
 }
 footer {
-  background: #232323;
-  color: #fff;
+  background: #2f3b4a;
+  color: #e0eafc;
   text-align: center;
   padding: 1.2rem 0 0.8rem 0;
   font-size: 1rem;
   margin-top: 2rem;
   letter-spacing: 0.5px;
+  border-top: 1.5px solid #9fd6c1;
 }
