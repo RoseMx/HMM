@@ -32,16 +32,18 @@
       </div>
       <div class="hero-carousel">
         <div class="carousel-track" id="inicio-carousel-track">
-          <!-- Cada imagen es un enlace -->
+          <!-- Carrusel real, imágenes duplicadas para efecto infinito -->
           <a href="#" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></a>
           <a href="#" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></a>
           <a href="#" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></a>
           <a href="#" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></a>
           <a href="#" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></a>
-          <!-- Duplicadas para efecto infinito -->
+          <!-- Repetimos para "loop" -->
           <a href="#" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort repeat" /></a>
           <a href="#" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover repeat" /></a>
           <a href="#" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen repeat" /></a>
+          <a href="#" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas repeat" /></a>
+          <a href="#" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo repeat" /></a>
         </div>
       </div>
     </section>
@@ -101,17 +103,18 @@
     <!-- MODAL PRODUCTO -->
     <div id="modal-producto" class="modal-producto">
       <div class="modal-bg" id="close-modal"></div>
-      <div class="modal-content">
+      <div class="modal-content modal-content-gallery">
         <button class="cerrar-modal" id="close-modal-btn">&times;</button>
-        <div class="modal-body">
-          <div class="modal-info" id="modal-info"></div>
-          <div class="modal-galeria">
+        <div class="modal-body modal-body-gallery">
+          <div class="gallery-main">
             <button class="arrow left" id="galeria-prev">&#8592;</button>
-            <div class="galeria-viewport">
-              <div class="galeria-track" id="galeria-track"></div>
+            <div class="gallery-viewport">
+              <img id="gallery-main-img" src="" alt="" />
             </div>
             <button class="arrow right" id="galeria-next">&#8594;</button>
           </div>
+          <div class="gallery-thumbs" id="gallery-thumbs"></div>
+          <div class="modal-info" id="modal-info"></div>
         </div>
       </div>
     </div>
@@ -129,7 +132,7 @@
   </footer>
 
   <script>
-  // SPA NAV
+  // --- SPA NAV ---
   document.addEventListener('DOMContentLoaded', function() {
     function mostrarSolo(seccionId) {
       document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
@@ -148,7 +151,7 @@
     mostrarSolo('inicio');
   });
 
-  // PRODUCTOS (mismos datos)
+  // PRODUCTOS
   const productos = {
     Francfort: {
       nombre: "Francfort",
@@ -241,15 +244,25 @@
     }
   };
 
-  // MODAL PRODUCTO Y GALERÍA
+  // MODAL PRODUCTO MEJORADO
   const modal = document.getElementById("modal-producto");
   const modalInfo = document.getElementById("modal-info");
-  const galeriaTrack = document.getElementById("galeria-track");
-  let galeriaIdx = 0, galeriaFotos = [];
+  const galleryMainImg = document.getElementById("gallery-main-img");
+  const galleryThumbs = document.getElementById("gallery-thumbs");
+  let galeriaIdx = 0, galeriaFotos = [], galeriaModelo = null;
 
   function abrirModalProducto(modelo) {
     const prod = productos[modelo];
     if (!prod) return;
+    galeriaModelo = modelo;
+    galeriaFotos = prod.fotos;
+    galeriaIdx = 0;
+    // Miniaturas
+    galleryThumbs.innerHTML = prod.fotos.map((src,i)=>`
+      <img src="${src}" alt="" class="gallery-thumb${i===0?' active':''}" data-idx="${i}">
+    `).join('');
+    galleryMainImg.src = prod.fotos[0];
+    // Info
     modalInfo.innerHTML = `
       <h3>${prod.nombre}</h3>
       <div class="precio">${prod.precio}</div>
@@ -257,46 +270,41 @@
       <ul>${prod.detalles.map(t=>`<li>${t}</li>`).join("")}</ul>
       <a class="btn btn-contact" href="${prod.whatsapp}" target="_blank">Cotizar por WhatsApp</a>
     `;
-    galeriaTrack.innerHTML = prod.fotos.map(src=>`<img src="${src}" alt="${prod.nombre}">`).join('');
-    galeriaFotos = prod.fotos;
-    galeriaIdx = 0;
-    moverGaleria();
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
+    updateGallery();
   }
   function cerrarModalProducto() {
     modal.classList.remove("active");
     document.body.style.overflow = "";
   }
-  function moverGaleria() {
-    galeriaTrack.style.transform = `translateX(-${galeriaIdx * galeriaTrack.offsetWidth}px)`;
-    document.getElementById("galeria-prev").disabled = galeriaIdx === 0;
-    document.getElementById("galeria-next").disabled = galeriaIdx === galeriaFotos.length-1;
+  function updateGallery() {
+    galleryMainImg.src = galeriaFotos[galeriaIdx];
+    galleryThumbs.querySelectorAll('img').forEach((el,i)=>{
+      el.classList.toggle('active',i===galeriaIdx);
+    });
   }
+  document.getElementById("close-modal").onclick = cerrarModalProducto;
+  document.getElementById("close-modal-btn").onclick = cerrarModalProducto;
+  document.getElementById("galeria-prev").onclick = ()=>{
+    if (galeriaIdx>0) { galeriaIdx--; updateGallery(); }
+  };
+  document.getElementById("galeria-next").onclick = ()=>{
+    if (galeriaIdx<galeriaFotos.length-1) { galeriaIdx++; updateGallery(); }
+  };
+  galleryThumbs.addEventListener('click',e=>{
+    if(e.target.matches('img')) {
+      galeriaIdx = parseInt(e.target.dataset.idx);
+      updateGallery();
+    }
+  });
 
   // Click en cards del catálogo
   document.querySelectorAll(".cat-card").forEach(card=>{
     card.onclick = ()=>abrirModalProducto(card.dataset.modelo);
   });
-  document.getElementById("close-modal").onclick = cerrarModalProducto;
-  document.getElementById("close-modal-btn").onclick = cerrarModalProducto;
-  document.getElementById("galeria-prev").onclick = ()=>{
-    if (galeriaIdx>0) { galeriaIdx--; moverGaleria(); }
-  };
-  document.getElementById("galeria-next").onclick = ()=>{
-    if (galeriaIdx<galeriaFotos.length-1) { galeriaIdx++; moverGaleria(); }
-  };
-  galeriaTrack.addEventListener("touchstart", function(e){
-    this._x = e.touches[0].clientX;
-  });
-  galeriaTrack.addEventListener("touchend", function(e){
-    let dx = e.changedTouches[0].clientX - this._x;
-    if (dx > 40 && galeriaIdx > 0) { galeriaIdx--; moverGaleria(); }
-    if (dx < -40 && galeriaIdx < galeriaFotos.length-1) { galeriaIdx++; moverGaleria(); }
-  });
-  window.addEventListener("resize", moverGaleria);
 
-  // CLICK EN EL CARRUSEL DEL INICIO
+  // Click en imágenes del carrusel de inicio
   document.querySelectorAll('#inicio-carousel-track a').forEach(el => {
     el.addEventListener('click', function(e){
       e.preventDefault();
@@ -304,29 +312,29 @@
     });
   });
 
-  // CARRUSEL INTERACTIVO CON EL MOUSE
+  // CARRUSEL INFINITO
   (function() {
     const track = document.getElementById('inicio-carousel-track');
+    let imgWidth = track.querySelector('a').offsetWidth + 24; // img+margin
+    let totalImgs = track.children.length;
     let pos = 0;
     let vel = 0;
     let raf, hovering = false;
 
     function animate() {
       pos += vel;
-      if (pos > track.scrollWidth / 2) pos = 0;
-      if (pos < 0) pos = track.scrollWidth / 2;
+      if (pos < 0) pos += imgWidth*5; // 5 imágenes originales
+      if (pos > imgWidth*5) pos -= imgWidth*5;
       track.style.transform = `translateX(${-pos}px)`;
       if (hovering) raf = requestAnimationFrame(animate);
     }
-
+    // Mouse interactivo
     track.parentElement.addEventListener('mousemove', function(e){
       const rect = this.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const width = rect.width;
-      // izquierda (-), centro (0), derecha (+)
       let rel = (x / width - 0.5) * 2;
-      // Suaviza la velocidad máxima
-      vel = rel * 2.5;
+      vel = rel * 2.3;
       if (!raf) {
         hovering = true;
         raf = requestAnimationFrame(animate);
@@ -338,12 +346,12 @@
       raf = null;
       vel = 0;
     });
-
-    // Animación auto en móviles/touch
+    // Animación auto en móvil
     let autoAnim = setInterval(() => {
       if (!hovering && window.innerWidth <= 900) {
-        pos += 1.5;
-        if (pos > track.scrollWidth / 2) pos = 0;
+        pos += 1.2;
+        if (pos < 0) pos += imgWidth*5;
+        if (pos > imgWidth*5) pos -= imgWidth*5;
         track.style.transform = `translateX(${-pos}px)`;
       }
     }, 20);
