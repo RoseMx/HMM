@@ -31,18 +31,21 @@
           </p>
           <a href="#catalogo" class="btn btn-lg nav-link" data-seccion="catalogo">Ver catálogo</a>
         </div>
-        <div class="vertical-carousel-wrap">
-          <div class="vertical-carousel" id="vertical-carousel">
-            <div class="carousel-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
-            <div class="carousel-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
-            <div class="carousel-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
-            <div class="carousel-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
-            <div class="carousel-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
-            <!-- Repetidos para efecto infinito -->
-            <div class="carousel-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort repeat" /></div>
-            <div class="carousel-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover repeat" /></div>
+        <aside class="carousel-vertical-area">
+          <div class="carousel-title">Modelos Destacados</div>
+          <div class="vertical-carousel-mini" id="vertical-carousel-mini">
+            <button class="carr-btn up" id="carousel-up">&#9650;</button>
+            <div class="carousel-mini-track" id="carousel-mini-track">
+              <div class="carousel-mini-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
+              <div class="carousel-mini-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
+              <div class="carousel-mini-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
+              <div class="carousel-mini-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
+              <div class="carousel-mini-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
+              <!-- Agrega más modelos aquí si los tienes -->
+            </div>
+            <button class="carr-btn down" id="carousel-down">&#9660;</button>
           </div>
-        </div>
+        </aside>
       </div>
     </section>
 
@@ -119,12 +122,12 @@
   </footer>
 
   <script>
-  // SPA NAV (igual que antes)
+  // SPA NAV
   document.addEventListener('DOMContentLoaded', function() {
     function mostrarSolo(seccionId) {
       document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
       let sec = document.getElementById(seccionId);
-      if(sec) sec.style.display = (seccionId === 'inicio') ? 'block' : 'block';
+      if(sec) sec.style.display = 'block';
     }
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function(e) {
@@ -138,27 +141,30 @@
     mostrarSolo('inicio');
   });
 
-  // Carrusel vertical automático
-  (function() {
-    const carousel = document.getElementById('vertical-carousel');
-    const total = carousel.children.length;
-    let pos = 0;
-    let step = 1;
-    let imgHeight = 180 + 24; // imagen + gap (ajusta si cambias tamaño)
-    function loop() {
-      pos += step;
-      if (pos >= imgHeight * (total/2)) pos = 0;
-      carousel.style.transform = `translateY(${-pos}px)`;
-      requestAnimationFrame(loop);
+  // Carrusel vertical compacto
+  document.addEventListener('DOMContentLoaded', function(){
+    const track = document.getElementById('carousel-mini-track');
+    const imgs = track.querySelectorAll('.carousel-mini-img');
+    let current = 0;
+    const visible = 3;
+    function updateCarousel() {
+      let offset = current * (imgs[0].offsetHeight + 10);
+      track.style.transform = `translateY(-${offset}px)`;
     }
-    loop();
-    // Click para mostrar producto
-    carousel.querySelectorAll('.carousel-img').forEach(el => {
-      el.addEventListener('click', function() {
-        alert('¡Aquí se abriría el modal del producto: ' + this.dataset.modelo + ' (puedes programar esto igual que en el catálogo)!');
-      });
+    document.getElementById('carousel-up').onclick = () => {
+      if (current > 0) { current--; updateCarousel(); }
+    };
+    document.getElementById('carousel-down').onclick = () => {
+      if (current < imgs.length - visible) { current++; updateCarousel(); }
+    };
+    // Abre modal o lo que necesites al hacer click
+    imgs.forEach(el => {
+      el.onclick = function() {
+        alert('Aquí se abriría el modal de ' + this.dataset.modelo);
+      };
     });
-  })();
+    updateCarousel();
+  });
   </script>
 </body>
 </html>
