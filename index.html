@@ -37,7 +37,7 @@
           <a href="#" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></a>
           <a href="#" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></a>
           <a href="#" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></a>
-          <!-- Repetidas para infinito -->
+          <!-- Repetidas para efecto infinito -->
           <a href="#" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort repeat" /></a>
           <a href="#" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover repeat" /></a>
           <a href="#" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen repeat" /></a>
@@ -94,20 +94,21 @@
       </div>
     </section>
 
-    <!-- MODAL PRODUCTO - DOS COLUMNAS CON ZOOM -->
+    <!-- MODAL PRODUCTO -->
     <div id="modal-producto" class="modal-producto">
       <div class="modal-bg" id="close-modal"></div>
       <div class="modal-content modal-content-gallery">
         <button class="cerrar-modal" id="close-modal-btn">&times;</button>
         <div class="modal-body modal-body-gallery">
-          <!-- Info izquierda -->
           <div class="modal-info" id="modal-info"></div>
-          <!-- Galería derecha -->
           <div class="gallery-column">
             <div class="gallery-main">
               <button class="arrow left" id="galeria-prev">&#8592;</button>
-              <div class="gallery-viewport">
+              <div class="gallery-viewport" tabindex="0" title="Haz clic para hacer zoom">
                 <img id="gallery-main-img" src="" alt="" />
+                <div class="zoom-icon" id="zoom-icon" title="Haz clic para hacer zoom">
+                  <svg width="22" height="22" viewBox="0 0 22 22"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><rect x="7" y="9" width="6" height="2" rx="1" fill="currentColor"/><rect x="9" y="7" width="2" height="6" rx="1" fill="currentColor"/></svg>
+                </div>
               </div>
               <button class="arrow right" id="galeria-next">&#8594;</button>
             </div>
@@ -285,6 +286,8 @@
     galleryViewport.classList.remove('zoomed');
     galleryViewport.style.setProperty('--zoom-x', '0px');
     galleryViewport.style.setProperty('--zoom-y', '0px');
+    // Reset lupa a modo normal
+    zoomIcon.innerHTML = '<svg width="22" height="22" viewBox="0 0 22 22"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><rect x="7" y="9" width="6" height="2" rx="1" fill="currentColor"/><rect x="9" y="7" width="2" height="6" rx="1" fill="currentColor"/></svg>';
   }
   document.getElementById("close-modal").onclick = cerrarModalProducto;
   document.getElementById("close-modal-btn").onclick = cerrarModalProducto;
@@ -359,13 +362,18 @@
     }, 20);
   })();
 
-  // === ZOOM EN LA IMAGEN PRINCIPAL DEL MODAL ===
+  // === ZOOM EN LA IMAGEN PRINCIPAL DEL MODAL CON LUPA ===
   const galleryViewport = document.querySelector('.gallery-viewport');
-  let zoomed = false, zoomX = 0, zoomY = 0;
+  const zoomIcon = document.getElementById('zoom-icon');
+  let zoomed = false;
 
   galleryViewport.addEventListener('click', function(e) {
     zoomed = !zoomed;
     this.classList.toggle('zoomed', zoomed);
+    // Cambia ícono a menos o lupa
+    zoomIcon.innerHTML = zoomed 
+      ? '<svg width="22" height="22" viewBox="0 0 22 22"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><rect x="7" y="10" width="8" height="2" rx="1" fill="currentColor"/></svg>'
+      : '<svg width="22" height="22" viewBox="0 0 22 22"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><rect x="7" y="9" width="6" height="2" rx="1" fill="currentColor"/><rect x="9" y="7" width="2" height="6" rx="1" fill="currentColor"/></svg>';
     if (!zoomed) {
       this.style.setProperty('--zoom-x', '0px');
       this.style.setProperty('--zoom-y', '0px');
@@ -374,15 +382,13 @@
 
   galleryViewport.addEventListener('mousemove', function(e) {
     if (!zoomed) return;
-    const img = document.getElementById('gallery-main-img');
     const rect = this.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 a 1
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
     const lim = 0.44;
     this.style.setProperty('--zoom-x', `${-x*lim*100}%`);
     this.style.setProperty('--zoom-y', `${-y*lim*100}%`);
   });
-
   galleryViewport.addEventListener('mouseleave', function() {
     if (zoomed) {
       this.style.setProperty('--zoom-x', '0px');
@@ -390,32 +396,10 @@
     }
   });
 
-  // Soporte táctil para móvil:
-  let lastTouch = null;
-  galleryViewport.addEventListener('touchstart', function(e){
-    if(!zoomed) return;
-    if(e.touches.length===1){
-      lastTouch = e.touches[0];
-    }
+  // Tooltip flotante de la lupa
+  galleryViewport.addEventListener('mouseover', function() {
+    zoomIcon.setAttribute('title', zoomed ? "Haz clic para salir del zoom" : "Haz clic para hacer zoom");
   });
-  galleryViewport.addEventListener('touchmove', function(e){
-    if(!zoomed || !lastTouch) return;
-    const rect = this.getBoundingClientRect();
-    const touch = e.touches[0];
-    const x = ((touch.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((touch.clientY - rect.top) / rect.height - 0.5) * 2;
-    const lim = 0.44;
-    this.style.setProperty('--zoom-x', `${-x*lim*100}%`);
-    this.style.setProperty('--zoom-y', `${-y*lim*100}%`);
-  });
-  galleryViewport.addEventListener('touchend', function(e){
-    if (zoomed) {
-      this.style.setProperty('--zoom-x', '0px');
-      this.style.setProperty('--zoom-y', '0px');
-    }
-    lastTouch = null;
-  });
-
   </script>
 </body>
 </html>
