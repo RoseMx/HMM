@@ -31,18 +31,19 @@
           </p>
           <a href="#catalogo" class="btn btn-lg nav-link" data-seccion="catalogo">Ver catálogo</a>
         </div>
-        <aside class="carousel-vertical-area">
+        <aside class="carousel-vertical-auto-area">
           <div class="carousel-title">Modelos Destacados</div>
-          <div class="vertical-carousel-mini" id="vertical-carousel-mini">
-            <button class="carr-btn up" id="carousel-up">&#9650;</button>
-            <div class="carousel-mini-track" id="carousel-mini-track">
-              <div class="carousel-mini-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
-              <div class="carousel-mini-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
-              <div class="carousel-mini-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
-              <div class="carousel-mini-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
-              <div class="carousel-mini-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
+          <div class="vertical-carousel-auto" id="vertical-carousel-auto">
+            <div class="carousel-auto-track" id="carousel-auto-track">
+              <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
+              <div class="carousel-auto-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
+              <div class="carousel-auto-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
+              <div class="carousel-auto-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
+              <div class="carousel-auto-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
+              <!-- Duplicados para efecto loop infinito -->
+              <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
+              <div class="carousel-auto-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
             </div>
-            <button class="carr-btn down" id="carousel-down">&#9660;</button>
           </div>
         </aside>
       </div>
@@ -143,7 +144,7 @@
   </footer>
 
   <script>
-  // ---------------- SPA NAV -----------------
+  // SPA NAV
   document.addEventListener('DOMContentLoaded', function() {
     function mostrarSolo(seccionId) {
       document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
@@ -162,33 +163,31 @@
     mostrarSolo('inicio');
   });
 
-  // ------------ Carrusel Vertical Elegante -----------
+  // ----------- Carrusel vertical auto loop -----------
   document.addEventListener('DOMContentLoaded', function(){
-    const track = document.getElementById('carousel-mini-track');
-    const imgs = track.querySelectorAll('.carousel-mini-img');
-    let current = 0;
-    const visible = 3;
-    function updateCarousel() {
-      let offset = current * (imgs[0].offsetHeight + 10);
-      track.style.transform = `translateY(-${offset}px)`;
+    const track = document.getElementById('carousel-auto-track');
+    const imgs = track.querySelectorAll('.carousel-auto-img');
+    let pos = 0;
+    let speed = 0.4; // menor = más lento
+    const imgHeight = 66; // height de imagen + gap
+
+    function loop() {
+      pos += speed;
+      if (pos >= imgHeight * (imgs.length/2)) pos = 0;
+      track.style.transform = `translateY(-${pos}px)`;
+      requestAnimationFrame(loop);
     }
-    document.getElementById('carousel-up').onclick = () => {
-      if (current > 0) { current--; updateCarousel(); }
-    };
-    document.getElementById('carousel-down').onclick = () => {
-      if (current < imgs.length - visible) { current++; updateCarousel(); }
-    };
+    loop();
+
+    // Clic en imagen abre modal
     imgs.forEach(el => {
       el.onclick = function() {
         abrirModalProducto(this.dataset.modelo);
       };
     });
-    updateCarousel();
   });
 
   // ------------------ MODAL PREMIUM -------------------
-
-  // Datos de los productos y sus fotos
   const productos = {
     Francfort: {
       nombre: "Francfort",
@@ -281,7 +280,6 @@
     }
   };
 
-  // Modal funciones
   const modal = document.getElementById("modal-producto");
   const modalInfo = document.getElementById("modal-info");
   const galeriaTrack = document.getElementById("gallery-thumbs");
