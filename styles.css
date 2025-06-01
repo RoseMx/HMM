@@ -44,8 +44,6 @@ nav a:hover {
   border-bottom: 2px solid #59a899;
   color: #59a899;
 }
-
-/* HERO - INICIO */
 .hero {
   display: flex;
   flex-wrap: wrap;
@@ -215,7 +213,7 @@ nav a:hover {
   filter: brightness(0.98);
 }
 
-/* === MODAL PRODUCTO / GALERÍA === */
+/* === MODAL PRODUCTO / GALERÍA RESPONSIVE Y CENTRADO === */
 .modal-producto {
   display: none;
   position: fixed;
@@ -234,17 +232,19 @@ nav a:hover {
   to { opacity: 1; }
 }
 .modal-content-gallery {
-  width: 97vw;
-  max-width: 540px;
+  width: 96vw;
+  max-width: 470px;
+  max-height: 94vh;
   background: #21242ae9;
   box-shadow: 0 8px 40px #000a;
   border-radius: 1.3rem;
-  padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+  padding: 1.2rem 0.5rem 1.2rem 0.5rem;
   margin: 1.5rem 0;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
 }
 .modal-body-gallery {
   display: flex;
@@ -252,6 +252,8 @@ nav a:hover {
   align-items: center;
   gap: 1.1rem;
   width: 98%;
+  max-height: 76vh;
+  overflow-y: auto;
 }
 .gallery-main {
   display: flex;
@@ -262,9 +264,9 @@ nav a:hover {
 }
 .gallery-viewport {
   width: 340px;
-  max-width: 92vw;
+  max-width: 86vw;
   height: 220px;
-  max-height: 40vw;
+  max-height: 36vh;
   background: #303841;
   border-radius: 1rem;
   overflow: hidden;
@@ -281,6 +283,7 @@ nav a:hover {
   object-fit: contain;
   background: #232a34;
   display: block;
+  margin: 0 auto;
 }
 .gallery-thumbs {
   display: flex;
@@ -363,6 +366,20 @@ nav a:hover {
   margin: 0.6rem auto 0 auto;
   display: block;
   width: fit-content;
+  font-size: 1.05rem;
+  padding: 0.67em 1.3em;
+  background: linear-gradient(90deg, #25d366 60%, #128c7e 100%);
+  color: #f2f4f8;
+  border: none;
+  border-radius: 1.5em;
+  font-weight: 600;
+  box-shadow: 0 2px 8px #25d36633;
+  transition: background 0.3s, color 0.2s;
+  letter-spacing: 0.5px;
+}
+.btn-contact:hover {
+  background: linear-gradient(90deg, #128c7e 60%, #25d366 100%);
+  color: #fff;
 }
 .arrow {
   background: #263544;
@@ -388,13 +405,13 @@ nav a:hover {
   color: #232a34;
 }
 
-/* Responsive mejorado para modal, galería y página */
+/* Responsive aún más fluido para modal, galería y página */
 @media (max-width: 900px) {
   .hero { flex-direction: column-reverse; gap: 1.5rem; }
   .hero-carousel { min-width: 90vw; max-width: 98vw; }
   .catalogo-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
   .modal-content-gallery { max-width: 99vw; }
-  .gallery-viewport { width: 94vw; min-width: 170px; height: 40vw; max-height: 200px; }
+  .gallery-viewport { width: 94vw; min-width: 170px; height: 40vw; max-height: 220px; }
 }
 @media (max-width: 600px) {
   .container { flex-direction: column; gap: 0.6rem; }
@@ -405,7 +422,7 @@ nav a:hover {
   .hero-carousel { height: 150px; }
   .carousel-track img { height: 90px; margin: 0 0.5rem; }
   .modal-content-gallery { max-width: 100vw; min-width: 0; padding: 0.8rem 0.1rem 0.7rem 0.1rem; }
-  .gallery-viewport { width: 92vw; height: 34vw; max-height: 140px; }
+  .gallery-viewport { width: 98vw; height: 34vw; max-height: 130px; }
   .gallery-thumbs img { width: 36px; height: 24px; }
   .modal-info { font-size: 0.97rem; }
 }
