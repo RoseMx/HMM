@@ -229,26 +229,26 @@
         document.getElementById('detalleModal').classList.add('oculto');
       }
 
-      // --- DELEGACIÓN DE EVENTOS EN EL GRID SOLO CUANDO SE MUESTRA EL CATÁLOGO ---
-      let gridListener = false;
-      function activarCatalogoListener() {
-        if (gridListener) return; // No volver a agregar el listener
-        document.getElementById('catalogoGrid').addEventListener('click', function(e) {
-          let card = e.target.closest('.cat-card');
-          if(card && card.hasAttribute('data-modelo')) {
-            mostrarDetalle(card.getAttribute('data-modelo'));
-          }
-        });
-        gridListener = true;
-      }
+      // DELEGACIÓN DE EVENTOS (SIEMPRE ACTIVA)
+      document.getElementById('catalogoGrid').addEventListener('click', function(e) {
+        let card = e.target.closest('.cat-card');
+        if(card && card.hasAttribute('data-modelo')) {
+          mostrarDetalle(card.getAttribute('data-modelo'));
+        }
+      });
+
+      // Botón de cerrar modal
+      document.getElementById('cerrarDetalleBtn').onclick = cerrarDetalle;
+      // Cierra modal al hacer click fuera
+      document.getElementById('detalleModal').addEventListener('click', function(e) {
+        if(e.target === this) cerrarDetalle();
+      });
 
       // --- SPA NAV ---
       function mostrarSolo(seccionId) {
         document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
         let sec = document.getElementById(seccionId);
         if(sec) sec.style.display = 'block';
-        // Activar el listener SOLO si el catálogo es visible
-        if(seccionId === 'catalogo') activarCatalogoListener();
       }
       document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -259,14 +259,6 @@
           window.scrollTo({top:0,behavior:'smooth'});
         });
       });
-
-      // Botón de cerrar modal
-      document.getElementById('cerrarDetalleBtn').onclick = cerrarDetalle;
-      // Cierra modal al hacer click fuera
-      document.getElementById('detalleModal').addEventListener('click', function(e) {
-        if(e.target === this) cerrarDetalle();
-      });
-
       mostrarSolo('inicio');
     });
   </script>
