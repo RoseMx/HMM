@@ -60,53 +60,25 @@ nav a.active::after, nav a:hover::after {
 }
 .hero-flex {
   display: flex;
-  gap: 2.2em;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
+  gap: 2.2em;
 }
+/* 2/3 para el contenido */
 .hero-content {
-  flex: 1.7;
+  flex: 2 1 0;
+  min-width: 0;
+  max-width: 66.66%;
   display: flex;
   flex-direction: column;
   gap: 0.7em;
 }
-.hero-content h1 {
-  font-size: 2.7rem;
-  font-weight: 800;
-  color: #f2f4f8;
-  line-height: 1.12;
-  margin-bottom: 0.35em;
-}
-.hero-content h1 span { color: #59a899; }
-.hero-content p {
-  font-size: 1.18rem;
-  color: #c4c7ce;
-  margin-bottom: 1.5em;
-}
-.btn.btn-lg {
-  padding: 0.8em 2em;
-  font-size: 1.1rem;
-  background: linear-gradient(90deg, #25d366 60%, #128c7e 100%);
-  color: #fff;
-  border-radius: 1.7em;
-  border: none;
-  font-weight: 700;
-  box-shadow: 0 2px 10px #25d36622;
-  cursor: pointer;
-  text-decoration: none;
-  width: fit-content;
-  transition: background 0.3s, color 0.2s;
-}
-.btn.btn-lg:hover {
-  background: linear-gradient(90deg, #128c7e 60%, #25d366 100%);
-  color: #fff;
-}
-
-/* Carrusel vertical auto 30% MÁS GRANDE */
+/* 1/3 para el carrusel vertical */
 .carousel-vertical-auto-area {
-  flex: 0 0 312px;
-  min-width: 227px;
-  max-width: 312px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 33.33%;
+  width: 33.33%;
   background: #232a34;
   padding: 1.3em 0.9em 1.3em 0.9em;
   border-radius: 1.4em;
@@ -126,8 +98,9 @@ nav a.active::after, nav a:hover::after {
   text-align: center;
 }
 .vertical-carousel-auto {
-  height: 318px;
-  width: 227px;
+  height: 350px;
+  width: 100%;
+  max-width: 320px;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -142,7 +115,9 @@ nav a.active::after, nav a:hover::after {
   transition: transform 0.26s cubic-bezier(.77,0,.18,1.01);
 }
 .carousel-auto-img {
-  width: 215px; height: 98px;
+  width: 95%;
+  max-width: 305px;
+  height: 100px;
   border-radius: 1em;
   overflow: hidden;
   background: #222831;
@@ -219,7 +194,7 @@ nav a.active::after, nav a:hover::after {
 .cat-price { color: #fff; font-size: 1.07rem; font-weight: 600; }
 .cat-desc { color: #c4c7ce; font-size: 0.99rem; }
 
-/* MODAL PREMIUM */
+/* MODAL PREMIUM (igual que antes) */
 .modal-producto {
   display: none;
   position: fixed;
@@ -443,7 +418,8 @@ footer {
 @media (max-width: 900px) {
   .container, .hero, .catalogo { width: 98vw; max-width: 99vw; }
   .hero-flex { flex-direction: column; gap: 1.6em; align-items: stretch; }
-  .carousel-vertical-auto-area { margin: 2em auto 0 auto; }
+  .carousel-vertical-auto-area { margin: 2em auto 0 auto; width: 98vw; max-width: 99vw; }
+  .vertical-carousel-auto { max-width: 99vw; }
   .modal-columns { flex-direction: column; gap: 2rem; }
   .main-img-wrap { width: 95vw; max-width: 99vw; }
   .modal-info { max-width: 97vw; }
