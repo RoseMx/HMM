@@ -32,13 +32,16 @@
       </div>
       <div class="hero-carousel">
         <div class="carousel-track" id="inicio-carousel-track">
-          <img src="img/Francfort/Francfort1.png" alt="Francfort" />
-          <img src="img/Hanover/Hanover1.png" alt="Hanover" />
-          <img src="img/Bremen/Bremen1.png" alt="Bremen" />
-          <img src="img/Atenas/Atenas1.png" alt="Atenas" />
-          <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
-          <!-- Duplicada para efecto infinito -->
-          <img src="img/Francfort/Francfort1.png" alt="Francfort repeat" />
+          <!-- Cada imagen es un enlace -->
+          <a href="#" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></a>
+          <a href="#" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></a>
+          <a href="#" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></a>
+          <a href="#" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></a>
+          <a href="#" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></a>
+          <!-- Duplicadas para efecto infinito -->
+          <a href="#" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort repeat" /></a>
+          <a href="#" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover repeat" /></a>
+          <a href="#" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen repeat" /></a>
         </div>
       </div>
     </section>
@@ -95,21 +98,17 @@
       </div>
     </section>
 
-    <!-- MODAL/VENTANA DE PRODUCTO -->
+    <!-- MODAL PRODUCTO -->
     <div id="modal-producto" class="modal-producto">
       <div class="modal-bg" id="close-modal"></div>
       <div class="modal-content">
         <button class="cerrar-modal" id="close-modal-btn">&times;</button>
         <div class="modal-body">
-          <div class="modal-info" id="modal-info">
-            <!-- Aquí se rellena la info con JS -->
-          </div>
+          <div class="modal-info" id="modal-info"></div>
           <div class="modal-galeria">
             <button class="arrow left" id="galeria-prev">&#8592;</button>
             <div class="galeria-viewport">
-              <div class="galeria-track" id="galeria-track">
-                <!-- Aquí se insertan las imágenes con JS -->
-              </div>
+              <div class="galeria-track" id="galeria-track"></div>
             </div>
             <button class="arrow right" id="galeria-next">&#8594;</button>
           </div>
@@ -117,7 +116,7 @@
       </div>
     </div>
 
-    <!-- ========== CONTACTO (Pendiente, luego lo mejoramos igual) ========== -->
+    <!-- ========== CONTACTO ========== -->
     <section id="contacto" class="seccion" style="display: none;">
       <h2>Contacto</h2>
       <p>¿Dudas? ¿Quieres un diseño especial? ¡Escríbenos por WhatsApp y recibe atención inmediata!</p>
@@ -130,7 +129,7 @@
   </footer>
 
   <script>
-  // --- SPA NAV ---
+  // SPA NAV
   document.addEventListener('DOMContentLoaded', function() {
     function mostrarSolo(seccionId) {
       document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
@@ -149,7 +148,7 @@
     mostrarSolo('inicio');
   });
 
-  // ============ MODAL PRODUCTO Y GALERÍA =============
+  // PRODUCTOS (mismos datos)
   const productos = {
     Francfort: {
       nombre: "Francfort",
@@ -242,6 +241,7 @@
     }
   };
 
+  // MODAL PRODUCTO Y GALERÍA
   const modal = document.getElementById("modal-producto");
   const modalInfo = document.getElementById("modal-info");
   const galeriaTrack = document.getElementById("galeria-track");
@@ -273,6 +273,8 @@
     document.getElementById("galeria-prev").disabled = galeriaIdx === 0;
     document.getElementById("galeria-next").disabled = galeriaIdx === galeriaFotos.length-1;
   }
+
+  // Click en cards del catálogo
   document.querySelectorAll(".cat-card").forEach(card=>{
     card.onclick = ()=>abrirModalProducto(card.dataset.modelo);
   });
@@ -293,6 +295,59 @@
     if (dx < -40 && galeriaIdx < galeriaFotos.length-1) { galeriaIdx++; moverGaleria(); }
   });
   window.addEventListener("resize", moverGaleria);
+
+  // CLICK EN EL CARRUSEL DEL INICIO
+  document.querySelectorAll('#inicio-carousel-track a').forEach(el => {
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      abrirModalProducto(this.dataset.modelo);
+    });
+  });
+
+  // CARRUSEL INTERACTIVO CON EL MOUSE
+  (function() {
+    const track = document.getElementById('inicio-carousel-track');
+    let pos = 0;
+    let vel = 0;
+    let raf, hovering = false;
+
+    function animate() {
+      pos += vel;
+      if (pos > track.scrollWidth / 2) pos = 0;
+      if (pos < 0) pos = track.scrollWidth / 2;
+      track.style.transform = `translateX(${-pos}px)`;
+      if (hovering) raf = requestAnimationFrame(animate);
+    }
+
+    track.parentElement.addEventListener('mousemove', function(e){
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const width = rect.width;
+      // izquierda (-), centro (0), derecha (+)
+      let rel = (x / width - 0.5) * 2;
+      // Suaviza la velocidad máxima
+      vel = rel * 2.5;
+      if (!raf) {
+        hovering = true;
+        raf = requestAnimationFrame(animate);
+      }
+    });
+    track.parentElement.addEventListener('mouseleave', function(){
+      hovering = false;
+      cancelAnimationFrame(raf);
+      raf = null;
+      vel = 0;
+    });
+
+    // Animación auto en móviles/touch
+    let autoAnim = setInterval(() => {
+      if (!hovering && window.innerWidth <= 900) {
+        pos += 1.5;
+        if (pos > track.scrollWidth / 2) pos = 0;
+        track.style.transform = `translateX(${-pos}px)`;
+      }
+    }, 20);
+  })();
   </script>
 </body>
 </html>
