@@ -32,21 +32,20 @@
           <a href="#catalogo" class="btn btn-lg nav-link" data-seccion="catalogo">Ver catálogo</a>
         </div>
         <aside class="carousel-vertical-auto-area">
-  <div class="carousel-title">Modelos Destacados</div>
-  <div class="vertical-carousel-auto" id="vertical-carousel-auto">
-    <div class="carousel-auto-track" id="carousel-auto-track">
-      <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
-      <div class="carousel-auto-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
-      <div class="carousel-auto-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
-      <div class="carousel-auto-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
-      <div class="carousel-auto-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
-      <!-- Duplicados para efecto loop infinito -->
-      <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
-      <div class="carousel-auto-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
-    </div>
-  </div>
-</aside>
-
+          <div class="carousel-title">Modelos Destacados</div>
+          <div class="vertical-carousel-auto" id="vertical-carousel-auto">
+            <div class="carousel-auto-track" id="carousel-auto-track">
+              <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
+              <div class="carousel-auto-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
+              <div class="carousel-auto-img" data-modelo="Bremen"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
+              <div class="carousel-auto-img" data-modelo="Atenas"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
+              <div class="carousel-auto-img" data-modelo="Duisburgo"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
+              <!-- Duplicados para efecto loop infinito -->
+              <div class="carousel-auto-img" data-modelo="Francfort"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
+              <div class="carousel-auto-img" data-modelo="Hanover"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -103,7 +102,6 @@
       <div class="modal-popup">
         <button class="close-btn" id="close-modal-btn" title="Cerrar">&times;</button>
         <div class="modal-columns">
-          <!-- Galería columna izquierda -->
           <div class="modal-gallery">
             <div class="main-img-wrap" id="main-img-wrap">
               <img id="gallery-main-img" src="" alt="Producto" />
@@ -113,7 +111,6 @@
             </div>
             <div class="mini-thumbs" id="gallery-thumbs"></div>
           </div>
-          <!-- Info columna derecha -->
           <div class="modal-info" id="modal-info"></div>
         </div>
       </div>
@@ -169,8 +166,8 @@
     const track = document.getElementById('carousel-auto-track');
     const imgs = track.querySelectorAll('.carousel-auto-img');
     let pos = 0;
-    let speed = 0.4; // menor = más lento
-    const imgHeight = 66; // height de imagen + gap
+    let speed = 0.5; // menor = más lento
+    const imgHeight = 85; // height de imagen (75px) + gap (10px)
 
     function loop() {
       pos += speed;
