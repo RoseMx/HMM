@@ -102,11 +102,11 @@ nav a.active::after, nav a:hover::after {
   color: #fff;
 }
 
-/* Carrusel vertical auto */
+/* Carrusel vertical auto LIGERAMENTE MÁS GRANDE */
 .carousel-vertical-auto-area {
-  flex: 0 0 200px;
-  min-width: 140px;
-  max-width: 200px;
+  flex: 0 0 240px;
+  min-width: 175px;
+  max-width: 240px;
   background: #232a34;
   padding: 1em 0.6em 1em 0.6em;
   border-radius: 1.4em;
@@ -118,7 +118,7 @@ nav a.active::after, nav a:hover::after {
   align-items: center;
 }
 .carousel-title {
-  font-size: 1.05em;
+  font-size: 1.08em;
   font-weight: 700;
   color: #59a899;
   margin-bottom: 0.7em;
@@ -126,8 +126,8 @@ nav a.active::after, nav a:hover::after {
   text-align: center;
 }
 .vertical-carousel-auto {
-  height: 200px;
-  width: 150px;
+  height: 245px;
+  width: 175px;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -137,12 +137,12 @@ nav a.active::after, nav a:hover::after {
 .carousel-auto-track {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   will-change: transform;
   transition: transform 0.26s cubic-bezier(.77,0,.18,1.01);
 }
 .carousel-auto-img {
-  width: 140px; height: 58px;
+  width: 165px; height: 75px;
   border-radius: 1em;
   overflow: hidden;
   background: #222831;
