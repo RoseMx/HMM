@@ -382,16 +382,15 @@ nav a:hover {
   width: 100%;
   height: 230px;
   max-height: 36vh;
-  background: #303841;
+  background: linear-gradient(135deg, #232a34 80%, #263544 100%);
   border-radius: 1.1rem;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 20px #1a1a1a33;
+  box-shadow: 0 6px 32px #59a89918, 0 1px 12px #232a3440;
   border: 1.5px solid #59a89933;
   position: relative;
-  /* Para el efecto zoom */
   cursor: zoom-in;
 }
 .gallery-viewport.zoomed {
@@ -403,7 +402,7 @@ nav a:hover {
   width: 100%;
   height: 100%;
   border-radius: 1rem;
-  object-fit: cover;
+  object-fit: contain; /* Cambiado de cover a contain */
   background: #232a34;
   display: block;
   margin: 0 auto;
@@ -538,9 +537,4 @@ footer {
   background: #2a3440;
   color: #c4c7ce;
   text-align: center;
-  padding: 1.2rem 0 0.8rem 0;
-  font-size: 1rem;
-  margin-top: 2rem;
-  letter-spacing: 0.5px;
-  border-top: 1.5px solid #59a89944;
-}
+  padding:
