@@ -253,23 +253,27 @@ nav a.active::after, nav a:hover::after {
   color: #59a899;
   letter-spacing: 1.5px;
 }
+
+/* NUEVO GRID */
 .catalogo-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 2.5em;
-  justify-content: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 .cat-card {
   background: #232a34;
   border-radius: 1.2em;
   box-shadow: 0 2px 12px #0003;
   overflow: hidden;
-  width: 210px;
   cursor: pointer;
   transition: box-shadow 0.2s, transform 0.18s;
   border: 2.2px solid #232a34;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .cat-card:hover {
   box-shadow: 0 8px 30px #25d36622;
@@ -278,7 +282,7 @@ nav a.active::after, nav a:hover::after {
 }
 .cat-img {
   width: 100%;
-  height: 150px;
+  height: 190px;
   background-size: cover;
   background-position: center;
   border-bottom: 1px solid #292f38;
@@ -288,10 +292,85 @@ nav a.active::after, nav a:hover::after {
   display: flex;
   flex-direction: column;
   gap: 0.35em;
+  text-align: center;
 }
 .cat-content h3 { font-size: 1.18rem; color: #59a899; font-weight: 700; }
 .cat-price { color: #fff; font-size: 1.07rem; font-weight: 600; }
 .cat-desc { color: #c4c7ce; font-size: 0.99rem; }
+
+/* MODAL DE DETALLE */
+.detalle-modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.93);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.19s;
+}
+.detalle-modal.oculto {
+  display: none;
+}
+.detalle-modal-content {
+  background: #202020;
+  border-radius: 18px;
+  padding: 28px 18px;
+  max-width: 800px;
+  width: 98%;
+  box-shadow: 0 2px 26px rgba(0,0,0,0.22);
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+}
+.close {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  font-size: 2.2rem;
+  color: #fec260;
+  cursor: pointer;
+  z-index: 1;
+}
+.detalle-imagenes {
+  flex: 1 1 280px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.detalle-imagenes img {
+  width: 100%;
+  border-radius: 13px;
+  object-fit: cover;
+  background: #333;
+}
+.detalle-info {
+  flex: 2 1 300px;
+  min-width: 210px;
+  color: #fff;
+  background: #232323;
+  border-radius: 14px;
+  padding: 14px 15px;
+  font-size: 1.08rem;
+}
+.detalle-info a {
+  display: inline-block;
+  background: #fec260;
+  color: #1b1b1b;
+  padding: 8px 20px;
+  border-radius: 7px;
+  margin-top: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.17s;
+}
+.detalle-info a:hover {
+  background: #e1a743;
+}
 
 /* CONTACTO */
 .contact-card {
@@ -341,6 +420,17 @@ footer {
   .hero-content { max-width: 99vw; padding-right: 0; }
   .carousel-vertical-auto-area { width: 99vw; max-width: 99vw; margin: 2em auto 0 auto; }
   .vertical-carousel-auto { max-width: 99vw; }
+}
+@media (max-width: 700px) {
+  .detalle-modal-content {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 7px;
+  }
+  .detalle-info {
+    font-size: 1rem;
+    padding: 10px 8px;
+  }
 }
 @media (max-width: 600px) {
   .carousel-vertical-auto-area { max-width: 100vw; min-width: 0; width: 100vw; }
