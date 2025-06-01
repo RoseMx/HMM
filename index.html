@@ -62,7 +62,7 @@
     <!-- CATÁLOGO -->
     <section id="catalogo" class="catalogo seccion" style="display:none;">
       <h2>Catálogo Destacado</h2>
-      <div class="catalogo-grid">
+      <div class="catalogo-grid" id="catalogoGrid">
         <!-- FRANCFORT -->
         <div class="cat-card" data-modelo="Francfort">
           <div class="cat-img" style="background-image: url('img/Francfort/Francfort1.png');"></div>
@@ -216,7 +216,6 @@
         }
       };
 
-      // --- FUNCIONES DETALLE ---
       function mostrarDetalle(nombre) {
         const prod = productos[nombre];
         if (!prod) return;
@@ -230,26 +229,27 @@
         document.getElementById('detalleModal').classList.add('oculto');
       }
 
-      // --- SPA NAV MODIFICADO ---
-      function enlazarClicksCatalogo() {
-        document.querySelectorAll('.cat-card').forEach(card => {
-          card.onclick = function() {
-            const modelo = this.getAttribute('data-modelo');
-            mostrarDetalle(modelo);
-          };
-        });
-        // Botón cerrar modal
-        document.getElementById('cerrarDetalleBtn').onclick = cerrarDetalle;
-      }
+      // --- DELEGACIÓN DE EVENTOS EN EL GRID ---
+      // Así JAMÁS se pierden los clicks, aunque recargues/navegues
+      document.getElementById('catalogoGrid').addEventListener('click', function(e) {
+        let card = e.target.closest('.cat-card');
+        if(card && card.hasAttribute('data-modelo')) {
+          mostrarDetalle(card.getAttribute('data-modelo'));
+        }
+      });
+      // Botón de cerrar modal
+      document.getElementById('cerrarDetalleBtn').onclick = cerrarDetalle;
+      // Cierra modal al hacer click fuera
+      document.getElementById('detalleModal').addEventListener('click', function(e) {
+        if(e.target === this) cerrarDetalle();
+      });
 
+      // --- SPA NAV ---
       function mostrarSolo(seccionId) {
         document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
         let sec = document.getElementById(seccionId);
         if(sec) sec.style.display = 'block';
-        // Si es catálogo, enlaza eventos
-        if(seccionId === 'catalogo') enlazarClicksCatalogo();
       }
-
       document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
           e.preventDefault();
@@ -259,13 +259,6 @@
           window.scrollTo({top:0,behavior:'smooth'});
         });
       });
-
-      // Cerrar modal si das click fuera de la ventana modal
-      document.getElementById('detalleModal').addEventListener('click', function(e) {
-        if(e.target === this) cerrarDetalle();
-      });
-
-      // Mostrar inicio por default
       mostrarSolo('inicio');
     });
   </script>
