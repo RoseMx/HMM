@@ -6,26 +6,62 @@
   <title>Hermanitos Muebles de Melamina</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Estilo extra solo para el slider dentro del modal */
-    .slider-container {
-      position: relative;
-      width: 340px;
-      max-width: 90vw;
-      margin: 0 auto 18px auto;
+    .modal-float {
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(22,24,32,0.95);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #222;
+      transition: opacity .2s;
+    }
+    .modal-float.oculto { display: none; }
+    .modal-float-content {
+      background: #22262b;
+      border-radius: 18px;
+      padding: 26px 14px 19px 14px;
+      box-shadow: 0 4px 28px #20242a82;
+      max-width: 410px;
+      width: 96vw;
+      position: relative;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: aparecer .18s;
+    }
+    @keyframes aparecer { from{transform:scale(.91);opacity:0} to{transform:scale(1);opacity:1}}
+    .modal-float-close {
+      position: absolute;
+      top: 13px; right: 16px;
+      font-size: 2.2rem;
+      color: #fec260;
+      cursor: pointer;
+      z-index: 1;
+      transition: color .16s;
+    }
+    .modal-float-close:hover { color: #fff; }
+    .slider-container {
+      position: relative;
+      width: 335px;
+      max-width: 82vw;
+      margin: 0 auto 8px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #232832;
       border-radius: 1em;
       overflow: hidden;
       box-shadow: 0 3px 18px #0006;
     }
     .slider-img {
       width: 100%;
-      max-height: 220px;
+      max-height: 225px;
       object-fit: contain;
       border-radius: 1em;
-      background: #232323;
+      background: #181818;
       transition: opacity .2s;
       display: block;
       margin: 0 auto;
@@ -34,7 +70,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 2.1rem;
+      font-size: 2.0rem;
       color: #fec260;
       background: rgba(40,40,40,0.7);
       border: none;
@@ -45,29 +81,28 @@
       transition: background .18s;
       user-select: none;
     }
-    .slider-arrow:hover { background: #ffda88c9; color: #222; }
     .slider-arrow.left { left: 8px; }
     .slider-arrow.right { right: 8px; }
+    .slider-arrow:hover { background: #fec260; color: #222; }
     .slider-dots {
       display: flex;
       justify-content: center;
-      gap: 8px;
+      gap: 7px;
       margin-top: 7px;
-      margin-bottom: 2px;
     }
     .slider-dot {
-      width: 11px; height: 11px;
+      width: 10px; height: 10px;
       border-radius: 50%;
-      background: #fec2607a;
+      background: #fec26054;
       cursor: pointer;
       border: none;
       outline: none;
       transition: background .18s;
     }
     .slider-dot.active { background: #fec260; }
-    @media (max-width: 400px) {
-      .slider-container { width: 99vw; }
-    }
+    .modal-title { color: #25d366; font-size: 1.25rem; font-weight: bold; margin-top: 7px;}
+    .modal-price { color: #fec260; font-size: 1.09rem; font-weight: bold; margin-bottom:2px;}
+    .modal-desc { color: #c4c7ce; font-size: 1.05rem; margin-bottom: 6px;}
     .modal-float-contact-btn {
       display: block;
       width: 100%;
@@ -76,37 +111,17 @@
       border: none;
       padding: 12px 0;
       border-radius: 10px;
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       font-weight: 700;
       text-align: center;
       text-decoration: none;
-      margin-top: 16px;
+      margin-top: 11px;
       box-shadow: 0 2px 8px #25d36633;
       transition: background 0.21s;
     }
-    .modal-float-contact-btn:hover {
-      background: linear-gradient(90deg,#128c7e 60%,#25d366 100%);
-      color: #fff;
-    }
-    .modal-price {
-      color: #fec260;
-      font-size: 1.25rem;
-      font-weight: bold;
-      margin: 6px 0 10px 0;
-      letter-spacing: 1px;
-      text-shadow: 0 1px 8px #1c1c1c7a;
-    }
-    .modal-title {
-      color: #25d366;
-      font-size: 1.4rem;
-      margin-bottom: 3px;
-      margin-top: 3px;
-      font-weight: bold;
-    }
-    .modal-desc {
-      color: #c4c7ce;
-      font-size: 1.08rem;
-      margin-bottom: 7px;
+    .modal-float-contact-btn:hover { background: linear-gradient(90deg,#128c7e 60%,#25d366 100%);}
+    @media (max-width: 400px) {
+      .slider-container { width: 99vw; }
     }
   </style>
 </head>
@@ -207,18 +222,18 @@
           </div>
         </div>
       </div>
-      <!-- MODAL de detalles mejorado -->
-      <div id="detalleModal" class="detalle-modal oculto">
-        <div class="detalle-modal-content" style="flex-direction: column; align-items: center; max-width:430px; width:98vw;">
-          <span class="close" id="cerrarDetalleBtn" style="position:absolute;top:10px;right:15px;font-size:2.1rem;">&times;</span>
-          <div id="sliderSection"></div>
-          <div class="modal-title" id="modalTitle"></div>
-          <div class="modal-desc" id="modalDesc"></div>
-          <div class="modal-price" id="modalPrice"></div>
-          <a href="#" target="_blank" id="modalContactBtn" class="modal-float-contact-btn">Contactar por WhatsApp</a>
-        </div>
-      </div>
     </section>
+    <!-- MODAL flotante -->
+    <div id="modalFloat" class="modal-float oculto">
+      <div class="modal-float-content">
+        <span class="modal-float-close" id="modalFloatCloseBtn">&times;</span>
+        <div id="modalSlider"></div>
+        <div class="modal-title" id="modalFloatTitle"></div>
+        <div class="modal-price" id="modalFloatPrice"></div>
+        <div class="modal-desc" id="modalFloatDesc"></div>
+        <a href="#" id="modalFloatBtn" class="modal-float-contact-btn" target="_blank">Contactar por WhatsApp</a>
+      </div>
+    </div>
 
     <!-- CONTACTO -->
     <section id="contacto" class="seccion" style="display: none;">
@@ -234,10 +249,9 @@
     <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Define los productos, agrega más imágenes para mostrar el slider:
+      // Define los productos y agrega más imágenes si quieres
       const productos = {
         Francfort: {
           imagenes: [
@@ -246,7 +260,7 @@
             "img/Francfort/Francfort3.png"
           ],
           titulo: "Francfort",
-          desc: "Clóset compacto, acabado nogal. Hecho a medida para espacios reducidos, elegante y funcional.",
+          desc: "Clóset compacto, nogal. Hecho a medida para espacios reducidos.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
         },
@@ -256,7 +270,7 @@
             "img/Hanover/Hanover2.png"
           ],
           titulo: "Hanover",
-          desc: "Librero moderno, ideal para oficina o estudio. Diseño resistente y minimalista.",
+          desc: "Librero moderno, ideal para oficina o estudio.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
         },
@@ -265,7 +279,7 @@
             "img/Bremen/Bremen1.png"
           ],
           titulo: "Bremen",
-          desc: "Repisa de melamina estilo roble. Perfecta para libros o decoración.",
+          desc: "Repisa de melamina estilo roble.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
         },
@@ -275,7 +289,7 @@
             "img/Atenas/Atenas2.png"
           ],
           titulo: "Atenas",
-          desc: "Mesa lateral práctica y resistente, ideal para recámaras y salas modernas.",
+          desc: "Mesa lateral práctica y resistente.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
         },
@@ -284,13 +298,13 @@
             "img/Duisburgo/Duisburgo1.png"
           ],
           titulo: "Duisburgo",
-          desc: "Estante / Librería de varios niveles. Organiza tu espacio con estilo.",
+          desc: "Estante / Librería de varios niveles.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
         }
       };
 
-      // Slider de imágenes dentro del modal flotante
+      // Slider dentro del modal
       let sliderIndex = 0;
       let sliderImgs = [];
       function renderSlider(imagenes) {
@@ -300,44 +314,54 @@
       }
       function actualizarSlider() {
         if(sliderImgs.length === 0) {
-          document.getElementById('sliderSection').innerHTML = '';
+          document.getElementById('modalSlider').innerHTML = '';
           return;
         }
         let html = `
           <div class="slider-container">
-            ${sliderImgs.length > 1 ? `<button class="slider-arrow left" onclick="event.stopPropagation();window.cambiarSliderImg(-1)">&#10094;</button>` : ''}
+            ${sliderImgs.length > 1 ? `<button class="slider-arrow left" id="sliderLeft">&#10094;</button>` : ''}
             <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Mueble" />
-            ${sliderImgs.length > 1 ? `<button class="slider-arrow right" onclick="event.stopPropagation();window.cambiarSliderImg(1)">&#10095;</button>` : ''}
+            ${sliderImgs.length > 1 ? `<button class="slider-arrow right" id="sliderRight">&#10095;</button>` : ''}
           </div>
           <div class="slider-dots">
-            ${sliderImgs.map((_,i)=>`<button class="slider-dot${i===sliderIndex?' active':''}" onclick="event.stopPropagation();window.irSliderImg(${i})"></button>`).join('')}
+            ${sliderImgs.map((_,i)=>`<button class="slider-dot${i===sliderIndex?' active':''}" data-idx="${i}"></button>`).join('')}
           </div>
         `;
-        document.getElementById('sliderSection').innerHTML = html;
+        document.getElementById('modalSlider').innerHTML = html;
+
+        // Botones slider
+        if(sliderImgs.length > 1){
+          document.getElementById('sliderLeft').onclick = function(e){e.stopPropagation(); cambiarSliderImg(-1);};
+          document.getElementById('sliderRight').onclick = function(e){e.stopPropagation(); cambiarSliderImg(1);};
+          document.querySelectorAll('.slider-dot').forEach(dot=>{
+            dot.onclick = function(e){
+              e.stopPropagation();
+              sliderIndex = Number(this.dataset.idx);
+              actualizarSlider();
+            }
+          });
+        }
       }
-      // Para usar con inline onclick:
-      window.cambiarSliderImg = function(dir) {
+      function cambiarSliderImg(dir) {
         sliderIndex = (sliderIndex + dir + sliderImgs.length) % sliderImgs.length;
         actualizarSlider();
       }
-      window.irSliderImg = function(idx) {
-        sliderIndex = idx;
-        actualizarSlider();
-      }
 
-      // Mostrar modal flotante
-      function mostrarDetalle(nombre) {
+      // Mostrar y cerrar modal
+      function mostrarModal(nombre) {
         const prod = productos[nombre];
         if (!prod) return;
         renderSlider(prod.imagenes);
-        document.getElementById('modalTitle').textContent = prod.titulo;
-        document.getElementById('modalDesc').textContent = prod.desc;
-        document.getElementById('modalPrice').textContent = prod.precio;
-        document.getElementById('modalContactBtn').href = prod.whatsapp;
-        document.getElementById('detalleModal').classList.remove('oculto');
+        document.getElementById('modalFloatTitle').textContent = prod.titulo;
+        document.getElementById('modalFloatDesc').textContent = prod.desc;
+        document.getElementById('modalFloatPrice').textContent = prod.precio;
+        document.getElementById('modalFloatBtn').href = prod.whatsapp;
+        document.getElementById('modalFloat').classList.remove('oculto');
+        document.body.style.overflow = "hidden";
       }
-      function cerrarDetalle() {
-        document.getElementById('detalleModal').classList.add('oculto');
+      function cerrarModal() {
+        document.getElementById('modalFloat').classList.add('oculto');
+        document.body.style.overflow = "";
       }
 
       // Delegación de clicks para el grid
@@ -346,15 +370,15 @@
         catalogoGrid.addEventListener('click', function(e) {
           let card = e.target.closest('.cat-card');
           if(card && card.hasAttribute('data-modelo')) {
-            mostrarDetalle(card.getAttribute('data-modelo'));
+            mostrarModal(card.getAttribute('data-modelo'));
           }
         });
       }
       // Botón de cerrar modal
-      document.getElementById('cerrarDetalleBtn').onclick = cerrarDetalle;
+      document.getElementById('modalFloatCloseBtn').onclick = cerrarModal;
       // Cierra modal al hacer click fuera del contenido
-      document.getElementById('detalleModal').addEventListener('click', function(e) {
-        if(e.target === this) cerrarDetalle();
+      document.getElementById('modalFloat').addEventListener('click', function(e) {
+        if(e.target === this) cerrarModal();
       });
 
       // SPA NAV
