@@ -94,7 +94,7 @@
       </div>
     </section>
 
-    <!-- MODAL PRODUCTO - DOS COLUMNAS -->
+    <!-- MODAL PRODUCTO - DOS COLUMNAS CON ZOOM -->
     <div id="modal-producto" class="modal-producto">
       <div class="modal-bg" id="close-modal"></div>
       <div class="modal-content modal-content-gallery">
@@ -275,12 +275,16 @@
   function cerrarModalProducto() {
     modal.classList.remove("active");
     document.body.style.overflow = "";
+    galleryViewport.classList.remove('zoomed'); // quita el zoom si está activo
   }
   function updateGallery() {
     galleryMainImg.src = galeriaFotos[galeriaIdx];
     galleryThumbs.querySelectorAll('img').forEach((el,i)=>{
       el.classList.toggle('active',i===galeriaIdx);
     });
+    galleryViewport.classList.remove('zoomed');
+    galleryViewport.style.setProperty('--zoom-x', '0px');
+    galleryViewport.style.setProperty('--zoom-y', '0px');
   }
   document.getElementById("close-modal").onclick = cerrarModalProducto;
   document.getElementById("close-modal-btn").onclick = cerrarModalProducto;
@@ -354,7 +358,64 @@
       }
     }, 20);
   })();
+
+  // === ZOOM EN LA IMAGEN PRINCIPAL DEL MODAL ===
+  const galleryViewport = document.querySelector('.gallery-viewport');
+  let zoomed = false, zoomX = 0, zoomY = 0;
+
+  galleryViewport.addEventListener('click', function(e) {
+    zoomed = !zoomed;
+    this.classList.toggle('zoomed', zoomed);
+    if (!zoomed) {
+      this.style.setProperty('--zoom-x', '0px');
+      this.style.setProperty('--zoom-y', '0px');
+    }
+  });
+
+  galleryViewport.addEventListener('mousemove', function(e) {
+    if (!zoomed) return;
+    const img = document.getElementById('gallery-main-img');
+    const rect = this.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 a 1
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    const lim = 0.44;
+    this.style.setProperty('--zoom-x', `${-x*lim*100}%`);
+    this.style.setProperty('--zoom-y', `${-y*lim*100}%`);
+  });
+
+  galleryViewport.addEventListener('mouseleave', function() {
+    if (zoomed) {
+      this.style.setProperty('--zoom-x', '0px');
+      this.style.setProperty('--zoom-y', '0px');
+    }
+  });
+
+  // Soporte táctil para móvil:
+  let lastTouch = null;
+  galleryViewport.addEventListener('touchstart', function(e){
+    if(!zoomed) return;
+    if(e.touches.length===1){
+      lastTouch = e.touches[0];
+    }
+  });
+  galleryViewport.addEventListener('touchmove', function(e){
+    if(!zoomed || !lastTouch) return;
+    const rect = this.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = ((touch.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((touch.clientY - rect.top) / rect.height - 0.5) * 2;
+    const lim = 0.44;
+    this.style.setProperty('--zoom-x', `${-x*lim*100}%`);
+    this.style.setProperty('--zoom-y', `${-y*lim*100}%`);
+  });
+  galleryViewport.addEventListener('touchend', function(e){
+    if (zoomed) {
+      this.style.setProperty('--zoom-x', '0px');
+      this.style.setProperty('--zoom-y', '0px');
+    }
+    lastTouch = null;
+  });
+
   </script>
 </body>
 </html>
-
