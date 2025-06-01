@@ -240,6 +240,59 @@ nav a.active::after, nav a:hover::after {
   box-shadow: 0 4px 18px #25d36622;
 }
 
+/* CATÁLOGO */
+.catalogo {
+  width: 90vw;
+  max-width: 1200px;
+  margin: 2.5em auto 0 auto;
+}
+.catalogo h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.2em;
+  color: #59a899;
+  letter-spacing: 1.5px;
+}
+.catalogo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5em;
+  justify-content: flex-start;
+}
+.cat-card {
+  background: #232a34;
+  border-radius: 1.2em;
+  box-shadow: 0 2px 12px #0003;
+  overflow: hidden;
+  width: 210px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.18s;
+  border: 2.2px solid #232a34;
+  display: flex;
+  flex-direction: column;
+}
+.cat-card:hover {
+  box-shadow: 0 8px 30px #25d36622;
+  border: 2.2px solid #59a899;
+  transform: translateY(-2px) scale(1.025);
+}
+.cat-img {
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid #292f38;
+}
+.cat-content {
+  padding: 1.1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+.cat-content h3 { font-size: 1.18rem; color: #59a899; font-weight: 700; }
+.cat-price { color: #fff; font-size: 1.07rem; font-weight: 600; }
+.cat-desc { color: #c4c7ce; font-size: 0.99rem; }
+
 /* CONTACTO */
 .contact-card {
   margin: 2.3em auto 0 auto;
@@ -295,4 +348,6 @@ footer {
   .carousel-auto-img { width: 92vw; height: 110px; }
   .hero-content { max-width: 100vw; }
   .hero-benefits { gap: 1.2em; }
+  .catalogo-grid { gap: 1em; }
+  .cat-card { width: 99vw; max-width: 380px; margin: 0 auto; }
 }
