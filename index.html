@@ -64,7 +64,7 @@
       <h2>Catálogo Destacado</h2>
       <div class="catalogo-grid">
         <!-- FRANCFORT -->
-        <div class="cat-card" data-modelo="Francfort" onclick="mostrarDetalle('Francfort')">
+        <div class="cat-card" data-modelo="Francfort">
           <div class="cat-img" style="background-image: url('img/Francfort/Francfort1.png');"></div>
           <div class="cat-content">
             <h3>Francfort</h3>
@@ -73,7 +73,7 @@
           </div>
         </div>
         <!-- HANOVER -->
-        <div class="cat-card" data-modelo="Hanover" onclick="mostrarDetalle('Hanover')">
+        <div class="cat-card" data-modelo="Hanover">
           <div class="cat-img" style="background-image: url('img/Hanover/Hanover1.png');"></div>
           <div class="cat-content">
             <h3>Hanover</h3>
@@ -82,7 +82,7 @@
           </div>
         </div>
         <!-- BREMEN -->
-        <div class="cat-card" data-modelo="Bremen" onclick="mostrarDetalle('Bremen')">
+        <div class="cat-card" data-modelo="Bremen">
           <div class="cat-img" style="background-image: url('img/Bremen/Bremen1.png');"></div>
           <div class="cat-content">
             <h3>Bremen</h3>
@@ -91,7 +91,7 @@
           </div>
         </div>
         <!-- ATENAS -->
-        <div class="cat-card" data-modelo="Atenas" onclick="mostrarDetalle('Atenas')">
+        <div class="cat-card" data-modelo="Atenas">
           <div class="cat-img" style="background-image: url('img/Atenas/Atenas1.png');"></div>
           <div class="cat-content">
             <h3>Atenas</h3>
@@ -100,7 +100,7 @@
           </div>
         </div>
         <!-- DUISBURGO -->
-        <div class="cat-card" data-modelo="Duisburgo" onclick="mostrarDetalle('Duisburgo')">
+        <div class="cat-card" data-modelo="Duisburgo">
           <div class="cat-img" style="background-image: url('img/Duisburgo/Duisburgo1.png');"></div>
           <div class="cat-content">
             <h3>Duisburgo</h3>
@@ -112,7 +112,7 @@
       <!-- MODAL de detalles -->
       <div id="detalleModal" class="detalle-modal oculto">
         <div class="detalle-modal-content">
-          <span class="close" onclick="cerrarDetalle()">&times;</span>
+          <span class="close" id="cerrarDetalleBtn">&times;</span>
           <div id="detalleImagenes" class="detalle-imagenes"></div>
           <div id="detalleInfo" class="detalle-info"></div>
         </div>
@@ -135,13 +135,121 @@
 
   <!-- SCRIPTS -->
   <script>
-    // --- SPA NAV ---
     document.addEventListener('DOMContentLoaded', function() {
+      // --- DETALLES DE CATÁLOGO ---
+      const productos = {
+        Francfort: {
+          imagenes: [
+            "img/Francfort/Francfort1.png"
+          ],
+          info: `
+            <h2>Francfort</h2>
+            <p>Clóset compacto, acabado nogal.</p>
+            <ul>
+              <li><b>Precio:</b> $1,000 MXN</li>
+              <li><b>Medidas:</b> 1.80 x 0.60 x 0.45 m</li>
+              <li><b>Material:</b> Melamina</li>
+              <li><b>Entrega:</b> Hermosillo y alrededores</li>
+            </ul>
+            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
+          `
+        },
+        Hanover: {
+          imagenes: [
+            "img/Hanover/Hanover1.png"
+          ],
+          info: `
+            <h2>Hanover</h2>
+            <p>Librero moderno, ideal para oficina o estudio.</p>
+            <ul>
+              <li><b>Precio:</b> $1,000 MXN</li>
+              <li><b>Medidas:</b> 1.20 x 0.30 x 0.80 m</li>
+              <li><b>Material:</b> Melamina</li>
+            </ul>
+            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
+          `
+        },
+        Bremen: {
+          imagenes: [
+            "img/Bremen/Bremen1.png"
+          ],
+          info: `
+            <h2>Bremen</h2>
+            <p>Repisa de melamina estilo roble.</p>
+            <ul>
+              <li><b>Precio:</b> $1,000 MXN</li>
+              <li><b>Medidas:</b> 1.00 x 0.25 x 0.25 m</li>
+              <li><b>Material:</b> Melamina</li>
+            </ul>
+            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
+          `
+        },
+        Atenas: {
+          imagenes: [
+            "img/Atenas/Atenas1.png"
+          ],
+          info: `
+            <h2>Atenas</h2>
+            <p>Mesa lateral práctica y resistente.</p>
+            <ul>
+              <li><b>Precio:</b> $1,000 MXN</li>
+              <li><b>Medidas:</b> 0.60 x 0.60 x 0.45 m</li>
+              <li><b>Material:</b> Melamina</li>
+            </ul>
+            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
+          `
+        },
+        Duisburgo: {
+          imagenes: [
+            "img/Duisburgo/Duisburgo1.png"
+          ],
+          info: `
+            <h2>Duisburgo</h2>
+            <p>Estante / Librería de varios niveles.</p>
+            <ul>
+              <li><b>Precio:</b> $1,000 MXN</li>
+              <li><b>Medidas:</b> 1.50 x 0.30 x 1.20 m</li>
+              <li><b>Material:</b> Melamina</li>
+            </ul>
+            <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
+          `
+        }
+      };
+
+      // --- FUNCIONES DETALLE ---
+      function mostrarDetalle(nombre) {
+        const prod = productos[nombre];
+        if (!prod) return;
+        document.getElementById('detalleImagenes').innerHTML = prod.imagenes.map(
+          img => `<img src="${img}" alt="${nombre}" />`
+        ).join('');
+        document.getElementById('detalleInfo').innerHTML = prod.info;
+        document.getElementById('detalleModal').classList.remove('oculto');
+      }
+      function cerrarDetalle() {
+        document.getElementById('detalleModal').classList.add('oculto');
+      }
+
+      // --- SPA NAV MODIFICADO ---
+      function enlazarClicksCatalogo() {
+        document.querySelectorAll('.cat-card').forEach(card => {
+          card.onclick = function() {
+            const modelo = this.getAttribute('data-modelo');
+            mostrarDetalle(modelo);
+          };
+        });
+        // Botón cerrar modal
+        document.getElementById('cerrarDetalleBtn').onclick = cerrarDetalle;
+      }
+
       function mostrarSolo(seccionId) {
         document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
         let sec = document.getElementById(seccionId);
         if(sec) sec.style.display = 'block';
+        // Si es catálogo, enlaza eventos
+        if(seccionId === 'catalogo') enlazarClicksCatalogo();
       }
+
       document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
           e.preventDefault();
@@ -151,103 +259,15 @@
           window.scrollTo({top:0,behavior:'smooth'});
         });
       });
+
+      // Cerrar modal si das click fuera de la ventana modal
+      document.getElementById('detalleModal').addEventListener('click', function(e) {
+        if(e.target === this) cerrarDetalle();
+      });
+
+      // Mostrar inicio por default
       mostrarSolo('inicio');
     });
-
-    // --- DETALLES DE CATÁLOGO ---
-    const productos = {
-      Francfort: {
-        imagenes: [
-          "img/Francfort/Francfort1.png"
-        ],
-        info: `
-          <h2>Francfort</h2>
-          <p>Clóset compacto, acabado nogal.</p>
-          <ul>
-            <li><b>Precio:</b> $1,000 MXN</li>
-            <li><b>Medidas:</b> 1.80 x 0.60 x 0.45 m</li>
-            <li><b>Material:</b> Melamina</li>
-            <li><b>Entrega:</b> Hermosillo y alrededores</li>
-          </ul>
-          <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-        `
-      },
-      Hanover: {
-        imagenes: [
-          "img/Hanover/Hanover1.png"
-        ],
-        info: `
-          <h2>Hanover</h2>
-          <p>Librero moderno, ideal para oficina o estudio.</p>
-          <ul>
-            <li><b>Precio:</b> $1,000 MXN</li>
-            <li><b>Medidas:</b> 1.20 x 0.30 x 0.80 m</li>
-            <li><b>Material:</b> Melamina</li>
-          </ul>
-          <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-        `
-      },
-      Bremen: {
-        imagenes: [
-          "img/Bremen/Bremen1.png"
-        ],
-        info: `
-          <h2>Bremen</h2>
-          <p>Repisa de melamina estilo roble.</p>
-          <ul>
-            <li><b>Precio:</b> $1,000 MXN</li>
-            <li><b>Medidas:</b> 1.00 x 0.25 x 0.25 m</li>
-            <li><b>Material:</b> Melamina</li>
-          </ul>
-          <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-        `
-      },
-      Atenas: {
-        imagenes: [
-          "img/Atenas/Atenas1.png"
-        ],
-        info: `
-          <h2>Atenas</h2>
-          <p>Mesa lateral práctica y resistente.</p>
-          <ul>
-            <li><b>Precio:</b> $1,000 MXN</li>
-            <li><b>Medidas:</b> 0.60 x 0.60 x 0.45 m</li>
-            <li><b>Material:</b> Melamina</li>
-          </ul>
-          <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-        `
-      },
-      Duisburgo: {
-        imagenes: [
-          "img/Duisburgo/Duisburgo1.png"
-        ],
-        info: `
-          <h2>Duisburgo</h2>
-          <p>Estante / Librería de varios niveles.</p>
-          <ul>
-            <li><b>Precio:</b> $1,000 MXN</li>
-            <li><b>Medidas:</b> 1.50 x 0.30 x 1.20 m</li>
-            <li><b>Material:</b> Melamina</li>
-          </ul>
-          <a href="https://wa.me/526624125786" target="_blank">Pedir por WhatsApp</a>
-        `
-      }
-    };
-
-    function mostrarDetalle(nombre) {
-      const prod = productos[nombre];
-      if (!prod) return;
-      // Imágenes
-      document.getElementById('detalleImagenes').innerHTML = prod.imagenes.map(
-        img => `<img src="${img}" alt="${nombre}" />`
-      ).join('');
-      // Info
-      document.getElementById('detalleInfo').innerHTML = prod.info;
-      document.getElementById('detalleModal').classList.remove('oculto');
-    }
-    function cerrarDetalle() {
-      document.getElementById('detalleModal').classList.add('oculto');
-    }
   </script>
 </body>
 </html>
