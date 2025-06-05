@@ -5,6 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hermanitos Muebles de Melamina – Inicio</title>
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Estilos adicionales para el carrusel de testimonios -->
+  <style>
+    /* Contenedor visible de testimonios (altura fija, overflow oculto) */
+    .testimonial-carousel {
+      height: 140px;           /* Ajusta según la altura real de cada .hero-testimonial */
+      overflow: hidden;
+      margin-top: 1.5em;
+    }
+    /* Pista que se moverá verticalmente */
+    .testimonial-track {
+      display: flex;
+      flex-direction: column;
+    }
+    /* Cada testimonio debe tener el mismo padding/altura aproximada */
+    .hero-testimonial {
+      flex: none;
+      padding: 1em 1.2em;
+      margin: 0; /* Ya no usamos margin-top en cada div */
+      border-left: 4px solid #59a89999;
+      background: #232a3420;
+      border-radius: 0.7em;
+      box-shadow: 0 2px 12px #25d36610;
+      color: #b6d7cc;
+      font-style: italic;
+      font-size: 1.08rem;
+    }
+    .hero-testimonial span {
+      display: block;
+      font-size: 0.95rem;
+      color: #25d366;
+      font-style: normal;
+      margin-top: 0.3em;
+    }
+  </style>
 </head>
 <body>
   <!-- ==============================
@@ -28,7 +63,7 @@
     <section class="hero">
       <div class="hero-flex">
         <!-- —————————————————————————————————————————————————————————
-             COLUMNA IZQUIERDA: Texto + Botones + Testimonios
+             COLUMNA IZQUIERDA: Texto + Botones + Testimonios (en carrusel)
              ————————————————————————————————————————————————————————— -->
         <div class="hero-content">
           <h1>
@@ -49,25 +84,90 @@
           </div>
 
           <!-- ==============================
-               TESTIMONIOS
-               Aquí incluimos tres testimonios genéricos
-               ——————————————————————————————————————— -->
-          <div class="hero-testimonial">
-            <em>“El librero Hanover superó nuestras expectativas. La calidad es inmejorable y llegó a tiempo.”</em>
-            <span>— Claudia, cliente de Hermosillo</span>
-          </div>
-          <div class="hero-testimonial" style="margin-top: 1.2em;">
-            <em>“Pedí un clóset Francfort personalizado y quedó perfecto en mi recámara. Altamente recomendable.”</em>
-            <span>— Héctor, cliente de Ciudad Obregón</span>
-          </div>
-          <div class="hero-testimonial" style="margin-top: 1.2em;">
-            <em>“Muy profesionales y atentos. El estante Bremen luce increíble en mi oficina.”</em>
-            <span>— Mariana, cliente de Navojoa</span>
+               CARRUSEL DE TESTIMONIOS
+               ——————————————————————————————————————————————————————— -->
+          <div class="testimonial-carousel">
+            <div class="testimonial-track" id="testimonialTrack">
+              <!-- 17 testimonios originales -->
+              <div class="hero-testimonial">
+                <em>“El librero Hanover superó nuestras expectativas. La calidad es inmejorable y llegó a tiempo.”</em>
+                <span>— Claudia, cliente de Hermosillo</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Pedí un clóset Francfort personalizado y quedó perfecto en mi recámara. Altamente recomendable.”</em>
+                <span>— Héctor, cliente de Ciudad Obregón</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Muy profesionales y atentos. El estante Bremen luce increíble en mi oficina.”</em>
+                <span>— Mariana, cliente de Navojoa</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Me encantó el diseño y la atención al detalle en mi mueble Atenas.”</em>
+                <span>— Luis, cliente de Ciudad Obregón</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“La entrega fue puntual y el personal super amable. 100% recomendado.”</em>
+                <span>— Sofía, cliente de Nogales</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Excelente relación calidad-precio. Volveré a comprar en HMM sin dudarlo.”</em>
+                <span>— Ernesto, cliente de Guaymas</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“El color y acabado del mobiliario Bremen quedaron perfectos en mi sala.”</em>
+                <span>— Ana, cliente de Empalme</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Los detalles de montaje fueron impecables, ¡gran trabajo!”</em>
+                <span>— Carlos, cliente de Caborca</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“La asesoría para elegir el clóset Francfort fue muy profesional.”</em>
+                <span>— Marisol, cliente de Ciudad Obregón</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Hanover es justo lo que necesitaba para mi despacho. Me fascinó.”</em>
+                <span>— Miguel, cliente de Hermosillo</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“El servicio postventa y la atención personalizada me sorprendieron gratamente.”</em>
+                <span>— Verónica, cliente de Navojoa</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Calidad insuperable y rápida instalación. Muy satisfecho.”</em>
+                <span>— Hugo, cliente de Guaymas</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“El estante Duisburgo aprovechó mejor el espacio de mi biblioteca.”</em>
+                <span>— Patricia, cliente de Hermosillo</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Diseños modernos y acabados resistentes. ¡Felicitaciones!”</em>
+                <span>— Diego, cliente de Nogales</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“El equipo de HMM resolvió todas mis dudas antes de la compra. Excelente.”</em>
+                <span>— Elena, cliente de Ciudad Obregón</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Mi familia está encantada con el mueble Bremen. Muy recomendable.”</em>
+                <span>— Daniel, cliente de Caborca</span>
+              </div>
+              <div class="hero-testimonial">
+                <em>“Atención rápida por WhatsApp y la calidad supera expectativas.”</em>
+                <span>— Fernanda, cliente de Empalme</span>
+              </div>
+              <!-- Clonamos el primer testimonio para permitir un loop continuo -->
+              <div class="hero-testimonial">
+                <em>“El librero Hanover superó nuestras expectativas. La calidad es inmejorable y llegó a tiempo.”</em>
+                <span>— Claudia, cliente de Hermosillo</span>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- —————————————————————————————————————————————————————————
-             COLUMNA DERECHA: Carrusel vertical de imágenes
+             COLUMNA DERECHA: Carrusel vertical de imágenes (Inicio)
              ————————————————————————————————————————————————————————— -->
         <aside class="carousel-vertical-auto-area">
           <div class="carousel-title">Modelos Destacados</div>
@@ -88,7 +188,7 @@
               <div class="carousel-auto-img">
                 <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
               </div>
-              <!-- Se repite el primer elemento para que el bucle quede continuo -->
+              <!-- Clonamos la primera para que sea contínuo -->
               <div class="carousel-auto-img">
                 <img src="img/Francfort/Francfort1.png" alt="Francfort" />
               </div>
@@ -110,22 +210,49 @@
   </footer>
 
   <!-- ==============================
-       SCRIPT: CARRUSEL VERTICAL
-       Funciona de arriba hacia abajo y repite cíclicamente
+       SCRIPTS: Carrusel de imágenes y testimonios
        ============================== -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      /* ======================================================
+         1) Carrusel de imágenes (vertical, de arriba hacia abajo)
+         ====================================================== */
       const track = document.getElementById("carousel-auto-track");
       let idx = 0;
-      function avanzar() {
+      function avanzarImagenes() {
         idx = (idx + 1) % track.children.length;
-        // Altura de un item + gap (gap = 17px)
-        const altura = track.children[0].offsetHeight + 17;
-        // Desplazar hacia arriba para que parezca que el carrusel baja
+        const altura = track.children[0].offsetHeight + 17; // gap = 17px
         track.style.transform = `translateY(-${idx * altura}px)`;
       }
-      // Avanza cada 3 segundos; al llegar al final, idx=0 automáticamente
-      setInterval(avanzar, 3000);
+      setInterval(avanzarImagenes, 3000);
+
+      /* ======================================================
+         2) Carrusel de testimonios (vertical, de abajo hacia arriba)
+         ====================================================== */
+      const tTrack = document.getElementById("testimonialTrack");
+      const testimonials = tTrack.children;
+      let tIdx = 0;
+
+      function avanzarTestimonios() {
+        // Altura de un testimonio (todos tienen misma altura)
+        const altura = testimonials[0].offsetHeight + 10; // 10px espacio entre ellos
+        tIdx++;
+
+        // Mover la pista hacia arriba para que parezca que el carrusel sube
+        tTrack.style.transition = "transform 1.5s ease";
+        tTrack.style.transform = `translateY(-${tIdx * altura}px)`;
+
+        // Si llegamos al último (clonado), volvemos sin animación a idx=0
+        if (tIdx >= testimonials.length - 1) {
+          setTimeout(() => {
+            tTrack.style.transition = "none";
+            tTrack.style.transform = "translateY(0)";
+            tIdx = 0;
+          }, 1600); // un poco más que 1.5s para que termine la transición
+        }
+      }
+      // Intervalo lento y placentero (cada 5 segundos)
+      setInterval(avanzarTestimonios, 5000);
     });
   </script>
 </body>
