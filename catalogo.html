@@ -120,7 +120,7 @@
       position: relative;
       display: flex;
       gap: 16px;
-      /* Diseñamos una fila de dos columnas en escritorio */
+      /* Dos columnas: 65% para la imagen, 35% para texto */
       flex-direction: row;
       align-items: flex-start;
       animation: aparecer 0.18s;
@@ -142,9 +142,9 @@
       color: #fff;
     }
 
-    /* 2.1) Columna izquierda: slider (imagen) */
+    /* 2.1) Columna izquierda: slider (imagen más grande) */
     .modal-col-left {
-      flex: 1 1 0;
+      flex: 0 0 65%;        /* La imagen ocupa el 65% del ancho */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -152,8 +152,8 @@
     .slider-container {
       position: relative;
       width: 100%;
-      max-width: 480px;  /* Anchura de la imagen en modal */
-      height: 360px;     /* Altura de la imagen en modal */
+      max-width: 700px;     /* Anchura ampliada del slider */
+      height: 520px;        /* Altura ampliada del slider */
       background: #232832;
       border-radius: 1em;
       overflow: hidden;
@@ -171,25 +171,26 @@
       transition: transform 0.3s ease;
       cursor: zoom-in;
     }
+    /* Zoom suave al pasar sobre la imagen dentro del modal */
     .slider-img:hover {
-      transform: scale(1.08); /* Sutil zoom */
+      transform: scale(1.08);
     }
     .slider-arrow {
       position: absolute;
       top: 50%; transform: translateY(-50%);
-      font-size: 2rem;
+      font-size: 2.4rem;      /* Flechas más grandes */
       color: #fec260;
       background: rgba(40, 40, 40, 0.7);
       border: none;
       cursor: pointer;
       z-index: 2;
-      padding: 0 12px;
+      padding: 0 14px;
       border-radius: 50%;
       transition: background 0.18s;
       user-select: none;
     }
-    .slider-arrow.left { left: 8px; }
-    .slider-arrow.right { right: 8px; }
+    .slider-arrow.left { left: 12px; }
+    .slider-arrow.right { right: 12px; }
     .slider-arrow:hover {
       background: #fec260;
       color: #222;
@@ -198,10 +199,10 @@
       display: flex;
       justify-content: center;
       gap: 8px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
     .slider-dot {
-      width: 12px; height: 12px;
+      width: 14px; height: 14px;   /* Puntos un poco más grandes */
       border-radius: 50%;
       background: #fec26054;
       cursor: pointer;
@@ -215,28 +216,28 @@
 
     /* 2.2) Columna derecha: texto e información */
     .modal-col-right {
-      flex: 1 1 0;
+      flex: 0 0 35%;     /* Texto ocupa 35% del ancho */
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 12px;
-      padding: 0 8px;
+      padding: 0 12px;
       color: #f2f4f8;
     }
     .modal-title {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: #25d366;
       margin-bottom: 4px;
     }
     .modal-price {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #fec260;
     }
     .modal-info {
-      font-size: 1.05rem;
-      line-height: 1.4;
+      font-size: 1.1rem;
+      line-height: 1.5;
       color: #c4c7ce;
     }
     .modal-float-contact-btn {
@@ -244,13 +245,13 @@
       background: linear-gradient(90deg, #25d366 60%, #128c7e 100%);
       color: #fff;
       border: none;
-      padding: 14px 0;
+      padding: 16px 0;
       border-radius: 10px;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 700;
       text-align: center;
       text-decoration: none;
-      margin-top: 8px;
+      margin-top: 12px;
       box-shadow: 0 2px 8px #25d36633;
       transition: background 0.21s;
       cursor: pointer;
@@ -267,12 +268,16 @@
         max-height: 90vh;
         padding: 12px;
       }
+      .modal-col-left {
+        flex: 0 0 auto;
+      }
       .slider-container {
         max-width: 100%;
-        height: 50vh;
+        height: 40vh;    /* Ajuste para móvil */
       }
       .modal-col-right {
-        padding: 0;
+        flex: 0 0 auto;
+        padding: 8px 0;
         align-items: center;
       }
     }
