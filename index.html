@@ -2,15 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Catálogo con Carrito</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Catálogo con Modal Funcional</title>
+  <style>
+    body { font-family: Arial; background: #232a34; color: #f2f4f8;}
+    .cat-card { background: #2b313b; display: inline-block; width:170px; margin:12px; border-radius:8px; cursor:pointer; padding:14px; box-shadow:0 2px 12px #0004; }
+    .cat-img { width: 100%; height: 90px; background-size:cover; border-radius:6px;}
+    .modal { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); align-items:center; justify-content:center; z-index:20;}
+    .modal.open { display:flex; }
+    .modal-content { background:#222; color:#fff; padding:22px 24px 18px 24px; border-radius:12px; box-shadow:0 6px 38px #0008; min-width: 270px; text-align:center; position:relative;}
+    .modal-content img { width:210px; max-width:98vw; border-radius:8px; margin-bottom:13px;}
+    .close { position:absolute; top:7px; right:17px; color:#fec260; font-size:2rem; cursor:pointer;}
+    .modal-btn { display:inline-block; margin-top:15px; background:#25d366; color:#222; padding:10px 23px; border-radius:8px; text-decoration:none; font-weight:700; }
+    .modal-btn:hover { background:#128c7e; color:#fff; }
+  </style>
 </head>
 <body>
 
-  <!-- Ícono de carrito -->
-  <div id="cart-icon">🛒 <span id="cart-count">0</span></div>
-
-  <!-- Tarjetas de catálogo -->
   <div class="cat-card" data-modelo="Francfort" data-img="https://dummyimage.com/300x200/59a899/fff.png&text=Francfort" data-precio="$1,000 MXN" data-desc="Clóset compacto, nogal.">
     <div class="cat-img" style="background-image:url('https://dummyimage.com/300x200/59a899/fff.png&text=Francfort');"></div>
     <div>Francfort</div>
@@ -22,7 +29,7 @@
     <div>$1,000 MXN</div>
   </div>
 
-  <!-- Modal individual -->
+  <!-- Modal -->
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="close" class="close">&times;</span>
@@ -30,84 +37,29 @@
       <h2 id="modalTitle"></h2>
       <div id="modalPrice"></div>
       <p id="modalDesc"></p>
-      <button id="addToCart" class="modal-btn">Agregar al carrito</button>
-    </div>
-  </div>
-
-  <!-- Modal del carrito -->
-  <div id="cart-modal" class="modal">
-    <div class="modal-content cart-content">
-      <span id="closeCart" class="close">&times;</span>
-      <h2>Carrito de compras</h2>
-      <ul id="cart-items"></ul>
-      <a id="sendCart" class="modal-btn" href="#" target="_blank">Enviar por WhatsApp</a>
+      <a id="modalBtn" class="modal-btn" href="#" target="_blank">Contactar por WhatsApp</a>
     </div>
   </div>
 
   <script>
-    const modal = document.getElementById('modal');
-    const cartModal = document.getElementById('cart-modal');
-    const cartItems = [];
-
-    document.querySelectorAll('.cat-card').forEach(card => {
-      card.onclick = () => {
-        modal.classList.add('open');
-        modal.dataset.modelo = card.dataset.modelo;
-        document.getElementById('modalImg').src = card.dataset.img;
-        document.getElementById('modalTitle').textContent = card.dataset.modelo;
-        document.getElementById('modalPrice').textContent = card.dataset.precio;
-        document.getElementById('modalDesc').textContent = card.dataset.desc;
-      }
+    // Abre el modal con datos correctos
+    document.querySelectorAll('.cat-card').forEach(card=>{
+      card.onclick = function() {
+        document.getElementById('modal').classList.add('open');
+        document.getElementById('modalImg').src = this.dataset.img;
+        document.getElementById('modalTitle').textContent = this.dataset.modelo;
+        document.getElementById('modalPrice').textContent = this.dataset.precio;
+        document.getElementById('modalDesc').textContent = this.dataset.desc;
+        document.getElementById('modalBtn').href = "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20" + encodeURIComponent(this.dataset.modelo);
+      };
     });
-
-    document.getElementById('close').onclick = () => modal.classList.remove('open');
-    document.getElementById('modal').onclick = (e) => { if (e.target === modal) modal.classList.remove('open'); }
-
-    // Agregar al carrito
-    document.getElementById('addToCart').onclick = () => {
-      const modelo = document.getElementById('modalTitle').textContent;
-      const id = Date.now();
-      cartItems.push({ id, modelo, modificar: false });
-      updateCartUI();
-      modal.classList.remove('open');
+    // Cierra el modal
+    document.getElementById('close').onclick = function() {
+      document.getElementById('modal').classList.remove('open');
     };
-
-    function updateCartUI() {
-      const ul = document.getElementById('cart-items');
-      ul.innerHTML = '';
-      cartItems.forEach(item => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <label><input type="checkbox" onchange="toggleMod(${item.id})"> Quiero modificar: <strong>${item.modelo}</strong></label>
-          <button onclick="removeItem(${item.id})">❌</button>
-        `;
-        ul.appendChild(li);
-      });
-      document.getElementById('cart-count').textContent = cartItems.length;
-    }
-
-    function removeItem(id) {
-      const index = cartItems.findIndex(i => i.id === id);
-      if (index !== -1) cartItems.splice(index, 1);
-      updateCartUI();
-    }
-
-    function toggleMod(id) {
-      const item = cartItems.find(i => i.id === id);
-      if (item) item.modificar = !item.modificar;
-    }
-
-    document.getElementById('cart-icon').onclick = () => cartModal.classList.add('open');
-    document.getElementById('closeCart').onclick = () => cartModal.classList.remove('open');
-    document.getElementById('cart-modal').onclick = (e) => { if (e.target === cartModal) cartModal.classList.remove('open'); }
-
-    document.getElementById('sendCart').onclick = function(e) {
-      if (cartItems.length === 0) return;
-      let mensaje = 'Hola! Me interesan los siguientes modelos:%0A';
-      cartItems.forEach(i => {
-        mensaje += `- ${i.modelo}${i.modificar ? ' (con modificaciones)' : ''}%0A`;
-      });
-      this.href = `https://wa.me/526624125786?text=${mensaje}`;
+    // Cierra al hacer click fuera del contenido
+    document.getElementById('modal').onclick = function(e){
+      if(e.target === this) this.classList.remove('open');
     };
   </script>
 </body>
