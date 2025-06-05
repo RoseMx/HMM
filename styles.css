@@ -284,14 +284,14 @@ nav a.active::after, nav a:hover::after {
   transform: translateY(-2px) scale(1.025);
 }
 .cat-img {
-  width: 130%;
-  height: 550px;
-  background-size: contain; /* cambia de cover a contain */
+  width: 100%;
+  height: 320px;
+  background-size: cover; /* <- esto es clave */
+  background-position: center;
   background-repeat: no-repeat;
-  background-position: center center;
   border-radius: 0.7em;
-  background-color: #181c23; /* fondo neutro oscuro por si hay espacio */
 }
+
 
 .cat-content {
   padding: 1.1em;
