@@ -6,11 +6,24 @@
   <title>Hermanitos Muebles – Catálogo</title>
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Estilos adicionales para el modal y tarjetas -->
+  <!-- Estilos adicionales (solo para catálogo + modal) -->
   <style>
-    /* ==============================
-       GRID DE TARJETAS
-       ============================== */
+    /* -------------------------------
+       GRID DE TARJETAS (Catálogo)
+       ------------------------------- */
+    .catalogo {
+      width: 90vw;
+      max-width: 1200px;
+      margin: 2.5em auto;
+    }
+    .catalogo h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5em;
+      color: #59a899;
+      letter-spacing: 1px;
+      text-align: center;
+    }
     .catalogo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -35,7 +48,7 @@
     }
     .cat-img {
       width: 100%;
-      height: 300px; /* Altura fija para la imagen */
+      height: 300px; /* Altura fija para homogeneizar */
       overflow: hidden;
       background-color: #181c23;
       border-radius: 1em 1em 0 0;
@@ -76,14 +89,13 @@
       }
     }
 
-    /* ==============================
+    /* -------------------------------
        MODAL FLOTANTE
-       ============================== */
+       ------------------------------- */
     .modal-float {
       position: fixed;
       z-index: 9999;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       background: rgba(22, 24, 32, 0.95);
@@ -111,19 +123,12 @@
       animation: aparecer 0.18s;
     }
     @keyframes aparecer {
-      from {
-        transform: scale(0.91);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
+      from { transform: scale(0.91); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
     }
     .modal-float-close {
       position: absolute;
-      top: 13px;
-      right: 16px;
+      top: 13px; right: 16px;
       font-size: 2.2rem;
       color: #fec260;
       cursor: pointer;
@@ -134,7 +139,7 @@
       color: #fff;
     }
 
-    /* Slider de imágenes dentro del modal */
+    /* Slider interno (imágenes en modal) */
     .slider-container {
       position: relative;
       width: 100%;
@@ -155,14 +160,16 @@
       object-fit: contain;
       border-radius: 1em;
       background: #181818;
-      transition: opacity 0.2s;
+      transition: transform 0.3s ease; /* Zoom suave al pasar encima */
       display: block;
       margin: 0 auto;
     }
+    .slider-img:hover {
+      transform: scale(1.02);
+    }
     .slider-arrow {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 50%; transform: translateY(-50%);
       font-size: 2rem;
       color: #fec260;
       background: rgba(40, 40, 40, 0.7);
@@ -174,12 +181,8 @@
       transition: background 0.18s;
       user-select: none;
     }
-    .slider-arrow.left {
-      left: 8px;
-    }
-    .slider-arrow.right {
-      right: 8px;
-    }
+    .slider-arrow.left { left: 8px; }
+    .slider-arrow.right { right: 8px; }
     .slider-arrow:hover {
       background: #fec260;
       color: #222;
@@ -191,8 +194,7 @@
       margin-top: 8px;
     }
     .slider-dot {
-      width: 10px;
-      height: 10px;
+      width: 10px; height: 10px;
       border-radius: 50%;
       background: #fec26054;
       cursor: pointer;
@@ -293,8 +295,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // ==================================================================
-      // 1) Objeto con todos los productos que tengas. Agrega todos los
-      //    modelos aquí, con sus respectivas rutas de imágenes.
+      // 1) Objeto con todos los productos (nótese "Fredrikstad" sin 'c').
       // ==================================================================
       const productos = {
         Francfort: {
@@ -376,22 +377,22 @@
           whatsapp:
             "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
         },
-        Fredrickstad: {
+        Fredrikstad: {
           imagenes: [
-            "img/Fredrickstad/Fredrickstad1.png",
-            "img/Fredrickstad/Fredrickstad2.png",
-            "img/Fredrickstad/Fredrickstad3.png",
-            "img/Fredrickstad/Fredrickstad4.png",
-            "img/Fredrickstad/Fredrickstad5.png",
-            "img/Fredrickstad/Fredrickstad6.png",
-            "img/Fredrickstad/Fredrickstad7.png",
-            "img/Fredrickstad/Fredrickstad8.png",
-            "img/Fredrickstad/Fredrickstad9.png"
+            "img/Fredrikstad/Fredrikstad1.png",
+            "img/Fredrikstad/Fredrikstad2.png",
+            "img/Fredrikstad/Fredrikstad3.png",
+            "img/Fredrikstad/Fredrikstad4.png",
+            "img/Fredrikstad/Fredrikstad5.png",
+            "img/Fredrikstad/Fredrikstad6.png",
+            "img/Fredrikstad/Fredrikstad7.png",
+            "img/Fredrikstad/Fredrikstad8.png",
+            "img/Fredrikstad/Fredrikstad9.png"
           ],
-          titulo: "Fredrickstad",
+          titulo: "Fredrikstad",
           precio: "$1,500 MXN",
           whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Fredrickstad"
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Fredrikstad"
         },
         Kallithea: {
           imagenes: [
@@ -417,16 +418,16 @@
       for (let key in productos) {
         const prod = productos[key];
 
-        // Crear el contenedor .cat-card
+        // Crear la tarjeta (.cat-card)
         const card = document.createElement("div");
         card.classList.add("cat-card");
         card.setAttribute("data-modelo", key);
 
-        // Div para imagen
+        // Div para la imagen
         const imgContainer = document.createElement("div");
         imgContainer.classList.add("cat-img");
         const img = document.createElement("img");
-        img.src = prod.imagenes[0]; // Mostrar siempre la primera imagen
+        img.src = prod.imagenes[0]; // Siempre muestra la primera
         img.alt = key;
         imgContainer.appendChild(img);
 
@@ -437,14 +438,14 @@
         h3.textContent = prod.titulo;
         content.appendChild(h3);
 
-        // Ensamblar la tarjeta
+        // Ensamblar tarjeta
         card.appendChild(imgContainer);
         card.appendChild(content);
         catalogoGrid.appendChild(card);
       }
 
       // ==================================================================
-      // 3) Configurar el slider interno y mostrar el modal al hacer click
+      // 3) Configurar slider interno y mostrar modal al hacer click
       // ==================================================================
       let sliderIndex = 0;
       let sliderImgs = [];
@@ -461,9 +462,13 @@
         }
         let html = `
           <div class="slider-container">
-            ${sliderImgs.length > 1 ? `<button class="slider-arrow left" id="sliderLeft">&#10094;</button>` : ""}
+            ${sliderImgs.length > 1 ? `
+              <button class="slider-arrow left" id="sliderLeft">&#10094;</button>
+            ` : ""}
             <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Mueble" />
-            ${sliderImgs.length > 1 ? `<button class="slider-arrow right" id="sliderRight">&#10095;</button>` : ""}
+            ${sliderImgs.length > 1 ? `
+              <button class="slider-arrow right" id="sliderRight">&#10095;</button>
+            ` : ""}
           </div>
           <div class="slider-dots">
             ${sliderImgs.map((_, i) =>
@@ -511,7 +516,7 @@
         document.body.style.overflow = "";
       }
 
-      // Delegación de clics para abrir el modal
+      // Delegación de clics en las tarjetas
       catalogoGrid.addEventListener("click", function (e) {
         const card = e.target.closest(".cat-card");
         if (card && card.dataset.modelo) {
@@ -519,7 +524,7 @@
         }
       });
 
-      // Cerrar el modal al hacer click en la "X" o fuera del contenido
+      // Cerrar modal al hacer clic en la "X" o fuera del contenido
       document.getElementById("modalFloatCloseBtn").onclick = cerrarModal;
       document.getElementById("modalFloat").addEventListener("click", function (e) {
         if (e.target === this) cerrarModal();
