@@ -284,15 +284,15 @@ nav a.active::after, nav a:hover::after {
   transform: translateY(-2px) scale(1.025);
 }
 .cat-img {
-  width: 200%;
-  height: 420px; /* altura de la imagen */
-  background-image: none; /* ignorado si usas inline style como ya lo haces */
-  background-size: cover; /* ESTO es lo que hace que se vea GRANDE */
-  background-position: center;
+  width: 100%;              /* debe ser el 100% del contenedor .cat-card */
+  height: 320px;            /* o la altura que prefieras */
+  background-size: cover;   /* la imagen llena todo el espacio, recortando si sobra */
+  background-position: center center;
   background-repeat: no-repeat;
   border-radius: 0.7em;
-  background-color: #181c23;
+  background-color: #181c23;/* color de fondo solo si la imagen no cubre por algún fallo */
 }
+
 
 
 
