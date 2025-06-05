@@ -264,171 +264,117 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Define los productos y agrega más imágenes si quieres
-      const productos = {
-        Francfort: {
-          imagenes: [
-            "img/Francfort/Francfort1.png",
-            "img/Francfort/Francfort2.png",
-            "img/Francfort/Francfort3.png"
-          ],
-          titulo: "Francfort",
-          desc: "Clóset compacto, nogal. Hecho a medida para espacios reducidos.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
-        },
-        Hanover: {
-          imagenes: [
-            "img/Hanover/Hanover1.png",
-            "img/Hanover/Hanover2.png"
-          ],
-          titulo: "Hanover",
-          desc: "Librero moderno, ideal para oficina o estudio.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
-        },
-        Bremen: {
-          imagenes: [
-            "img/Bremen/Bremen1.png"
-          ],
-          titulo: "Bremen",
-          desc: "Repisa de melamina estilo roble.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
-        },
-        Atenas: {
-          imagenes: [
-            "img/Atenas/Atenas1.png",
-            "img/Atenas/Atenas2.png"
-          ],
-          titulo: "Atenas",
-          desc: "Mesa lateral práctica y resistente.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
-        },
-        Duisburgo: {
-          imagenes: [
-            "img/Duisburgo/Duisburgo1.png"
-          ],
-          titulo: "Duisburgo",
-          desc: "Estante / Librería de varios niveles.",
-          precio: "$1,000 MXN",
-          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
-        }
-    // Abre el modal con datos correctos
-    document.querySelectorAll('.cat-card').forEach(card=>{
-      card.onclick = function() {
-        document.getElementById('modal').classList.add('open');
-        document.getElementById('modalImg').src = this.dataset.img;
-        document.getElementById('modalTitle').textContent = this.dataset.modelo;
-        document.getElementById('modalPrice').textContent = this.dataset.precio;
-        document.getElementById('modalDesc').textContent = this.dataset.desc;
-        document.getElementById('modalBtn').href = "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20" + encodeURIComponent(this.dataset.modelo);
-      };
+  const productos = {
+    Francfort: {
+      imagenes: ["img/Francfort/Francfort1.png", "img/Francfort/Francfort2.png"],
+      titulo: "Francfort",
+      desc: "Clóset compacto, nogal. Hecho a medida para espacios reducidos.",
+      precio: "$1,000 MXN",
+      whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
+    },
+    Hanover: {
+      imagenes: ["img/Hanover/Hanover1.png", "img/Hanover/Hanover2.png"],
+      titulo: "Hanover",
+      desc: "Librero moderno, ideal para oficina o estudio.",
+      precio: "$1,000 MXN",
+      whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
+    },
+    Bremen: {
+      imagenes: ["img/Bremen/Bremen1.png"],
+      titulo: "Bremen",
+      desc: "Repisa de melamina estilo roble.",
+      precio: "$1,000 MXN",
+      whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
+    },
+    Atenas: {
+      imagenes: ["img/Atenas/Atenas1.png", "img/Atenas/Atenas2.png"],
+      titulo: "Atenas",
+      desc: "Mesa lateral práctica y resistente.",
+      precio: "$1,000 MXN",
+      whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
+    },
+    Duisburgo: {
+      imagenes: ["img/Duisburgo/Duisburgo1.png"],
+      titulo: "Duisburgo",
+      desc: "Estante / Librería de varios niveles.",
+      precio: "$1,000 MXN",
+      whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
+    }
+  };
 
-      // Slider dentro del modal
-      let sliderIndex = 0;
-      let sliderImgs = [];
-      function renderSlider(imagenes) {
-        sliderImgs = imagenes;
-        sliderIndex = 0;
-        actualizarSlider();
-      }
-      function actualizarSlider() {
-        if(sliderImgs.length === 0) {
-          document.getElementById('modalSlider').innerHTML = '';
-          return;
-        }
-        let html = `
-          <div class="slider-container">
-            ${sliderImgs.length > 1 ? `<button class="slider-arrow left" id="sliderLeft">&#10094;</button>` : ''}
-            <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Mueble" />
-            ${sliderImgs.length > 1 ? `<button class="slider-arrow right" id="sliderRight">&#10095;</button>` : ''}
-          </div>
-          <div class="slider-dots">
-            ${sliderImgs.map((_,i)=>`<button class="slider-dot${i===sliderIndex?' active':''}" data-idx="${i}"></button>`).join('')}
-          </div>
-        `;
-        document.getElementById('modalSlider').innerHTML = html;
+  // MODAL dinámico
+  let sliderIndex = 0;
+  let sliderImgs = [];
 
-        // Botones slider
-        if(sliderImgs.length > 1){
-          document.getElementById('sliderLeft').onclick = function(e){e.stopPropagation(); cambiarSliderImg(-1);};
-          document.getElementById('sliderRight').onclick = function(e){e.stopPropagation(); cambiarSliderImg(1);};
-          document.querySelectorAll('.slider-dot').forEach(dot=>{
-            dot.onclick = function(e){
-              e.stopPropagation();
-              sliderIndex = Number(this.dataset.idx);
-              actualizarSlider();
-            }
-          });
-        }
-      }
-      function cambiarSliderImg(dir) {
-        sliderIndex = (sliderIndex + dir + sliderImgs.length) % sliderImgs.length;
-        actualizarSlider();
-      }
+  function renderSlider(imagenes) {
+    sliderImgs = imagenes;
+    sliderIndex = 0;
+    actualizarSlider();
+  }
 
-      // Mostrar y cerrar modal
-      function mostrarModal(nombre) {
-        const prod = productos[nombre];
-        if (!prod) return;
-        renderSlider(prod.imagenes);
-        document.getElementById('modalFloatTitle').textContent = prod.titulo;
-        document.getElementById('modalFloatDesc').textContent = prod.desc;
-        document.getElementById('modalFloatPrice').textContent = prod.precio;
-        document.getElementById('modalFloatBtn').href = prod.whatsapp;
-        document.getElementById('modalFloat').classList.remove('oculto');
-        document.body.style.overflow = "hidden";
-      }
-      function cerrarModal() {
-        document.getElementById('modalFloat').classList.add('oculto');
-        document.body.style.overflow = "";
-      }
+  function actualizarSlider() {
+    let html = `
+      <div class="slider-container">
+        ${sliderImgs.length > 1 ? `<button class="slider-arrow left" id="sliderLeft">&#10094;</button>` : ''}
+        <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Imagen del modelo" />
+        ${sliderImgs.length > 1 ? `<button class="slider-arrow right" id="sliderRight">&#10095;</button>` : ''}
+      </div>
+      <div class="slider-dots">
+        ${sliderImgs.map((_, i) =>
+          `<button class="slider-dot${i === sliderIndex ? ' active' : ''}" data-idx="${i}"></button>`
+        ).join('')}
+      </div>
+    `;
+    document.getElementById('modalSlider').innerHTML = html;
 
-      // Delegación de clicks para el grid
-      const catalogoGrid = document.getElementById('catalogoGrid');
-      if(catalogoGrid){
-        catalogoGrid.addEventListener('click', function(e) {
-          let card = e.target.closest('.cat-card');
-          if(card && card.hasAttribute('data-modelo')) {
-            mostrarModal(card.getAttribute('data-modelo'));
-          }
-        });
-      }
-      // Botón de cerrar modal
-      document.getElementById('modalFloatCloseBtn').onclick = cerrarModal;
-      // Cierra modal al hacer click fuera del contenido
-      document.getElementById('modalFloat').addEventListener('click', function(e) {
-        if(e.target === this) cerrarModal();
+    if (sliderImgs.length > 1) {
+      document.getElementById('sliderLeft').onclick = (e) => { e.stopPropagation(); cambiarSliderImg(-1); };
+      document.getElementById('sliderRight').onclick = (e) => { e.stopPropagation(); cambiarSliderImg(1); };
+      document.querySelectorAll('.slider-dot').forEach(dot => {
+        dot.onclick = function(e) {
+          e.stopPropagation();
+          sliderIndex = Number(this.dataset.idx);
+          actualizarSlider();
+        };
       });
+    }
+  }
 
-      // SPA NAV
-      function mostrarSolo(seccionId) {
-        document.querySelectorAll('.seccion').forEach(sec => sec.style.display = 'none');
-        let sec = document.getElementById(seccionId);
-        if(sec) sec.style.display = 'block';
-      }
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          mostrarSolo(this.getAttribute('data-seccion'));
-          document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-          this.classList.add('active');
-          window.scrollTo({top:0,behavior:'smooth'});
-        });
-      });
-      mostrarSolo('inicio');
-    });
-    // Cierra el modal
-    document.getElementById('close').onclick = function() {
-      document.getElementById('modal').classList.remove('open');
-    };
-    // Cierra al hacer click fuera del contenido
-    document.getElementById('modal').onclick = function(e){
-      if(e.target === this) this.classList.remove('open');
-    };
-  </script>Add commentMore actions
+  function cambiarSliderImg(dir) {
+    sliderIndex = (sliderIndex + dir + sliderImgs.length) % sliderImgs.length;
+    actualizarSlider();
+  }
+
+  function mostrarModal(nombre) {
+    const prod = productos[nombre];
+    if (!prod) return;
+    renderSlider(prod.imagenes);
+    document.getElementById('modalFloatTitle').textContent = prod.titulo;
+    document.getElementById('modalFloatDesc').textContent = prod.desc;
+    document.getElementById('modalFloatPrice').textContent = prod.precio;
+    document.getElementById('modalFloatBtn').href = prod.whatsapp;
+    document.getElementById('modalFloat').classList.remove('oculto');
+    document.body.style.overflow = "hidden";
+  }
+
+  function cerrarModal() {
+    document.getElementById('modalFloat').classList.add('oculto');
+    document.body.style.overflow = "";
+  }
+
+  // Delegación: hace funcionar el catálogo
+  document.getElementById('catalogoGrid').addEventListener('click', function(e) {
+    let card = e.target.closest('.cat-card');
+    if (card && card.dataset.modelo) {
+      mostrarModal(card.dataset.modelo);
+    }
+  });
+
+  document.getElementById('modalFloatCloseBtn').onclick = cerrarModal;
+  document.getElementById('modalFloat').addEventListener('click', function(e) {
+    if (e.target === this) cerrarModal();
+  });
+</script>
+
 </body>
 </html>
