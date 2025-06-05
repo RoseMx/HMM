@@ -285,7 +285,7 @@ nav a.active::after, nav a:hover::after {
 }
 .cat-img {
   width: 130%;
-  height: 350px;
+  height: 550px;
   background-size: contain; /* cambia de cover a contain */
   background-repeat: no-repeat;
   background-position: center center;
