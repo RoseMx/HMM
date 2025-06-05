@@ -7,22 +7,32 @@
   <link rel="stylesheet" href="styles.css" />
 
   <!-- ====================================================
-       ESTILOS ADICIONALES PARA CARRUSEL DE TESTIMONIOS
+       ESTILOS ADICIONALES
        ==================================================== -->
   <style>
-    /* Contenedor que muestra 3 testimonios al mismo tiempo */
+    /* ==============================
+       CARRUSEL DE MODELOS DESTACADOS
+       ============================== */
+    .carousel-auto-track {
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
+      /* TRANSICIÓN SUTIL para el translateY */
+      transition: transform 0.8s ease;
+      will-change: transform;
+    }
+    /* ==============================
+       CARRUSEL DE TESTIMONIOS
+       ============================== */
     .testimonial-carousel {
-      /* Altura = 3 × altura_testimonio + 2 × espacio_entre_testimonios */
-      height: calc(3 * 120px + 2 * 10px); /* Ajustamos altura fija */
+      height: calc(3 * 120px + 2 * 10px); /* 3 testimonios + espacios */
       overflow: hidden;
       margin-top: 1.5em;
     }
-    /* Pista que se moverá verticalmente */
     .testimonial-track {
       display: flex;
       flex-direction: column;
     }
-    /* Cada testimonio: altura fija de 120px + 10px de espacio inferior */
     .hero-testimonial {
       flex: none;
       height: 120px;
@@ -70,7 +80,7 @@
     <section class="hero">
       <div class="hero-flex">
         <!-- —————————————————————————————————————————————————————————
-             COLUMNA IZQUIERDA: Texto + Botones + Testimonios (carrusel 3x1)
+             COLUMNA IZQUIERDA: Texto + Botones + Testimonios
              ————————————————————————————————————————————————————————— -->
         <div class="hero-content">
           <h1>
@@ -95,7 +105,6 @@
                ——————————————————————————————————————————————————————— -->
           <div class="testimonial-carousel">
             <div class="testimonial-track" id="testimonialTrack">
-              <!-- 17 testimonios totales (incluyendo el clon al final) -->
               <div class="hero-testimonial">
                 <em>“El librero Hanover superó nuestras expectativas. La calidad es inmejorable y llegó a tiempo.”</em>
                 <span>— Claudia, cliente de Hermosillo</span>
@@ -164,7 +173,7 @@
                 <em>“Atención rápida por WhatsApp y la calidad supera expectativas.”</em>
                 <span>— Fernanda, cliente de Empalme</span>
               </div>
-              <!-- Clonamos el primer testimonio para permitir loop continuo -->
+              <!-- Clonamos el primer testimonio para loop continuo -->
               <div class="hero-testimonial">
                 <em>“El librero Hanover superó nuestras expectativas. La calidad es inmejorable y llegó a tiempo.”</em>
                 <span>— Claudia, cliente de Hermosillo</span>
@@ -222,7 +231,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       /* ======================================================
-         1) Carrusel de imágenes (vertical, de arriba hacia abajo)
+         1) Carrusel de imágenes (vertical, suave y placentero)
          ====================================================== */
       const track = document.getElementById("carousel-auto-track");
       let idx = 0;
@@ -231,7 +240,8 @@
         const alturaImg = track.children[0].offsetHeight + 17; // gap = 17px
         track.style.transform = `translateY(-${idx * alturaImg}px)`;
       }
-      setInterval(avanzarImagenes, 3000);
+      // Intervalo 4 segundos para un ritmo más placentero
+      setInterval(avanzarImagenes, 4000);
 
       /* ======================================================
          2) Carrusel de testimonios (vertical, lento, de abajo hacia arriba)
@@ -241,17 +251,12 @@
       let tIdx = 0;
 
       function avanzarTestimonios() {
-        // Altura de un testimonio + espacio inferior (120px + 10px)
-        const alturaTest = 120 + 10;
+        const alturaTest = 120 + 10; // altura testimonio + espacio
         tIdx++;
-
-        // Mover pista hacia arriba: efecto de subir (scroll up)
         tTrack.style.transition = "transform 1.5s ease";
         tTrack.style.transform = `translateY(-${tIdx * alturaTest}px)`;
-
-        // Cuando llegue al clon (último), regresamos sin animación a tIdx=0
+        // Si llegamos al clon (último elemento), regresamos a 0
         if (tIdx >= testimonials.length - 3) {
-          // Esperar a que termine la transición (1.5s) antes de reset
           setTimeout(() => {
             tTrack.style.transition = "none";
             tTrack.style.transform = "translateY(0)";
@@ -259,7 +264,6 @@
           }, 1600);
         }
       }
-      // Intervalo más lento (cada 5 segundos)
       setInterval(avanzarTestimonios, 5000);
     });
   </script>
