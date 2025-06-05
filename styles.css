@@ -265,6 +265,8 @@ nav a.active::after, nav a:hover::after {
 }
 .cat-card {
   background: #232a34;
+  width: 240px; /* NUEVO ancho fijo */
+  min-height: 370px; /* NUEVA altura mínima */
   border-radius: 1.2em;
   box-shadow: 0 2px 12px #0003;
   overflow: hidden;
@@ -275,6 +277,7 @@ nav a.active::after, nav a:hover::after {
   flex-direction: column;
   align-items: center;
 }
+
 .cat-card:hover {
   box-shadow: 0 8px 30px #25d36622;
   border: 2.2px solid #59a899;
