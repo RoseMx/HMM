@@ -6,9 +6,79 @@
   <title>Hermanitos Muebles – Catálogo</title>
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Estilos adicionales para el modal -->
+  <!-- Estilos adicionales para el modal y tarjetas -->
   <style>
-    /* Fondo semitransparente para el modal flotante */
+    /* ==============================
+       GRID DE TARJETAS
+       ============================== */
+    .catalogo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8em;
+      margin: 0 auto;
+      padding: 0 1em;
+    }
+    .cat-card {
+      background: #232a34;
+      border-radius: 1em;
+      box-shadow: 0 3px 16px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    }
+    .cat-img {
+      width: 100%;
+      height: 300px; /* Altura fija para la imagen */
+      overflow: hidden;
+      background-color: #181c23;
+      border-radius: 1em 1em 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cat-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.3s ease;
+    }
+    .cat-card:hover .cat-img img {
+      transform: scale(1.05);
+    }
+    .cat-content {
+      padding: 1.2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4em;
+      text-align: center;
+    }
+    .cat-content h3 {
+      font-size: 1.3rem;
+      color: #59a899;
+      font-weight: 700;
+      margin-bottom: 0.4em;
+    }
+    @media (max-width: 500px) {
+      .cat-img {
+        height: 200px;
+      }
+      .cat-content h3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* ==============================
+       MODAL FLOTANTE
+       ============================== */
     .modal-float {
       position: fixed;
       z-index: 9999;
@@ -25,7 +95,6 @@
     .modal-float.oculto {
       display: none;
     }
-    /* Contenido interno del modal */
     .modal-float-content {
       background: #22262b;
       border-radius: 18px;
@@ -65,7 +134,7 @@
       color: #fff;
     }
 
-    /* Slider interno para las imágenes del producto */
+    /* Slider de imágenes dentro del modal */
     .slider-container {
       position: relative;
       width: 100%;
@@ -135,7 +204,7 @@
       background: #fec260;
     }
 
-    /* Estilos de textos dentro del modal */
+    /* Textos dentro del modal */
     .modal-title {
       color: #25d366;
       font-size: 1.4rem;
@@ -191,51 +260,7 @@
     <section id="catalogo" class="catalogo">
       <h2>Catálogo Destacado</h2>
       <div class="catalogo-grid" id="catalogoGrid">
-        <!-- CARD 1: Francfort -->
-        <div class="cat-card" data-modelo="Francfort">
-          <div class="cat-img">
-            <img src="img/Francfort/Francfort1.png" alt="Francfort" />
-          </div>
-          <div class="cat-content">
-            <h3>Francfort</h3>
-          </div>
-        </div>
-        <!-- CARD 2: Hanover -->
-        <div class="cat-card" data-modelo="Hanover">
-          <div class="cat-img">
-            <img src="img/Hanover/Hanover1.png" alt="Hanover" />
-          </div>
-          <div class="cat-content">
-            <h3>Hanover</h3>
-          </div>
-        </div>
-        <!-- CARD 3: Bremen -->
-        <div class="cat-card" data-modelo="Bremen">
-          <div class="cat-img">
-            <img src="img/Bremen/Bremen1.png" alt="Bremen" />
-          </div>
-          <div class="cat-content">
-            <h3>Bremen</h3>
-          </div>
-        </div>
-        <!-- CARD 4: Atenas -->
-        <div class="cat-card" data-modelo="Atenas">
-          <div class="cat-img">
-            <img src="img/Atenas/Atenas1.png" alt="Atenas" />
-          </div>
-          <div class="cat-content">
-            <h3>Atenas</h3>
-          </div>
-        </div>
-        <!-- CARD 5: Duisburgo -->
-        <div class="cat-card" data-modelo="Duisburgo">
-          <div class="cat-img">
-            <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
-          </div>
-          <div class="cat-content">
-            <h3>Duisburgo</h3>
-          </div>
-        </div>
+        <!-- Las tarjetas se generarán dinámicamente vía JavaScript -->
       </div>
     </section>
 
@@ -264,10 +289,13 @@
     </p>
   </footer>
 
-  <!-- SCRIPT PARA CATÁLOGO + MODAL FLOTANTE -->
+  <!-- SCRIPT PARA GENERAR TARJETAS Y CONTROLAR EL MODAL -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Datos de cada producto: imágenes, precio, WhatsApp
+      // ==================================================================
+      // 1) Objeto con todos los productos que tengas. Agrega todos los
+      //    modelos aquí. Para cada modelo, se listan todas sus imágenes.
+      // ==================================================================
       const productos = {
         Francfort: {
           imagenes: [
@@ -283,7 +311,11 @@
         Hanover: {
           imagenes: [
             "img/Hanover/Hanover1.png",
-            "img/Hanover/Hanover2.png"
+            "img/Hanover/Hanover2.png",
+            "img/Hanover/Hanover3.png",
+            "img/Hanover/Hanover4.png",
+            "img/Hanover/Hanover5.png",
+            "img/Hanover/Hanover6.png"
           ],
           titulo: "Hanover",
           precio: "$1,000 MXN",
@@ -291,7 +323,13 @@
             "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
         },
         Bremen: {
-          imagenes: ["img/Bremen/Bremen1.png"],
+          imagenes: [
+            "img/Bremen/Bremen1.png",
+            "img/Bremen/Bremen2.png",
+            "img/Bremen/Bremen3.png",
+            "img/Bremen/Bremen4.png",
+            "img/Bremen/Bremen5.png"
+          ],
           titulo: "Bremen",
           precio: "$1,000 MXN",
           whatsapp:
@@ -300,7 +338,10 @@
         Atenas: {
           imagenes: [
             "img/Atenas/Atenas1.png",
-            "img/Atenas/Atenas2.png"
+            "img/Atenas/Atenas2.png",
+            "img/Atenas/Atenas3.png",
+            "img/Atenas/Atenas4.png",
+            "img/Atenas/Atenas5.png"
           ],
           titulo: "Atenas",
           precio: "$1,000 MXN",
@@ -308,26 +349,113 @@
             "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
         },
         Duisburgo: {
-          imagenes: ["img/Duisburgo/Duisburgo1.png"],
+          imagenes: [
+            "img/Duisburgo/Duisburgo1.png",
+            "img/Duisburgo/Duisburgo2.png",
+            "img/Duisburgo/Duisburgo3.png",
+            "img/Duisburgo/Duisburgo4.png"
+          ],
           titulo: "Duisburgo",
           precio: "$1,000 MXN",
           whatsapp:
             "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
+        },
+        Fredrickstad: {
+          imagenes: [
+            "img/Fredrickstad/Fredrickstad1.png",
+            "img/Fredrickstad/Fredrickstad2.png",
+            "img/Fredrickstad/Fredrickstad3.png",
+            "img/Fredrickstad/Fredrickstad4.png",
+            "img/Fredrickstad/Fredrickstad5.png",
+            "img/Fredrickstad/Fredrickstad6.png",
+            "img/Fredrickstad/Fredrickstad7.png",
+            "img/Fredrickstad/Fredrickstad8.png",
+            "img/Fredrickstad/Fredrickstad9.png"
+          ],
+          titulo: "Fredrickstad",
+          precio: "$1,500 MXN",
+          whatsapp:
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Fredrickstad"
+        },
+        Kallithea: {
+          imagenes: [
+            "img/Kallithea/Kallithea1.png",
+            "img/Kallithea/Kallithea2.png",
+            "img/Kallithea/Kallithea3.png",
+            "img/Kallithea/Kallithea4.png",
+            "img/Kallithea/Kallithea5.png",
+            "img/Kallithea/Kallithea6.png",
+            "img/Kallithea/Kallithea7.png"
+          ],
+          titulo: "Kallithea",
+          precio: "$1,200 MXN",
+          whatsapp:
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Kallithea"
+        },
+        Berna: {
+          imagenes: [
+            "img/Berna/Berna1.png",
+            "img/Berna/Berna2.png",
+            "img/Berna/Berna3.png",
+            "img/Berna/Berna4.png",
+            "img/Berna/Berna5.png",
+            "img/Berna/Berna6.png",
+            "img/Berna/Berna7.png",
+            "img/Berna/Berna8.png"
+          ],
+          titulo: "Berna",
+          precio: "$1,100 MXN",
+          whatsapp:
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Berna"
         }
       };
 
-      // Variables para slider interno del modal
+      // ==================================================================
+      // 2) Generar dinámicamente las tarjetas dentro del grid
+      // ==================================================================
+      const catalogoGrid = document.getElementById("catalogoGrid");
+      for (let key in productos) {
+        const prod = productos[key];
+
+        // Crear el contenedor .cat-card
+        const card = document.createElement("div");
+        card.classList.add("cat-card");
+        card.setAttribute("data-modelo", key);
+
+        // Div para imagen
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("cat-img");
+        const img = document.createElement("img");
+        img.src = prod.imagenes[0]; // Mostrar siempre la primera imagen
+        img.alt = key;
+        imgContainer.appendChild(img);
+
+        // Div para el nombre
+        const content = document.createElement("div");
+        content.classList.add("cat-content");
+        const h3 = document.createElement("h3");
+        h3.textContent = prod.titulo;
+        content.appendChild(h3);
+
+        // Ensamblar la tarjeta
+        card.appendChild(imgContainer);
+        card.appendChild(content);
+        catalogoGrid.appendChild(card);
+      }
+
+      // ==================================================================
+      // 3) Configurar el slider interno y mostrar el modal al hacer click
+      // ==================================================================
       let sliderIndex = 0;
       let sliderImgs = [];
 
-      // Renderiza el slider de imágenes dentro del modal
       function renderSlider(imagenes) {
         sliderImgs = imagenes;
         sliderIndex = 0;
         actualizarSlider();
       }
       function actualizarSlider() {
-        if (sliderImgs.length === 0) {
+        if (!sliderImgs.length) {
           document.getElementById("modalSlider").innerHTML = "";
           return;
         }
@@ -368,7 +496,6 @@
         actualizarSlider();
       }
 
-      // Muestra el modal con los datos del producto
       function mostrarModal(nombre) {
         const prod = productos[nombre];
         if (!prod) return;
@@ -384,20 +511,16 @@
         document.body.style.overflow = "";
       }
 
-      // Delegación de clics en las tarjetas
-      const catalogoGrid = document.getElementById("catalogoGrid");
-      if (catalogoGrid) {
-        catalogoGrid.addEventListener("click", function (e) {
-          let card = e.target.closest(".cat-card");
-          if (card && card.dataset.modelo) {
-            mostrarModal(card.dataset.modelo);
-          }
-        });
-      }
+      // Delegación de clics para abrir el modal
+      catalogoGrid.addEventListener("click", function (e) {
+        const card = e.target.closest(".cat-card");
+        if (card && card.dataset.modelo) {
+          mostrarModal(card.dataset.modelo);
+        }
+      });
 
-      // Botón para cerrar modal
+      // Cerrar el modal al hacer click en la "X" o fuera del contenido
       document.getElementById("modalFloatCloseBtn").onclick = cerrarModal;
-      // Cerrar modal al hacer clic fuera del contenido
       document.getElementById("modalFloat").addEventListener("click", function (e) {
         if (e.target === this) cerrarModal();
       });
