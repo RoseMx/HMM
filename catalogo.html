@@ -24,6 +24,7 @@
       letter-spacing: 1px;
       text-align: center;
     }
+
     .catalogo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -31,6 +32,7 @@
       margin: 0 auto;
       padding: 0 1em;
     }
+
     .cat-card {
       background: #232a34;
       border-radius: 1em;
@@ -46,9 +48,10 @@
       transform: translateY(-4px);
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
     }
+
     .cat-img {
       width: 100%;
-      height: 300px; /* Altura fija para homogeneizar */
+      height: 350px; /* Aumentado de 300px a 350px */
       overflow: hidden;
       background-color: #181c23;
       border-radius: 1em 1em 0 0;
@@ -62,10 +65,12 @@
       object-fit: cover;
       object-position: center;
       transition: transform 0.3s ease;
+      cursor: zoom-in; /* Mostrar cursor de zoom al pasar */
     }
     .cat-card:hover .cat-img img {
       transform: scale(1.05);
     }
+
     .cat-content {
       padding: 1.2em;
       display: flex;
@@ -80,9 +85,10 @@
       font-weight: 700;
       margin-bottom: 0.4em;
     }
+
     @media (max-width: 500px) {
       .cat-img {
-        height: 200px;
+        height: 250px; /* Ajuste para pantallas muy pequeñas */
       }
       .cat-content h3 {
         font-size: 1.2rem;
@@ -112,7 +118,7 @@
       border-radius: 18px;
       padding: 26px 14px 19px 14px;
       box-shadow: 0 4px 28px #20242a82;
-      max-width: 500px;
+      max-width: 550px; /* Un poco más ancho */
       width: 90vw;
       position: relative;
       text-align: center;
@@ -143,7 +149,7 @@
     .slider-container {
       position: relative;
       width: 100%;
-      max-width: 430px;
+      max-width: 500px;   /* Un poco más ancho */
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -152,7 +158,7 @@
       border-radius: 1em;
       overflow: hidden;
       box-shadow: 0 3px 18px #0006;
-      height: 250px;
+      height: 300px;      /* Aumentado de 250px a 300px */
     }
     .slider-img {
       width: 100%;
@@ -163,10 +169,12 @@
       transition: transform 0.3s ease; /* Zoom suave al pasar encima */
       display: block;
       margin: 0 auto;
+      cursor: zoom-in;   /* Cursor de zoom en modal */
     }
     .slider-img:hover {
-      transform: scale(1.02);
+      transform: scale(1.08); /* Zoom más evidente en el modal */
     }
+
     .slider-arrow {
       position: absolute;
       top: 50%; transform: translateY(-50%);
@@ -187,6 +195,7 @@
       background: #fec260;
       color: #222;
     }
+
     .slider-dots {
       display: flex;
       justify-content: center;
@@ -238,6 +247,7 @@
       margin-top: 12px;
       box-shadow: 0 2px 8px #25d36633;
       transition: background 0.21s;
+      cursor: pointer;
     }
     .modal-float-contact-btn:hover {
       background: linear-gradient(90deg, #128c7e 60%, #25d366 100%);
@@ -295,7 +305,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // ==================================================================
-      // 1) Objeto con todos los productos (nótese "Fredrikstad" sin 'c').
+      // 1) Objeto con todos los productos (nota la clave "Fredrikstad" sin 'c').
       // ==================================================================
       const productos = {
         Francfort: {
