@@ -4,17 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hermanitos Muebles – Catálogo</title>
-  <link rel="stylesheet" href="styles.css" />
 
-  <!-- ESTILOS ESPECÍFICOS PARA EL CATÁLOGO Y EL MODAL -->
+  <!-- ======================================================
+       TODO EL CSS AQUI MISMO: de modo que no dependa de 
+       un archivo externo. Solo pega esta página como catalogo.html
+       ====================================================== -->
   <style>
-    /* =================================
-       1) GRID DE TARJETAS (Catálogo)
-       ================================= */
+    /* ======= RESET Y BASE ======= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #232a34;
+      color: #f2f4f8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ======= HEADER ======= */
+    header {
+      width: 100%;
+      background: #20232a;
+      padding: 0.7em 0;
+      box-shadow: 0 2px 12px #0003;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .container {
+      width: 90vw;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #59a899;
+      letter-spacing: 1.5px;
+    }
+    nav {
+      display: flex;
+      gap: 1.3em;
+    }
+    nav a {
+      text-decoration: none;
+      color: #c4c7ce;
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: relative;
+      transition: color 0.2s;
+      padding: 0.2em 0.3em;
+    }
+    nav a.active,
+    nav a:hover {
+      color: #25d366;
+    }
+    nav a.active::after,
+    nav a:hover::after {
+      content: "";
+      display: block;
+      height: 2.5px;
+      border-radius: 2px;
+      background: #59a899;
+      width: 100%;
+      position: absolute;
+      left: 0; bottom: -2px;
+    }
+
+    /* ======= CATÁLOGO (Sección) ======= */
     .catalogo {
       width: 90vw;
       max-width: 1200px;
-      margin: 2.5em auto;
+      margin: 2.5em auto 4em auto;
     }
     .catalogo h2 {
       font-size: 2.2rem;
@@ -90,9 +161,7 @@
       }
     }
 
-    /* =================================
-       2) MODAL FLOTANTE
-       ================================= */
+    /* ======= MODAL FLOTANTE ======= */
     .modal-float {
       position: fixed;
       z-index: 9999;
@@ -113,14 +182,14 @@
       border-radius: 18px;
       padding: 16px;
       box-shadow: 0 4px 28px #20242a82;
-      max-width: 80vw;     /* Hasta 80% de ancho de ventana */
+      max-width: 80vw;
       width: 80vw;
-      max-height: 80vh;    /* Hasta 80% de alto de ventana */
+      max-height: 80vh;
       overflow: hidden;
       position: relative;
       display: flex;
       gap: 16px;
-      /* Dos columnas: 65% para la imagen, 35% para texto */
+      /* 65% para la imagen, 35% para texto */
       flex-direction: row;
       align-items: flex-start;
       animation: aparecer 0.18s;
@@ -142,9 +211,9 @@
       color: #fff;
     }
 
-    /* 2.1) Columna izquierda: slider (imagen más grande) */
+    /* 2.1) Imagen grande (slider) en columna izquierda */
     .modal-col-left {
-      flex: 0 0 65%;        /* La imagen ocupa el 65% del ancho */
+      flex: 0 0 65%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -152,8 +221,8 @@
     .slider-container {
       position: relative;
       width: 100%;
-      max-width: 700px;     /* Anchura ampliada del slider */
-      height: 520px;        /* Altura ampliada del slider */
+      max-width: 700px;  /* Imagen muy amplia */
+      height: 520px;     /* Imagen muy alta */
       background: #232832;
       border-radius: 1em;
       overflow: hidden;
@@ -171,14 +240,13 @@
       transition: transform 0.3s ease;
       cursor: zoom-in;
     }
-    /* Zoom suave al pasar sobre la imagen dentro del modal */
     .slider-img:hover {
       transform: scale(1.08);
     }
     .slider-arrow {
       position: absolute;
       top: 50%; transform: translateY(-50%);
-      font-size: 2.4rem;      /* Flechas más grandes */
+      font-size: 2.4rem;
       color: #fec260;
       background: rgba(40, 40, 40, 0.7);
       border: none;
@@ -202,7 +270,7 @@
       margin-top: 10px;
     }
     .slider-dot {
-      width: 14px; height: 14px;   /* Puntos un poco más grandes */
+      width: 14px; height: 14px;
       border-radius: 50%;
       background: #fec26054;
       cursor: pointer;
@@ -216,7 +284,7 @@
 
     /* 2.2) Columna derecha: texto e información */
     .modal-col-right {
-      flex: 0 0 35%;     /* Texto ocupa 35% del ancho */
+      flex: 0 0 35%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -250,7 +318,6 @@
       font-size: 1.2rem;
       font-weight: 700;
       text-align: center;
-      text-decoration: none;
       margin-top: 12px;
       box-shadow: 0 2px 8px #25d36633;
       transition: background 0.21s;
@@ -260,7 +327,7 @@
       background: linear-gradient(90deg, #128c7e 60%, #25d366 100%);
     }
 
-    /* 2.3) Responsive: en móvil muy estrecho, apilar columnas */
+    /* 2.3) Responsive: apilar en móvil */
     @media (max-width: 800px) {
       .modal-float-content {
         flex-direction: column;
@@ -273,7 +340,7 @@
       }
       .slider-container {
         max-width: 100%;
-        height: 40vh;    /* Ajuste para móvil */
+        height: 40vh;
       }
       .modal-col-right {
         flex: 0 0 auto;
@@ -281,10 +348,23 @@
         align-items: center;
       }
     }
+
+    /* ======= FOOTER ======= */
+    footer {
+      width: 100%;
+      background: #20232a;
+      color: #888ea8;
+      font-size: 1.05rem;
+      padding: 1.5em 0 0.8em 0;
+      text-align: center;
+      margin-top: 2em;
+      letter-spacing: 0.1px;
+    }
   </style>
 </head>
+
 <body>
-  <!-- HEADER -->
+  <!-- ====== HEADER ====== -->
   <header>
     <div class="container">
       <a href="index.html" class="logo">HMM</a>
@@ -296,26 +376,27 @@
     </div>
   </header>
 
-  <!-- MAIN / CATÁLOGO -->
+  <!-- ====== MAIN / CATÁLOGO ====== -->
   <main>
     <section id="catalogo" class="catalogo">
       <h2>Catálogo Destacado</h2>
       <div class="catalogo-grid" id="catalogoGrid">
-        <!-- Las tarjetas se generan con JavaScript -->
+        <!-- Las tarjetas (cat-card) se rellenan con JavaScript -->
       </div>
     </section>
 
-    <!-- MODAL FLOTANTE -->
+    <!-- ====== MODAL FLOTANTE ====== -->
     <div id="modalFloat" class="modal-float oculto">
       <div class="modal-float-content">
+        <!-- Botón cerrar -->
         <span class="modal-float-close" id="modalFloatCloseBtn">&times;</span>
 
-        <!-- Columna izquierda: slider de imágenes -->
+        <!-- Columna izquierda: SLIDER de imágenes -->
         <div class="modal-col-left">
           <div id="modalSlider"></div>
         </div>
 
-        <!-- Columna derecha: información del producto -->
+        <!-- Columna derecha: INFO del producto -->
         <div class="modal-col-right">
           <div class="modal-title" id="modalFloatTitle"></div>
           <div class="modal-price" id="modalFloatPrice"></div>
@@ -328,18 +409,16 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- ====== FOOTER ====== -->
   <footer>
-    <p>
-      &copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.
-    </p>
+    <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
   </footer>
 
-  <!-- SCRIPT PARA GENERAR TARJETAS Y CONTROLAR EL MODAL -->
+  <!-- ====== SCRIPT ====== -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // ================================
-      // 1) Objeto con todos los productos
+      // 1) Definición de productos
       // ================================
       const productos = {
         Francfort: {
@@ -350,8 +429,7 @@
           ],
           titulo: "Francfort",
           precio: "$1,000 MXN",
-          whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
         },
         Hanover: {
           imagenes: [
@@ -364,8 +442,7 @@
           ],
           titulo: "Hanover",
           precio: "$1,000 MXN",
-          whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
         },
         Berna: {
           imagenes: [
@@ -380,8 +457,7 @@
           ],
           titulo: "Berna",
           precio: "$1,100 MXN",
-          whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Berna"
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Berna"
         },
         Bremen: {
           imagenes: [
@@ -393,8 +469,7 @@
           ],
           titulo: "Bremen",
           precio: "$1,000 MXN",
-          whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
         },
         Atenas: {
           imagenes: [
@@ -406,8 +481,7 @@
           ],
           titulo: "Atenas",
           precio: "$1,000 MXN",
-          whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
         },
         Duisburgo: {
           imagenes: [
@@ -418,8 +492,7 @@
           ],
           titulo: "Duisburgo",
           precio: "$1,000 MXN",
-          whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
         },
         Fredrikstad: {
           imagenes: [
@@ -435,8 +508,7 @@
           ],
           titulo: "Fredrikstad",
           precio: "$1,500 MXN",
-          whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Fredrikstad"
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Fredrikstad"
         },
         Kallithea: {
           imagenes: [
@@ -450,8 +522,7 @@
           ],
           titulo: "Kallithea",
           precio: "$1,200 MXN",
-          whatsapp:
-            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Kallithea"
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Kallithea"
         }
       };
 
@@ -560,7 +631,7 @@
         document.body.style.overflow = "";
       }
 
-      // Delegación de clics en las tarjetas
+      // Delegación de clics para abrir modal
       catalogoGrid.addEventListener("click", function (e) {
         const card = e.target.closest(".cat-card");
         if (card && card.dataset.modelo) {
