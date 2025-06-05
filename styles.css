@@ -284,7 +284,7 @@ nav a.active::after, nav a:hover::after {
   transform: translateY(-2px) scale(1.025);
 }
 .cat-img {
-  width: 100%;
+  width: 300%;
   height: 350px;
   background-size: cover;
   background-position: center;
