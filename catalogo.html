@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hermanitos Muebles – Catálogo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">HMM</a>
+      <nav>
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link active">Catálogo</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CATÁLOGO -->
+  <main>
+    <section id="catalogo" class="catalogo">
+      <h2>Catálogo Destacado</h2>
+      <div class="catalogo-grid" id="catalogoGrid">
+        <div class="cat-card" data-modelo="Francfort">
+          <div class="cat-img">
+            <img src="img/Francfort/Francfort1.png" alt="Francfort">
+          </div>
+          <div class="cat-content">
+            <h3>Francfort</h3>
+            <span class="cat-price">$1,000 MXN</span>
+            <p class="cat-desc">Clóset compacto, nogal</p>
+          </div>
+        </div>
+        <div class="cat-card" data-modelo="Hanover">
+          <div class="cat-img">
+            <img src="img/Hanover/Hanover1.png" alt="Hanover">
+          </div>
+          <div class="cat-content">
+            <h3>Hanover</h3>
+            <span class="cat-price">$1,000 MXN</span>
+            <p class="cat-desc">Librero moderno</p>
+          </div>
+        </div>
+        <div class="cat-card" data-modelo="Bremen">
+          <div class="cat-img">
+            <img src="img/Bremen/Bremen1.png" alt="Bremen">
+          </div>
+          <div class="cat-content">
+            <h3>Bremen</h3>
+            <span class="cat-price">$1,000 MXN</span>
+            <p class="cat-desc">Repisa melamina roble</p>
+          </div>
+        </div>
+        <div class="cat-card" data-modelo="Atenas">
+          <div class="cat-img">
+            <img src="img/Atenas/Atenas1.png" alt="Atenas">
+          </div>
+          <div class="cat-content">
+            <h3>Atenas</h3>
+            <span class="cat-price">$1,000 MXN</span>
+            <p class="cat-desc">Mesa lateral</p>
+          </div>
+        </div>
+        <div class="cat-card" data-modelo="Duisburgo">
+          <div class="cat-img">
+            <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo">
+          </div>
+          <div class="cat-content">
+            <h3>Duisburgo</h3>
+            <span class="cat-price">$1,000 MXN</span>
+            <p class="cat-desc">Estante/Librería</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL FLOTANTE -->
+    <div id="modalFloat" class="modal-float oculto">
+      <div class="modal-float-content">
+        <span class="modal-float-close" id="modalFloatCloseBtn">&times;</span>
+        <div id="modalSlider"></div>
+        <div class="modal-title" id="modalFloatTitle"></div>
+        <div class="modal-price" id="modalFloatPrice"></div>
+        <div class="modal-desc" id="modalFloatDesc"></div>
+        <a href="#" id="modalFloatBtn" class="modal-float-contact-btn" target="_blank">
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
+  </footer>
+
+  <!-- SCRIPT PARA CATÁLOGO + MODAL FLOTANTE -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const productos = {
+        Francfort: {
+          imagenes: [
+            "img/Francfort/Francfort1.png",
+            "img/Francfort/Francfort2.png",
+            "img/Francfort/Francfort3.png"
+          ],
+          titulo: "Francfort",
+          desc: "Clóset compacto, nogal. Hecho a medida para espacios reducidos.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
+        },
+        Hanover: {
+          imagenes: [
+            "img/Hanover/Hanover1.png",
+            "img/Hanover/Hanover2.png"
+          ],
+          titulo: "Hanover",
+          desc: "Librero moderno, ideal para oficina o estudio.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
+        },
+        Bremen: {
+          imagenes: ["img/Bremen/Bremen1.png"],
+          titulo: "Bremen",
+          desc: "Repisa de melamina estilo roble.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
+        },
+        Atenas: {
+          imagenes: [
+            "img/Atenas/Atenas1.png",
+            "img/Atenas/Atenas2.png"
+          ],
+          titulo: "Atenas",
+          desc: "Mesa lateral práctica y resistente.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
+        },
+        Duisburgo: {
+          imagenes: ["img/Duisburgo/Duisburgo1.png"],
+          titulo: "Duisburgo",
+          desc: "Estante / Librería de varios niveles.",
+          precio: "$1,000 MXN",
+          whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
+        }
+      };
+
+      let sliderIndex = 0;
+      let sliderImgs = [];
+
+      function renderSlider(imagenes) {
+        sliderImgs = imagenes;
+        sliderIndex = 0;
+        actualizarSlider();
+      }
+
+      function actualizarSlider() {
+        if (sliderImgs.length === 0) {
+          document.getElementById('modalSlider').innerHTML = '';
+          return;
+        }
+        let html = `
+          <div class="slider-container">
+            ${sliderImgs.length > 1 ? `<button class="slider-arrow left" id="sliderLeft">&#10094;</button>` : ''}
+            <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Mueble" />
+            ${sliderImgs.length > 1 ? `<button class="slider-arrow right" id="sliderRight">&#10095;</button>` : ''}
+          </div>
+          <div class="slider-dots">
+            ${sliderImgs.map((_, i) =>
+              `<button class="slider-dot${i === sliderIndex ? ' active' : ''}" data-idx="${i}"></button>`
+            ).join('')}
+          </div>
+        `;
+        document.getElementById('modalSlider').innerHTML = html;
+
+        if (sliderImgs.length > 1) {
+          document.getElementById('sliderLeft').onclick = function(e) { e.stopPropagation(); cambiarSliderImg(-1); };
+          document.getElementById('sliderRight').onclick = function(e) { e.stopPropagation(); cambiarSliderImg(1); };
+          document.querySelectorAll('.slider-dot').forEach(dot => {
+            dot.onclick = function(e) {
+              e.stopPropagation();
+              sliderIndex = Number(this.dataset.idx);
+              actualizarSlider();
+            };
+          });
+        }
+      }
+
+      function cambiarSliderImg(dir) {
+        sliderIndex = (sliderIndex + dir + sliderImgs.length) % sliderImgs.length;
+        actualizarSlider();
+      }
+
+      function mostrarModal(nombre) {
+        const prod = productos[nombre];
+        if (!prod) return;
+        renderSlider(prod.imagenes);
+        document.getElementById('modalFloatTitle').textContent = prod.titulo;
+        document.getElementById('modalFloatDesc').textContent = prod.desc;
+        document.getElementById('modalFloatPrice').textContent = prod.precio;
+        document.getElementById('modalFloatBtn').href = prod.whatsapp;
+        document.getElementById('modalFloat').classList.remove('oculto');
+        document.body.style.overflow = "hidden";
+      }
+
+      function cerrarModal() {
+        document.getElementById('modalFloat').classList.add('oculto');
+        document.body.style.overflow = "";
+      }
+
+      const catalogoGrid = document.getElementById('catalogoGrid');
+      if (catalogoGrid) {
+        catalogoGrid.addEventListener('click', function(e) {
+          let card = e.target.closest('.cat-card');
+          if (card && card.dataset.modelo) {
+            mostrarModal(card.dataset.modelo);
+          }
+        });
+      }
+
+      document.getElementById('modalFloatCloseBtn').onclick = cerrarModal;
+      document.getElementById('modalFloat').addEventListener('click', function(e) {
+        if (e.target === this) cerrarModal();
+      });
+    });
+  </script>
+</body>
+</html>
