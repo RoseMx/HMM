@@ -1,1 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hermanitos Muebles – Catálogo</title>
+  <link rel="stylesheet" href="styles.css" />
 
+  <!-- Estilos adicionales para el modal -->
+  <style>
+    /* Fondo semitransparente para el modal flotante */
+    .modal-float {
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(22, 24, 32, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+    }
+    .modal-float.oculto {
+      display: none;
+    }
+    /* Contenido interno del modal */
+    .modal-float-content {
+      background: #22262b;
+      border-radius: 18px;
+      padding: 26px 14px 19px 14px;
+      box-shadow: 0 4px 28px #20242a82;
+      max-width: 500px;
+      width: 90vw;
+      position: relative;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: aparecer 0.18s;
+    }
+    @keyframes aparecer {
+      from {
+        transform: scale(0.91);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .modal-float-close {
+      position: absolute;
+      top: 13px;
+      right: 16px;
+      font-size: 2.2rem;
+      color: #fec260;
+      cursor: pointer;
+      z-index: 1;
+      transition: color 0.16s;
+    }
+    .modal-float-close:hover {
+      color: #fff;
+    }
+
+    /* Slider interno para las imágenes del producto */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #232832;
+      border-radius: 1em;
+      overflow: hidden;
+      box-shadow: 0 3px 18px #0006;
+      height: 250px;
+    }
+    .slider-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 1em;
+      background: #181818;
+      transition: opacity 0.2s;
+      display: block;
+      margin: 0 auto;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: #fec260;
+      background: rgba(40, 40, 40, 0.7);
+      border: none;
+      cursor: pointer;
+      z-index: 2;
+      padding: 0 10px;
+      border-radius: 1em;
+      transition: background 0.18s;
+      user-select: none;
+    }
+    .slider-arrow.left {
+      left: 8px;
+    }
+    .slider-arrow.right {
+      right: 8px;
+    }
+    .slider-arrow:hover {
+      background: #fec260;
+      color: #222;
+    }
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 8px;
+    }
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fec26054;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: background 0.18s;
+    }
+    .slider-dot.active {
+      background: #fec260;
+    }
+
+    /* Estilos de textos dentro del modal */
+    .modal-title {
+      color: #25d366;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .modal-price {
+      color: #fec260;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .modal-info {
+      color: #c4c7ce;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .modal-float-contact-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(90deg, #25d366 60%, #128c7e 100%);
+      color: #fff;
+      border: none;
+      padding: 12px 0;
+      border-radius: 10px;
+      font-size: 1.12rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 12px;
+      box-shadow: 0 2px 8px #25d36633;
+      transition: background 0.21s;
+    }
+    .modal-float-contact-btn:hover {
+      background: linear-gradient(90deg, #128c7e 60%, #25d366 100%);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">HMM</a>
+      <nav>
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link active">Catálogo</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN / CATÁLOGO -->
+  <main>
+    <section id="catalogo" class="catalogo">
+      <h2>Catálogo Destacado</h2>
+      <div class="catalogo-grid" id="catalogoGrid">
+        <!-- CARD 1: Francfort -->
+        <div class="cat-card" data-modelo="Francfort">
+          <div class="cat-img">
+            <img src="img/Francfort/Francfort1.png" alt="Francfort" />
+          </div>
+          <div class="cat-content">
+            <h3>Francfort</h3>
+          </div>
+        </div>
+        <!-- CARD 2: Hanover -->
+        <div class="cat-card" data-modelo="Hanover">
+          <div class="cat-img">
+            <img src="img/Hanover/Hanover1.png" alt="Hanover" />
+          </div>
+          <div class="cat-content">
+            <h3>Hanover</h3>
+          </div>
+        </div>
+        <!-- CARD 3: Bremen -->
+        <div class="cat-card" data-modelo="Bremen">
+          <div class="cat-img">
+            <img src="img/Bremen/Bremen1.png" alt="Bremen" />
+          </div>
+          <div class="cat-content">
+            <h3>Bremen</h3>
+          </div>
+        </div>
+        <!-- CARD 4: Atenas -->
+        <div class="cat-card" data-modelo="Atenas">
+          <div class="cat-img">
+            <img src="img/Atenas/Atenas1.png" alt="Atenas" />
+          </div>
+          <div class="cat-content">
+            <h3>Atenas</h3>
+          </div>
+        </div>
+        <!-- CARD 5: Duisburgo -->
+        <div class="cat-card" data-modelo="Duisburgo">
+          <div class="cat-img">
+            <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
+          </div>
+          <div class="cat-content">
+            <h3>Duisburgo</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL FLOTANTE -->
+    <div id="modalFloat" class="modal-float oculto">
+      <div class="modal-float-content">
+        <span class="modal-float-close" id="modalFloatCloseBtn">&times;</span>
+        <!-- Slider de imágenes del producto -->
+        <div id="modalSlider"></div>
+        <!-- Información del producto -->
+        <div class="modal-title" id="modalFloatTitle"></div>
+        <div class="modal-price" id="modalFloatPrice"></div>
+        <div class="modal-info">Envío a toda la república</div>
+        <a href="#" id="modalFloatBtn" class="modal-float-contact-btn" target="_blank">
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      &copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para
+      ofrecerte la mejor experiencia.
+    </p>
+  </footer>
+
+  <!-- SCRIPT PARA CATÁLOGO + MODAL FLOTANTE -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Datos de cada producto: imágenes, precio, WhatsApp
+      const productos = {
+        Francfort: {
+          imagenes: [
+            "img/Francfort/Francfort1.png",
+            "img/Francfort/Francfort2.png",
+            "img/Francfort/Francfort3.png"
+          ],
+          titulo: "Francfort",
+          precio: "$1,000 MXN",
+          whatsapp:
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
+        },
+        Hanover: {
+          imagenes: [
+            "img/Hanover/Hanover1.png",
+            "img/Hanover/Hanover2.png"
+          ],
+          titulo: "Hanover",
+          precio: "$1,000 MXN",
+          whatsapp:
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
+        },
+        Bremen: {
+          imagenes: ["img/Bremen/Bremen1.png"],
+          titulo: "Bremen",
+          precio: "$1,000 MXN",
+          whatsapp:
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
+        },
+        Atenas: {
+          imagenes: [
+            "img/Atenas/Atenas1.png",
+            "img/Atenas/Atenas2.png"
+          ],
+          titulo: "Atenas",
+          precio: "$1,000 MXN",
+          whatsapp:
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
+        },
+        Duisburgo: {
+          imagenes: ["img/Duisburgo/Duisburgo1.png"],
+          titulo: "Duisburgo",
+          precio: "$1,000 MXN",
+          whatsapp:
+            "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
+        }
+      };
+
+      // Variables para slider interno del modal
+      let sliderIndex = 0;
+      let sliderImgs = [];
+
+      // Renderiza el slider de imágenes dentro del modal
+      function renderSlider(imagenes) {
+        sliderImgs = imagenes;
+        sliderIndex = 0;
+        actualizarSlider();
+      }
+      function actualizarSlider() {
+        if (sliderImgs.length === 0) {
+          document.getElementById("modalSlider").innerHTML = "";
+          return;
+        }
+        let html = `
+          <div class="slider-container">
+            ${sliderImgs.length > 1 ? `<button class="slider-arrow left" id="sliderLeft">&#10094;</button>` : ""}
+            <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Mueble" />
+            ${sliderImgs.length > 1 ? `<button class="slider-arrow right" id="sliderRight">&#10095;</button>` : ""}
+          </div>
+          <div class="slider-dots">
+            ${sliderImgs.map((_, i) =>
+              `<button class="slider-dot${i === sliderIndex ? " active" : ""}" data-idx="${i}"></button>`
+            ).join("")}
+          </div>
+        `;
+        document.getElementById("modalSlider").innerHTML = html;
+
+        if (sliderImgs.length > 1) {
+          document.getElementById("sliderLeft").onclick = function (e) {
+            e.stopPropagation();
+            cambiarSliderImg(-1);
+          };
+          document.getElementById("sliderRight").onclick = function (e) {
+            e.stopPropagation();
+            cambiarSliderImg(1);
+          };
+          document.querySelectorAll(".slider-dot").forEach((dot) => {
+            dot.onclick = function (e) {
+              e.stopPropagation();
+              sliderIndex = Number(this.dataset.idx);
+              actualizarSlider();
+            };
+          });
+        }
+      }
+      function cambiarSliderImg(dir) {
+        sliderIndex = (sliderIndex + dir + sliderImgs.length) % sliderImgs.length;
+        actualizarSlider();
+      }
+
+      // Muestra el modal con los datos del producto
+      function mostrarModal(nombre) {
+        const prod = productos[nombre];
+        if (!prod) return;
+        renderSlider(prod.imagenes);
+        document.getElementById("modalFloatTitle").textContent = prod.titulo;
+        document.getElementById("modalFloatPrice").textContent = prod.precio;
+        document.getElementById("modalFloatBtn").href = prod.whatsapp;
+        document.getElementById("modalFloat").classList.remove("oculto");
+        document.body.style.overflow = "hidden";
+      }
+      function cerrarModal() {
+        document.getElementById("modalFloat").classList.add("oculto");
+        document.body.style.overflow = "";
+      }
+
+      // Delegación de clics en las tarjetas
+      const catalogoGrid = document.getElementById("catalogoGrid");
+      if (catalogoGrid) {
+        catalogoGrid.addEventListener("click", function (e) {
+          let card = e.target.closest(".cat-card");
+          if (card && card.dataset.modelo) {
+            mostrarModal(card.dataset.modelo);
+          }
+        });
+      }
+
+      // Botón para cerrar modal
+      document.getElementById("modalFloatCloseBtn").onclick = cerrarModal;
+      // Cerrar modal al hacer clic fuera del contenido
+      document.getElementById("modalFloat").addEventListener("click", function (e) {
+        if (e.target === this) cerrarModal();
+      });
+    });
+  </script>
+</body>
+</html>
