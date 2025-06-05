@@ -48,7 +48,7 @@
     }
     .cat-img {
       width: 100%;
-      height: 350px; /* Igual que antes, para consistencia con la tarjeta */
+      height: 350px; /* Tamaño de la miniatura en el grid */
       overflow: hidden;
       background-color: #181c23;
       border-radius: 1em 1em 0 0;
@@ -111,16 +111,18 @@
     .modal-float-content {
       background: #22262b;
       border-radius: 18px;
-      padding: 26px 14px 19px 14px;
+      padding: 20px 12px 16px 12px;
       box-shadow: 0 4px 28px #20242a82;
-      max-width: 650px; /* Aumentado para presentar imágenes más grandes */
+      max-width: 95vw;     /* Ocupa 95% de la anchura de la ventana */
       width: 95vw;
+      max-height: 90vh;    /* Hasta 90% de la altura de la ventana */
+      overflow: hidden;
       position: relative;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       animation: aparecer 0.18s;
     }
     @keyframes aparecer {
@@ -129,7 +131,7 @@
     }
     .modal-float-close {
       position: absolute;
-      top: 13px; right: 16px;
+      top: 12px; right: 14px;
       font-size: 2.2rem;
       color: #fec260;
       cursor: pointer;
@@ -144,7 +146,8 @@
     .slider-container {
       position: relative;
       width: 100%;
-      max-width: 600px;  /* Aumentado para agrandar la imagen */
+      max-width: 800px;   /* Aumentado para cubrir casi toda la anchura disponible */
+      height: 80vh;       /* 80% de la altura de la ventana */
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -153,7 +156,6 @@
       border-radius: 1em;
       overflow: hidden;
       box-shadow: 0 3px 18px #0006;
-      height: 400px;     /* Aumentado de 300px a 400px */
     }
     .slider-img {
       width: 100%;
@@ -162,30 +164,28 @@
       border-radius: 1em;
       background: #181818;
       transition: transform 0.3s ease;
-      display: block;
-      margin: 0 auto;
       cursor: zoom-in;
     }
     .slider-img:hover {
-      transform: scale(1.08); /* Zoom suave más evidente */
+      transform: scale(1.08); /* Zoom más evidente al pasar el cursor */
     }
 
     .slider-arrow {
       position: absolute;
       top: 50%; transform: translateY(-50%);
-      font-size: 2.2rem;
+      font-size: 2.4rem;            /* Flechas más grandes */
       color: #fec260;
       background: rgba(40, 40, 40, 0.7);
       border: none;
       cursor: pointer;
       z-index: 2;
-      padding: 0 12px;
-      border-radius: 1em;
+      padding: 0 14px;
+      border-radius: 50%;
       transition: background 0.18s;
       user-select: none;
     }
-    .slider-arrow.left { left: 10px; }
-    .slider-arrow.right { right: 10px; }
+    .slider-arrow.left { left: 20px; }
+    .slider-arrow.right { right: 20px; }
     .slider-arrow:hover {
       background: #fec260;
       color: #222;
@@ -194,11 +194,11 @@
     .slider-dots {
       display: flex;
       justify-content: center;
-      gap: 7px;
+      gap: 8px;
       margin-top: 12px;
     }
     .slider-dot {
-      width: 12px; height: 12px; /* Un poco más grandes que antes */
+      width: 14px; height: 14px;     /* Puntos más grandes */
       border-radius: 50%;
       background: #fec26054;
       cursor: pointer;
@@ -213,18 +213,18 @@
     /* Textos dentro del modal */
     .modal-title {
       color: #25d366;
-      font-size: 1.5rem; /* Ligeramente más grande */
+      font-size: 1.6rem;              /* Texto de título más grande */
       font-weight: bold;
-      margin-top: 12px;
+      margin-top: 10px;
     }
     .modal-price {
       color: #fec260;
-      font-size: 1.25rem; /* Ligeramente más grande */
+      font-size: 1.3rem;              /* Precio más grande */
       font-weight: bold;
     }
     .modal-info {
       color: #c4c7ce;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       line-height: 1.4;
       margin-top: 4px;
     }
@@ -234,9 +234,9 @@
       background: linear-gradient(90deg, #25d366 60%, #128c7e 100%);
       color: #fff;
       border: none;
-      padding: 14px 0;   /* Más alto */
+      padding: 16px 0;                /* Botón más alto */
       border-radius: 10px;
-      font-size: 1.15rem; /* Un poco más grande */
+      font-size: 1.2rem;              /* Texto de botón grande */
       font-weight: 700;
       text-align: center;
       text-decoration: none;
