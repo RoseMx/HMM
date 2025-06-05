@@ -282,7 +282,7 @@ nav a.active::after, nav a:hover::after {
 }
 .cat-img {
   width: 100%;
-  height: 250px;
+  height: 350px;
   background-size: cover;
   background-position: center;
   border-bottom: 1px solid #292f38;
