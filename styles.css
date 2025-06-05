@@ -265,7 +265,7 @@ nav a.active::after, nav a:hover::after {
 }
 .cat-card {
   background: #232a34;
-  width: 340px; /* NUEVO ancho fijo */
+  width: 440px; /* NUEVO ancho fijo */
   min-height: 250px; /* NUEVA altura mínima */
   border-radius: 1.2em;
   box-shadow: 0 2px 12px #0003;
