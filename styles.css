@@ -1,5 +1,9 @@
 /* RESET Y BASE */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: #232a34;
@@ -7,6 +11,8 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+
+/* ENCABEZADO / HEADER */
 header {
   width: 100vw;
   background: #20232a;
@@ -39,8 +45,12 @@ nav a {
   position: relative;
   transition: color 0.2s;
 }
-nav a.active, nav a:hover { color: #25d366; }
-nav a.active::after, nav a:hover::after {
+nav a.active,
+nav a:hover {
+  color: #25d366;
+}
+nav a.active::after,
+nav a:hover::after {
   content: "";
   display: block;
   height: 2.5px;
@@ -48,7 +58,8 @@ nav a.active::after, nav a:hover::after {
   background: #59a899;
   width: 100%;
   position: absolute;
-  left: 0; bottom: -2px;
+  left: 0;
+  bottom: -2px;
 }
 
 /* HERO */
@@ -81,7 +92,9 @@ nav a.active::after, nav a:hover::after {
   line-height: 1.12;
   margin-bottom: 0.35em;
 }
-.hero-content h1 span { color: #59a899; }
+.hero-content h1 span {
+  color: #59a899;
+}
 .hero-sub {
   color: #b6d7cc;
   font-size: 1.19rem;
@@ -240,17 +253,14 @@ nav a.active::after, nav a:hover::after {
   box-shadow: 0 4px 18px #25d36622;
 }
 
-/* CATÁLOGO */
-/* ————————————————————————————
+/* ============================
    SECCIÓN CATÁLOGO
-   ———————————————————————————— */
-
+   ============================ */
 .catalogo {
   width: 90vw;
   max-width: 1200px;
   margin: 2.5em auto 0 auto;
 }
-
 .catalogo h2 {
   font-size: 2.2rem;
   font-weight: 800;
@@ -259,8 +269,6 @@ nav a.active::after, nav a:hover::after {
   letter-spacing: 1px;
   text-align: center;
 }
-
-/* Grid fluido: cada card tendrá mínimo 240px de ancho y crecerá hasta llenar el espacio disponible */
 .catalogo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -268,8 +276,6 @@ nav a.active::after, nav a:hover::after {
   margin: 0 auto;
   padding: 0 1em;
 }
-
-/* Tarjeta (card) más compacta y centrada */
 .cat-card {
   background: #232a34;
   border-radius: 1em;
@@ -281,30 +287,28 @@ nav a.active::after, nav a:hover::after {
   flex-direction: column;
   align-items: center;
 }
-
-/* Hover ligero para elevar la card */
 .cat-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
-
-/* Contenedor de la imagen de fondo */
 .cat-img {
   width: 100%;
   height: 460px;               /* Altura fija para cada imagen */
-  background-size: cover;      /* Rellenar todo el contenedor, recortando si es necesario */
-  background-position: center; /* Centrar el foco de la foto */
-  background-repeat: no-repeat;
-  border-radius: 1em 1em 0 0;   /* Solo redondear la parte superior */
+  overflow: hidden;
+  background-color: #181c23;   /* fondo oscuro mientras carga */
+  border-radius: 1em 1em 0 0;   /* redondea solo la parte superior */
+}
+.cat-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* recorta para llenar todo el bloque */
+  object-position: center;
+  display: block;
   transition: transform 0.3s ease;
 }
-
-/* Efecto hover sobre la imagen: ligera ampliación */
-.cat-card:hover .cat-img {
+.cat-card:hover .cat-img img {
   transform: scale(1.05);
 }
-
-/* Contenido textual: nombre, precio y descripción */
 .cat-content {
   padding: 1.2em;
   display: flex;
@@ -313,28 +317,23 @@ nav a.active::after, nav a:hover::after {
   gap: 0.4em;
   text-align: center;
 }
-
 .cat-content h3 {
   font-size: 1.3rem;
   color: #59a899;
   font-weight: 700;
   margin-bottom: 0.4em;
 }
-
 .cat-price {
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: 600;
 }
-
 .cat-desc {
   color: #c4c7ce;
   font-size: 1rem;
   line-height: 1.4;
   margin-top: 0.4em;
 }
-
-/* Responsive: ajuste en móviles muy pequeños */
 @media (max-width: 500px) {
   .cat-img {
     height: 200px;
@@ -350,8 +349,7 @@ nav a.active::after, nav a:hover::after {
   }
 }
 
-
-/* MODAL DE DETALLE */
+/* MODAL DE DETALLE (antiguo) */
 .detalle-modal {
   position: fixed;
   z-index: 9999;
