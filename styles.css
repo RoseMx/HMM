@@ -241,71 +241,115 @@ nav a.active::after, nav a:hover::after {
 }
 
 /* CATÁLOGO */
+/* ————————————————————————————
+   SECCIÓN CATÁLOGO
+   ———————————————————————————— */
+
 .catalogo {
   width: 90vw;
   max-width: 1200px;
   margin: 2.5em auto 0 auto;
 }
+
 .catalogo h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
-  margin-bottom: 1.2em;
+  margin-bottom: 1.5em;
   color: #59a899;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
+  text-align: center;
 }
 
-/* NUEVO GRID */
+/* Grid fluido: cada card tendrá mínimo 240px de ancho y crecerá hasta llenar el espacio disponible */
 .catalogo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 2.5em;
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.8em;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 1em;
 }
+
+/* Tarjeta (card) más compacta y centrada */
 .cat-card {
   background: #232a34;
-  width: 440px; /* NUEVO ancho fijo */
-  min-height: 250px; /* NUEVA altura mínima */
-  border-radius: 1.2em;
-  box-shadow: 0 2px 12px #0003;
+  border-radius: 1em;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   cursor: pointer;
-  transition: box-shadow 0.2s, transform 0.18s;
-  border: 2.2px solid #232a34;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Hover ligero para elevar la card */
 .cat-card:hover {
-  box-shadow: 0 8px 30px #25d36622;
-  border: 2.2px solid #59a899;
-  transform: translateY(-2px) scale(1.025);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
+
+/* Contenedor de la imagen de fondo */
 .cat-img {
-  width: 100%;              /* debe ser el 100% del contenedor .cat-card */
-  height: 320px;            /* o la altura que prefieras */
-  background-size: cover;   /* la imagen llena todo el espacio, recortando si sobra */
-  background-position: center center;
+  width: 100%;
+  height: 260px;               /* Altura fija para cada imagen */
+  background-size: cover;      /* Rellenar todo el contenedor, recortando si es necesario */
+  background-position: center; /* Centrar el foco de la foto */
   background-repeat: no-repeat;
-  border-radius: 0.7em;
-  background-color: #181c23;/* color de fondo solo si la imagen no cubre por algún fallo */
+  border-radius: 1em 1em 0 0;   /* Solo redondear la parte superior */
+  transition: transform 0.3s ease;
 }
 
+/* Efecto hover sobre la imagen: ligera ampliación */
+.cat-card:hover .cat-img {
+  transform: scale(1.05);
+}
 
-
-
+/* Contenido textual: nombre, precio y descripción */
 .cat-content {
-  padding: 1.1em;
+  padding: 1.2em;
   display: flex;
   flex-direction: column;
-  gap: 0.35em;
+  align-items: center;
+  gap: 0.4em;
   text-align: center;
 }
-.cat-content h3 { font-size: 1.18rem; color: #59a899; font-weight: 700; }
-.cat-price { color: #fff; font-size: 1.07rem; font-weight: 600; }
-.cat-desc { color: #c4c7ce; font-size: 0.99rem; }
+
+.cat-content h3 {
+  font-size: 1.3rem;
+  color: #59a899;
+  font-weight: 700;
+  margin-bottom: 0.4em;
+}
+
+.cat-price {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.cat-desc {
+  color: #c4c7ce;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-top: 0.4em;
+}
+
+/* Responsive: ajuste en móviles muy pequeños */
+@media (max-width: 500px) {
+  .cat-img {
+    height: 200px;
+  }
+  .cat-content h3 {
+    font-size: 1.2rem;
+  }
+  .cat-price {
+    font-size: 1rem;
+  }
+  .cat-desc {
+    font-size: 0.95rem;
+  }
+}
+
 
 /* MODAL DE DETALLE */
 .detalle-modal {
