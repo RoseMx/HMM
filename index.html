@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hermanitos Muebles de Melamina – Inicio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">HMM</a>
+      <nav>
+        <a href="index.html" class="nav-link active">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO – SOLO INICIO -->
+  <main>
+    <section class="hero">
+      <div class="hero-flex">
+        <div class="hero-content">
+          <h1><span>Transforma tu espacio</span> con muebles de melamina</h1>
+          <p class="hero-sub">
+            Descubre muebles modernos, duraderos y hechos a tu gusto.<br>
+            Eleva tu hogar con soluciones prácticas y elegantes.
+          </p>
+          <ul class="hero-benefits">
+            <li><span class="benefit-icon">✅</span> Hechos a medida</li>
+            <li><span class="benefit-icon">✅</span> Materiales de calidad</li>
+            <li><span class="benefit-icon">✅</span> Envíos rápidos en Hermosillo</li>
+          </ul>
+          <div class="hero-btns">
+            <a href="catalogo.html" class="btn btn-lg">Ver catálogo</a>
+            <a href="contacto.html" class="btn btn-secondary">Solicita tu diseño</a>
+          </div>
+          <div class="hero-testimonial">
+            <em>“Un servicio excelente y el mueble llegó tal como lo imaginé.”</em>
+            <span>— Andrea, cliente de Hermosillo</span>
+          </div>
+        </div>
+        <!-- CARRUSEL VERTICAL (INICIO) -->
+        <aside class="carousel-vertical-auto-area">
+          <div class="carousel-title">Modelos Destacados</div>
+          <div class="vertical-carousel-auto" id="vertical-carousel-auto">
+            <div class="carousel-auto-track" id="carousel-auto-track">
+              <div class="carousel-auto-img"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
+              <div class="carousel-auto-img"><img src="img/Hanover/Hanover1.png" alt="Hanover" /></div>
+              <div class="carousel-auto-img"><img src="img/Bremen/Bremen1.png" alt="Bremen" /></div>
+              <div class="carousel-auto-img"><img src="img/Atenas/Atenas1.png" alt="Atenas" /></div>
+              <div class="carousel-auto-img"><img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" /></div>
+              <div class="carousel-auto-img"><img src="img/Francfort/Francfort1.png" alt="Francfort" /></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.</p>
+  </footer>
+
+  <!-- SCRIPTS PARA EL CARRUSEL VERTICAL (INICIO) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const track = document.getElementById('carousel-auto-track');
+      let idx = 0;
+      function avanzar() {
+        idx = (idx + 1) % track.children.length;
+        track.style.transform = `translateY(-${idx * (track.children[0].offsetHeight + 17)}px)`;
+      }
+      setInterval(avanzar, 3000);
+    });
+  </script>
+</body>
+</html>
