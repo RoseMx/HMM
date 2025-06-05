@@ -6,8 +6,8 @@
   <title>Hermanitos Muebles – Catálogo</title>
 
   <!-- ======================================================
-       TODO EL CSS AQUI MISMO: de modo que no dependa de 
-       un archivo externo. Solo pega esta página como catalogo.html
+       TODO EL CSS AQUI MISMO: 
+       Versión original (imagen centrada en modal)
        ====================================================== -->
   <style>
     /* ======= RESET Y BASE ======= */
@@ -161,7 +161,7 @@
       }
     }
 
-    /* ======= MODAL FLOTANTE ======= */
+    /* ======= MODAL FLOTANTE (Versión original) ======= */
     .modal-float {
       position: fixed;
       z-index: 9999;
@@ -187,11 +187,10 @@
       max-height: 80vh;
       overflow: hidden;
       position: relative;
+      text-align: center;
       display: flex;
-      gap: 16px;
-      /* 65% para la imagen, 35% para texto */
-      flex-direction: row;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
       animation: aparecer 0.18s;
     }
     @keyframes aparecer {
@@ -211,142 +210,58 @@
       color: #fff;
     }
 
-    /* 2.1) Imagen grande (slider) en columna izquierda */
-    .modal-col-left {
-      flex: 0 0 65%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slider-container {
-      position: relative;
+    /* Imagen grande centrada en modal */
+    .modal-img {
       width: 100%;
-      max-width: 700px;  /* Imagen muy amplia */
-      height: 520px;     /* Imagen muy alta */
-      background: #232832;
-      border-radius: 1em;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 3px 18px #0006;
-    }
-    .slider-img {
-      width: 100%;
-      height: 100%;
+      max-width: 600px;  /* Tienes hasta 600px de ancho */
+      max-height: 60vh;  /* Máximo 60% de alto de la ventana */
       object-fit: contain;
       border-radius: 1em;
       background: #181818;
+      margin-bottom: 1em;
       transition: transform 0.3s ease;
       cursor: zoom-in;
     }
-    .slider-img:hover {
+    .modal-img:hover {
       transform: scale(1.08);
     }
-    .slider-arrow {
-      position: absolute;
-      top: 50%; transform: translateY(-50%);
-      font-size: 2.4rem;
-      color: #fec260;
-      background: rgba(40, 40, 40, 0.7);
-      border: none;
-      cursor: pointer;
-      z-index: 2;
-      padding: 0 14px;
-      border-radius: 50%;
-      transition: background 0.18s;
-      user-select: none;
-    }
-    .slider-arrow.left { left: 12px; }
-    .slider-arrow.right { right: 12px; }
-    .slider-arrow:hover {
-      background: #fec260;
-      color: #222;
-    }
-    .slider-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .slider-dot {
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: #fec26054;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      transition: background 0.18s;
-    }
-    .slider-dot.active {
-      background: #fec260;
-    }
 
-    /* 2.2) Columna derecha: texto e información */
-    .modal-col-right {
-      flex: 0 0 35%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-      padding: 0 12px;
-      color: #f2f4f8;
-    }
+    /* Título, precio y descripción dentro del modal */
     .modal-title {
       font-size: 1.8rem;
       font-weight: 700;
       color: #25d366;
-      margin-bottom: 4px;
+      margin-bottom: 0.4em;
     }
     .modal-price {
       font-size: 1.5rem;
       font-weight: 700;
       color: #fec260;
+      margin-bottom: 0.6em;
     }
-    .modal-info {
+    .modal-desc {
       font-size: 1.1rem;
       line-height: 1.5;
       color: #c4c7ce;
+      margin-bottom: 1em;
     }
     .modal-float-contact-btn {
-      display: block;
+      display: inline-block;
       background: linear-gradient(90deg, #25d366 60%, #128c7e 100%);
       color: #fff;
       border: none;
-      padding: 16px 0;
+      padding: 14px 24px;
       border-radius: 10px;
       font-size: 1.2rem;
       font-weight: 700;
       text-align: center;
-      margin-top: 12px;
+      margin-bottom: 0.5em;
       box-shadow: 0 2px 8px #25d36633;
       transition: background 0.21s;
       cursor: pointer;
     }
     .modal-float-contact-btn:hover {
       background: linear-gradient(90deg, #128c7e 60%, #25d366 100%);
-    }
-
-    /* 2.3) Responsive: apilar en móvil */
-    @media (max-width: 800px) {
-      .modal-float-content {
-        flex-direction: column;
-        max-width: 90vw;
-        max-height: 90vh;
-        padding: 12px;
-      }
-      .modal-col-left {
-        flex: 0 0 auto;
-      }
-      .slider-container {
-        max-width: 100%;
-        height: 40vh;
-      }
-      .modal-col-right {
-        flex: 0 0 auto;
-        padding: 8px 0;
-        align-items: center;
-      }
     }
 
     /* ======= FOOTER ======= */
@@ -385,26 +300,22 @@
       </div>
     </section>
 
-    <!-- ====== MODAL FLOTANTE ====== -->
+    <!-- ====== MODAL FLOTANTE (Original) ====== -->
     <div id="modalFloat" class="modal-float oculto">
       <div class="modal-float-content">
         <!-- Botón cerrar -->
         <span class="modal-float-close" id="modalFloatCloseBtn">&times;</span>
 
-        <!-- Columna izquierda: SLIDER de imágenes -->
-        <div class="modal-col-left">
-          <div id="modalSlider"></div>
-        </div>
+        <!-- Imagen grande centrada -->
+        <img id="modalImg" class="modal-img" src="" alt="Mueble" />
 
-        <!-- Columna derecha: INFO del producto -->
-        <div class="modal-col-right">
-          <div class="modal-title" id="modalFloatTitle"></div>
-          <div class="modal-price" id="modalFloatPrice"></div>
-          <div class="modal-info">Envío a toda la república</div>
-          <a href="#" id="modalFloatBtn" class="modal-float-contact-btn" target="_blank">
-            Contactar por WhatsApp
-          </a>
-        </div>
+        <!-- Título, precio, descripción y botón -->
+        <div class="modal-title" id="modalFloatTitle"></div>
+        <div class="modal-price" id="modalFloatPrice"></div>
+        <div class="modal-desc" id="modalFloatDesc"></div>
+        <a href="#" id="modalFloatBtn" class="modal-float-contact-btn" target="_blank">
+          Contactar por WhatsApp
+        </a>
       </div>
     </div>
   </main>
@@ -428,6 +339,7 @@
             "img/Francfort/Francfort3.png"
           ],
           titulo: "Francfort",
+          desc: "Clóset compacto, nogal. Hecho a medida para espacios reducidos.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Francfort"
         },
@@ -441,6 +353,7 @@
             "img/Hanover/Hanover6.png"
           ],
           titulo: "Hanover",
+          desc: "Librero moderno, ideal para oficina o estudio.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Hanover"
         },
@@ -456,6 +369,7 @@
             "img/Berna/Berna8.png"
           ],
           titulo: "Berna",
+          desc: "Columna organizadora de varias alturas.",
           precio: "$1,100 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Berna"
         },
@@ -468,6 +382,7 @@
             "img/Bremen/Bremen5.png"
           ],
           titulo: "Bremen",
+          desc: "Repisa melamina estilo roble.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Bremen"
         },
@@ -480,6 +395,7 @@
             "img/Atenas/Atenas5.png"
           ],
           titulo: "Atenas",
+          desc: "Mesa lateral práctica y resistente.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Atenas"
         },
@@ -491,6 +407,7 @@
             "img/Duisburgo/Duisburgo4.png"
           ],
           titulo: "Duisburgo",
+          desc: "Estante / Librería de varios niveles.",
           precio: "$1,000 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Duisburgo"
         },
@@ -507,6 +424,7 @@
             "img/Fredrikstad/Fredrikstad9.png"
           ],
           titulo: "Fredrikstad",
+          desc: "Estantería de diseño escandinavo, varios módulos.",
           precio: "$1,500 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Fredrikstad"
         },
@@ -521,6 +439,7 @@
             "img/Kallithea/Kallithea7.png"
           ],
           titulo: "Kallithea",
+          desc: "Mueble modular versátil para sala o estudio.",
           precio: "$1,200 MXN",
           whatsapp: "https://wa.me/526624125786?text=Hola!%20Me%20interesa%20el%20modelo%20Kallithea"
         }
@@ -560,78 +479,29 @@
       }
 
       // ================================================
-      // 3) Configurar slider interno y mostrar modal al hacer click
+      // 3) Mostrar modal al hacer click en una tarjeta
       // ================================================
-      let sliderIndex = 0;
-      let sliderImgs = [];
-
-      function renderSlider(imagenes) {
-        sliderImgs = imagenes;
-        sliderIndex = 0;
-        actualizarSlider();
-      }
-      function actualizarSlider() {
-        if (!sliderImgs.length) {
-          document.getElementById("modalSlider").innerHTML = "";
-          return;
-        }
-        let html = `
-          <div class="slider-container">
-            ${sliderImgs.length > 1 ? `
-              <button class="slider-arrow left" id="sliderLeft">&#10094;</button>
-            ` : ""}
-            <img class="slider-img" src="${sliderImgs[sliderIndex]}" alt="Mueble" />
-            ${sliderImgs.length > 1 ? `
-              <button class="slider-arrow right" id="sliderRight">&#10095;</button>
-            ` : ""}
-          </div>
-          <div class="slider-dots">
-            ${sliderImgs.map((_, i) =>
-              `<button class="slider-dot${i === sliderIndex ? " active" : ""}" data-idx="${i}"></button>`
-            ).join("")}
-          </div>
-        `;
-        document.getElementById("modalSlider").innerHTML = html;
-
-        if (sliderImgs.length > 1) {
-          document.getElementById("sliderLeft").onclick = function (e) {
-            e.stopPropagation();
-            cambiarSliderImg(-1);
-          };
-          document.getElementById("sliderRight").onclick = function (e) {
-            e.stopPropagation();
-            cambiarSliderImg(1);
-          };
-          document.querySelectorAll(".slider-dot").forEach((dot) => {
-            dot.onclick = function (e) {
-              e.stopPropagation();
-              sliderIndex = Number(this.dataset.idx);
-              actualizarSlider();
-            };
-          });
-        }
-      }
-      function cambiarSliderImg(dir) {
-        sliderIndex = (sliderIndex + dir + sliderImgs.length) % sliderImgs.length;
-        actualizarSlider();
-      }
-
       function mostrarModal(nombre) {
         const prod = productos[nombre];
         if (!prod) return;
-        renderSlider(prod.imagenes);
+
+        // Tomamos la **primera** imagen del array para la vista estática
+        document.getElementById("modalImg").src = prod.imagenes[0];
         document.getElementById("modalFloatTitle").textContent = prod.titulo;
         document.getElementById("modalFloatPrice").textContent = prod.precio;
+        document.getElementById("modalFloatDesc").textContent = prod.desc;
         document.getElementById("modalFloatBtn").href = prod.whatsapp;
+
         document.getElementById("modalFloat").classList.remove("oculto");
         document.body.style.overflow = "hidden";
       }
+
       function cerrarModal() {
         document.getElementById("modalFloat").classList.add("oculto");
         document.body.style.overflow = "";
       }
 
-      // Delegación de clics para abrir modal
+      // Delegación de clics:
       catalogoGrid.addEventListener("click", function (e) {
         const card = e.target.closest(".cat-card");
         if (card && card.dataset.modelo) {
