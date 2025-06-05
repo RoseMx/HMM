@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- ==============================
+       HEADER
+       ============================== -->
   <header>
     <div class="container">
       <a href="index.html" class="logo">HMM</a>
@@ -19,12 +21,19 @@
     </div>
   </header>
 
-  <!-- MAIN / HERO SECTION -->
+  <!-- ==============================
+       MAIN / HERO SECTION
+       ============================== -->
   <main>
     <section class="hero">
       <div class="hero-flex">
+        <!-- —————————————————————————————————————————————————————————
+             COLUMNA IZQUIERDA: Texto + Botones + Testimonios
+             ————————————————————————————————————————————————————————— -->
         <div class="hero-content">
-          <h1><span>Transforma tu espacio</span> con muebles de melamina</h1>
+          <h1>
+            <span>Transforma tu espacio</span> con muebles de melamina
+          </h1>
           <p class="hero-sub">
             Descubre muebles modernos, duraderos y hechos a tu gusto.<br />
             Eleva tu hogar con soluciones prácticas y elegantes.
@@ -38,12 +47,28 @@
             <a href="catalogo.html" class="btn btn-lg">Ver catálogo</a>
             <a href="contacto.html" class="btn btn-secondary">Solicita tu diseño</a>
           </div>
+
+          <!-- ==============================
+               TESTIMONIOS
+               Aquí incluimos tres testimonios genéricos
+               ——————————————————————————————————————— -->
           <div class="hero-testimonial">
-            <em>“Un servicio excelente y el mueble llegó tal como lo imaginé.”</em>
-            <span>— Andrea, cliente de Hermosillo</span>
+            <em>“El librero Hanover superó nuestras expectativas. La calidad es inmejorable y llegó a tiempo.”</em>
+            <span>— Claudia, cliente de Hermosillo</span>
+          </div>
+          <div class="hero-testimonial" style="margin-top: 1.2em;">
+            <em>“Pedí un clóset Francfort personalizado y quedó perfecto en mi recámara. Altamente recomendable.”</em>
+            <span>— Héctor, cliente de Ciudad Obregón</span>
+          </div>
+          <div class="hero-testimonial" style="margin-top: 1.2em;">
+            <em>“Muy profesionales y atentos. El estante Bremen luce increíble en mi oficina.”</em>
+            <span>— Mariana, cliente de Navojoa</span>
           </div>
         </div>
-        <!-- CARRUSEL VERTICAL (solo en Inicio) -->
+
+        <!-- —————————————————————————————————————————————————————————
+             COLUMNA DERECHA: Carrusel vertical de imágenes
+             ————————————————————————————————————————————————————————— -->
         <aside class="carousel-vertical-auto-area">
           <div class="carousel-title">Modelos Destacados</div>
           <div class="vertical-carousel-auto" id="vertical-carousel-auto">
@@ -63,6 +88,7 @@
               <div class="carousel-auto-img">
                 <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
               </div>
+              <!-- Se repite el primer elemento para que el bucle quede continuo -->
               <div class="carousel-auto-img">
                 <img src="img/Francfort/Francfort1.png" alt="Francfort" />
               </div>
@@ -73,7 +99,9 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- ==============================
+       FOOTER
+       ============================== -->
   <footer>
     <p>
       &copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para
@@ -81,16 +109,22 @@
     </p>
   </footer>
 
-  <!-- SCRIPTS PARA EL CARRUSEL VERTICAL -->
+  <!-- ==============================
+       SCRIPT: CARRUSEL VERTICAL
+       Funciona de arriba hacia abajo y repite cíclicamente
+       ============================== -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const track = document.getElementById("carousel-auto-track");
       let idx = 0;
       function avanzar() {
         idx = (idx + 1) % track.children.length;
-        const altura = track.children[0].offsetHeight + 17; // gap = 17px
+        // Altura de un item + gap (gap = 17px)
+        const altura = track.children[0].offsetHeight + 17;
+        // Desplazar hacia arriba para que parezca que el carrusel baja
         track.style.transform = `translateY(-${idx * altura}px)`;
       }
+      // Avanza cada 3 segundos; al llegar al final, idx=0 automáticamente
       setInterval(avanzar, 3000);
     });
   </script>
