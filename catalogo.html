@@ -8,9 +8,9 @@
 
   <!-- Estilos adicionales (solo para catálogo + modal) -->
   <style>
-    /* -------------------------------
-       GRID DE TARJETAS (Catálogo)
-       ------------------------------- */
+    /* ================================
+       1) GRID DE TARJETAS (Catálogo)
+       ================================ */
     .catalogo {
       width: 90vw;
       max-width: 1200px;
@@ -24,7 +24,6 @@
       letter-spacing: 1px;
       text-align: center;
     }
-
     .catalogo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -32,7 +31,6 @@
       margin: 0 auto;
       padding: 0 1em;
     }
-
     .cat-card {
       background: #232a34;
       border-radius: 1em;
@@ -48,10 +46,9 @@
       transform: translateY(-4px);
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
     }
-
     .cat-img {
       width: 100%;
-      height: 350px; /* Aumentado de 300px a 350px */
+      height: 350px; /* Igual que antes, para consistencia con la tarjeta */
       overflow: hidden;
       background-color: #181c23;
       border-radius: 1em 1em 0 0;
@@ -65,12 +62,11 @@
       object-fit: cover;
       object-position: center;
       transition: transform 0.3s ease;
-      cursor: zoom-in; /* Mostrar cursor de zoom al pasar */
+      cursor: zoom-in;
     }
     .cat-card:hover .cat-img img {
       transform: scale(1.05);
     }
-
     .cat-content {
       padding: 1.2em;
       display: flex;
@@ -85,19 +81,18 @@
       font-weight: 700;
       margin-bottom: 0.4em;
     }
-
     @media (max-width: 500px) {
       .cat-img {
-        height: 250px; /* Ajuste para pantallas muy pequeñas */
+        height: 250px;
       }
       .cat-content h3 {
         font-size: 1.2rem;
       }
     }
 
-    /* -------------------------------
-       MODAL FLOTANTE
-       ------------------------------- */
+    /* ================================
+       2) MODAL FLOTANTE
+       ================================ */
     .modal-float {
       position: fixed;
       z-index: 9999;
@@ -118,8 +113,8 @@
       border-radius: 18px;
       padding: 26px 14px 19px 14px;
       box-shadow: 0 4px 28px #20242a82;
-      max-width: 550px; /* Un poco más ancho */
-      width: 90vw;
+      max-width: 650px; /* Aumentado para presentar imágenes más grandes */
+      width: 95vw;
       position: relative;
       text-align: center;
       display: flex;
@@ -149,7 +144,7 @@
     .slider-container {
       position: relative;
       width: 100%;
-      max-width: 500px;   /* Un poco más ancho */
+      max-width: 600px;  /* Aumentado para agrandar la imagen */
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -158,7 +153,7 @@
       border-radius: 1em;
       overflow: hidden;
       box-shadow: 0 3px 18px #0006;
-      height: 300px;      /* Aumentado de 250px a 300px */
+      height: 400px;     /* Aumentado de 300px a 400px */
     }
     .slider-img {
       width: 100%;
@@ -166,31 +161,31 @@
       object-fit: contain;
       border-radius: 1em;
       background: #181818;
-      transition: transform 0.3s ease; /* Zoom suave al pasar encima */
+      transition: transform 0.3s ease;
       display: block;
       margin: 0 auto;
-      cursor: zoom-in;   /* Cursor de zoom en modal */
+      cursor: zoom-in;
     }
     .slider-img:hover {
-      transform: scale(1.08); /* Zoom más evidente en el modal */
+      transform: scale(1.08); /* Zoom suave más evidente */
     }
 
     .slider-arrow {
       position: absolute;
       top: 50%; transform: translateY(-50%);
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: #fec260;
       background: rgba(40, 40, 40, 0.7);
       border: none;
       cursor: pointer;
       z-index: 2;
-      padding: 0 10px;
+      padding: 0 12px;
       border-radius: 1em;
       transition: background 0.18s;
       user-select: none;
     }
-    .slider-arrow.left { left: 8px; }
-    .slider-arrow.right { right: 8px; }
+    .slider-arrow.left { left: 10px; }
+    .slider-arrow.right { right: 10px; }
     .slider-arrow:hover {
       background: #fec260;
       color: #222;
@@ -200,10 +195,10 @@
       display: flex;
       justify-content: center;
       gap: 7px;
-      margin-top: 8px;
+      margin-top: 12px;
     }
     .slider-dot {
-      width: 10px; height: 10px;
+      width: 12px; height: 12px; /* Un poco más grandes que antes */
       border-radius: 50%;
       background: #fec26054;
       cursor: pointer;
@@ -218,19 +213,20 @@
     /* Textos dentro del modal */
     .modal-title {
       color: #25d366;
-      font-size: 1.4rem;
+      font-size: 1.5rem; /* Ligeramente más grande */
       font-weight: bold;
-      margin-top: 8px;
+      margin-top: 12px;
     }
     .modal-price {
       color: #fec260;
-      font-size: 1.2rem;
+      font-size: 1.25rem; /* Ligeramente más grande */
       font-weight: bold;
     }
     .modal-info {
       color: #c4c7ce;
-      font-size: 1rem;
+      font-size: 1.05rem;
       line-height: 1.4;
+      margin-top: 4px;
     }
     .modal-float-contact-btn {
       display: block;
@@ -238,13 +234,13 @@
       background: linear-gradient(90deg, #25d366 60%, #128c7e 100%);
       color: #fff;
       border: none;
-      padding: 12px 0;
+      padding: 14px 0;   /* Más alto */
       border-radius: 10px;
-      font-size: 1.12rem;
+      font-size: 1.15rem; /* Un poco más grande */
       font-weight: 700;
       text-align: center;
       text-decoration: none;
-      margin-top: 12px;
+      margin-top: 16px;
       box-shadow: 0 2px 8px #25d36633;
       transition: background 0.21s;
       cursor: pointer;
@@ -304,9 +300,9 @@
   <!-- SCRIPT PARA GENERAR TARJETAS Y CONTROLAR EL MODAL -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // ==================================================================
-      // 1) Objeto con todos los productos (nota la clave "Fredrikstad" sin 'c').
-      // ==================================================================
+      // ================================================
+      // 1) Objeto con todos los productos
+      // ================================================
       const productos = {
         Francfort: {
           imagenes: [
@@ -421,9 +417,9 @@
         }
       };
 
-      // ==================================================================
+      // ================================================
       // 2) Generar dinámicamente las tarjetas dentro del grid
-      // ==================================================================
+      // ================================================
       const catalogoGrid = document.getElementById("catalogoGrid");
       for (let key in productos) {
         const prod = productos[key];
@@ -454,9 +450,9 @@
         catalogoGrid.appendChild(card);
       }
 
-      // ==================================================================
+      // ================================================
       // 3) Configurar slider interno y mostrar modal al hacer click
-      // ==================================================================
+      // ================================================
       let sliderIndex = 0;
       let sliderImgs = [];
 
