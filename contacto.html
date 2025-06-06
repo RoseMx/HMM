@@ -8,35 +8,40 @@
 </head>
 <body>
   <!-- HEADER -->
-  <header>
-    <div class="container">
+  <header class="header">
+    <div class="container header__content">
       <a href="index.html" class="logo">HMM</a>
-      <nav>
+      <nav class="nav">
         <a href="index.html" class="nav-link">Inicio</a>
         <a href="catalogo.html" class="nav-link">Catálogo</a>
-        <a href="contacto.html" class="nav-link active">Contacto</a>
+        <a href="contacto.html" class="nav-link nav-link--active">Contacto</a>
       </nav>
     </div>
   </header>
 
   <!-- CONTACTO -->
   <main>
-    <section id="contacto" class="seccion">
-      <div class="contact-card">
-        <h2>Contacto</h2>
-        <p>
-          ¿Dudas? ¿Quieres un diseño especial? ¡Escríbenos por WhatsApp y recibe
-          atención inmediata!
+    <section class="contacto-section">
+      <div class="container contacto-card">
+        <h2 class="section-title">Contacto</h2>
+        <p class="contacto-text">
+          ¿Dudas? ¿Quieres un diseño especial? Escríbenos por WhatsApp y recibe
+          atención inmediata.
         </p>
         <a
-          class="btn btn-lg"
+          class="btn btn--primary btn-contacto"
           href="https://wa.me/526624125786"
           target="_blank"
           rel="noopener"
         >
-          Contactar
+          <svg xmlns="http://www.w3.org/2000/svg" class="whatsapp-icon" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M16.616 12.347c-.29-.145-1.71-.843-1.974-.94-.263-.094-.455-.145-.648.145-.19.29-.74.94-.907 1.134-.166.194-.333.218-.621.073-.29-.145-1.226-.452-2.336-1.443-.865-.77-1.448-1.722-1.617-2.012-.166-.29-.018-.447.127-.592.13-.129.29-.333.436-.498.145-.166.194-.29.29-.483.096-.194.048-.366-.024-.512-.073-.145-.648-1.56-.888-2.14-.233-.56-.47-.483-.648-.493l-.552-.01c-.19 0-.498.073-.76.366-.263.29-1.005.98-1.005 2.39 0 1.41 1.03 2.773 1.174 2.966.145.194 2.03 3.106 4.918 4.355.687.296 1.22.473 1.637.605.687.22 1.31.19 1.804.116.55-.08 1.71-.698 1.953-1.37.242-.674.242-1.252.17-1.371-.073-.118-.266-.19-.557-.336zM12.004 2C6.486 2 2 6.486 2 12c0 1.963.51 3.786 1.398 5.374L2 22l4.885-1.29C8.203 21.49 10.052 22 12.004 22c5.518 0 10.004-4.486 10.004-10S17.522 2 12.004 2z">
+            </path>
+          </svg>
+          Contactar por WhatsApp
         </a>
-        <div class="contact-extra">
+        <div class="contacto-extra">
           <div><strong>Teléfono:</strong> (662) 412-5786</div>
           <div><strong>Email:</strong> info@hmmuebles.com.mx</div>
           <div><strong>Dirección:</strong> Calle Ejemplo #123, Col. Centro, Hermosillo, Sonora</div>
@@ -46,11 +51,13 @@
   </main>
 
   <!-- FOOTER -->
-  <footer>
-    <p>
-      &copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para
-      ofrecerte la mejor experiencia.
-    </p>
+  <footer class="footer">
+    <div class="container footer__content">
+      <p>
+        &copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para
+        ofrecerte la mejor experiencia.
+      </p>
+    </div>
   </footer>
 </body>
 </html>
