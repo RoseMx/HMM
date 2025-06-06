@@ -10,224 +10,370 @@
   <!-- ==============================
        HEADER
        ============================== -->
-  <header>
-    <div class="container">
+  <header class="header">
+    <div class="container header__content">
       <a href="index.html" class="logo">HMM</a>
-      <nav>
+      <nav class="nav">
         <a href="index.html" class="nav-link">Inicio</a>
-        <a href="catalogo.html" class="nav-link active">Catálogo</a>
+        <a href="catalogo.html" class="nav-link nav-link--active">Catálogo</a>
         <a href="contacto.html" class="nav-link">Contacto</a>
       </nav>
     </div>
   </header>
 
   <!-- ==============================
-       MAIN / CATÁLOGO
+       SECCIÓN CATÁLOGO
        ============================== -->
-  <main>
-    <section class="catalogo">
-      <h2>Catálogo de Productos</h2>
+  <section class="catalogo-section">
+    <div class="container">
+      <h2 class="section-title">Catálogo de Productos</h2>
+      <p class="section-subtitle">
+        Explora nuestros modelos de melamina: duraderos, funcionales y a tu medida.
+      </p>
+
       <div class="catalogo-grid">
-        <!-- Card: Francfort -->
+        <!-- Ejemplo de tarjeta: Francfort -->
         <article class="cat-card" data-product="francfort">
-          <div class="cat-img">
-            <img src="img/Francfort/Francfort1.png" alt="Francfort" />
-          </div>
-          <div class="cat-content">
-            <h3>Francfort</h3>
+          <div class="cat-card-img-wrapper">
+            <img
+              src="img/Francfort/Francfort1.png"
+              alt="Francfort"
+              class="cat-card-img"
+            />
+            <div class="cat-card-overlay">
+              <span class="cat-card-name">Francfort</span>
+            </div>
           </div>
         </article>
-        <!-- Card: Hanover -->
+
+        <!-- Tarjeta: Hanover -->
         <article class="cat-card" data-product="hanover">
-          <div class="cat-img">
-            <img src="img/Hanover/Hanover1.png" alt="Hanover" />
-          </div>
-          <div class="cat-content">
-            <h3>Hanover</h3>
+          <div class="cat-card-img-wrapper">
+            <img
+              src="img/Hanover/Hanover1.png"
+              alt="Hanover"
+              class="cat-card-img"
+            />
+            <div class="cat-card-overlay">
+              <span class="cat-card-name">Hanover</span>
+            </div>
           </div>
         </article>
-        <!-- Card: Bremen -->
+
+        <!-- Tarjeta: Bremen -->
         <article class="cat-card" data-product="bremen">
-          <div class="cat-img">
-            <img src="img/Bremen/Bremen1.png" alt="Bremen" />
-          </div>
-          <div class="cat-content">
-            <h3>Bremen</h3>
+          <div class="cat-card-img-wrapper">
+            <img
+              src="img/Bremen/Bremen1.png"
+              alt="Bremen"
+              class="cat-card-img"
+            />
+            <div class="cat-card-overlay">
+              <span class="cat-card-name">Bremen</span>
+            </div>
           </div>
         </article>
-        <!-- Card: Atenas -->
+
+        <!-- Tarjeta: Atenas -->
         <article class="cat-card" data-product="atenas">
-          <div class="cat-img">
-            <img src="img/Atenas/Atenas1.png" alt="Atenas" />
-          </div>
-          <div class="cat-content">
-            <h3>Atenas</h3>
+          <div class="cat-card-img-wrapper">
+            <img
+              src="img/Atenas/Atenas1.png"
+              alt="Atenas"
+              class="cat-card-img"
+            />
+            <div class="cat-card-overlay">
+              <span class="cat-card-name">Atenas</span>
+            </div>
           </div>
         </article>
-        <!-- Card: Duisburgo -->
+
+        <!-- Tarjeta: Duisburgo -->
         <article class="cat-card" data-product="duisburgo">
-          <div class="cat-img">
-            <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" />
+          <div class="cat-card-img-wrapper">
+            <img
+              src="img/Duisburgo/Duisburgo1.png"
+              alt="Duisburgo"
+              class="cat-card-img"
+            />
+            <div class="cat-card-overlay">
+              <span class="cat-card-name">Duisburgo</span>
+            </div>
           </div>
-          <div class="cat-content">
-            <h3>Duisburgo</h3>
+        </article>
+
+        <!-- Tarjeta: Fredrikstad -->
+        <article class="cat-card" data-product="fredrikstad">
+          <div class="cat-card-img-wrapper">
+            <img
+              src="img/Fredrikstad/Fredrikstad1.png"
+              alt="Fredrikstad"
+              class="cat-card-img"
+            />
+            <div class="cat-card-overlay">
+              <span class="cat-card-name">Fredrikstad</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta: Hanover (repetida ejemplo, si hay más agregar más) -->
+        <!-- Tarjeta: Kallithea -->
+        <article class="cat-card" data-product="kallithea">
+          <div class="cat-card-img-wrapper">
+            <img
+              src="img/Kallithea/Kallithea1.png"
+              alt="Kallithea"
+              class="cat-card-img"
+            />
+            <div class="cat-card-overlay">
+              <span class="cat-card-name">Kallithea</span>
+            </div>
           </div>
         </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ==============================
-         MODALES FLOTANTES POR PRODUCTO
-         ============================== -->
+  <!-- ==============================
+       MODALES FLOTANTES POR PRODUCTO
+       ============================== -->
 
-    <!-- Modal: Francfort -->
-    <div id="modal-francfort" class="modal-float oculto">
-      <div class="modal-float-content">
-        <span class="modal-float-close">&times;</span>
-        <div class="slider-container" data-product="francfort">
-          <button class="slider-arrow left">&#8249;</button>
-          <img src="img/Francfort/Francfort1.png" alt="Francfort" class="slider-img" />
-          <button class="slider-arrow right">&#8250;</button>
-        </div>
-        <div class="slider-dots" data-product="francfort"></div>
-        <div class="modal-title">Francfort</div>
-        <div class="modal-price">$2,500 MXN</div>
-        <div class="modal-desc">
-          Mueble de melamina estilo moderno, acabado en color blanco. Medidas: 2.00m x 0.50m x 0.75m.
-        </div>
+  <!-- Modal: Francfort -->
+  <div id="modal-francfort" class="modal-float oculto">
+    <div class="modal-float-content animate-modal">
+      <span class="modal-float-close">&times;</span>
+      <div class="slider-container" data-product="francfort">
+        <button class="slider-arrow left">&#8249;</button>
+        <img
+          src="img/Francfort/Francfort1.png"
+          alt="Francfort"
+          class="slider-img"
+        />
+        <button class="slider-arrow right">&#8250;</button>
+      </div>
+      <div class="slider-dots" data-product="francfort"></div>
+      <div class="modal-info">
+        <h3 class="modal-title">Francfort</h3>
+        <p class="modal-desc">
+          Mueble de melamina estilo moderno, acabado en color blanco. Medidas:
+          2.00m x 0.50m x 0.75m.
+        </p>
         <a
           href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Francfort"
-          class="modal-float-contact-btn"
+          class="btn btn--primary btn-whatsapp"
           target="_blank"
         >
           Contactar por WhatsApp
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Modal: Hanover -->
-    <div id="modal-hanover" class="modal-float oculto">
-      <div class="modal-float-content">
-        <span class="modal-float-close">&times;</span>
-        <div class="slider-container" data-product="hanover">
-          <button class="slider-arrow left">&#8249;</button>
-          <img src="img/Hanover/Hanover1.png" alt="Hanover" class="slider-img" />
-          <button class="slider-arrow right">&#8250;</button>
-        </div>
-        <div class="slider-dots" data-product="hanover"></div>
-        <div class="modal-title">Hanover</div>
-        <div class="modal-price">$3,000 MXN</div>
-        <div class="modal-desc">
-          Mueble de melamina con acabado en nogal y puertas corredizas. Medidas: 1.80m x 0.45m x 0.65m.
-        </div>
+  <!-- Modal: Hanover -->
+  <div id="modal-hanover" class="modal-float oculto">
+    <div class="modal-float-content animate-modal">
+      <span class="modal-float-close">&times;</span>
+      <div class="slider-container" data-product="hanover">
+        <button class="slider-arrow left">&#8249;</button>
+        <img
+          src="img/Hanover/Hanover1.png"
+          alt="Hanover"
+          class="slider-img"
+        />
+        <button class="slider-arrow right">&#8250;</button>
+      </div>
+      <div class="slider-dots" data-product="hanover"></div>
+      <div class="modal-info">
+        <h3 class="modal-title">Hanover</h3>
+        <p class="modal-desc">
+          Mueble de melamina con acabado en nogal y puertas corredizas. Medidas:
+          1.80m x 0.45m x 0.65m.
+        </p>
         <a
           href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Hanover"
-          class="modal-float-contact-btn"
+          class="btn btn--primary btn-whatsapp"
           target="_blank"
         >
           Contactar por WhatsApp
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Modal: Bremen -->
-    <div id="modal-bremen" class="modal-float oculto">
-      <div class="modal-float-content">
-        <span class="modal-float-close">&times;</span>
-        <div class="slider-container" data-product="bremen">
-          <button class="slider-arrow left">&#8249;</button>
-          <img src="img/Bremen/Bremen1.png" alt="Bremen" class="slider-img" />
-          <button class="slider-arrow right">&#8250;</button>
-        </div>
-        <div class="slider-dots" data-product="bremen"></div>
-        <div class="modal-title">Bremen</div>
-        <div class="modal-price">$2,200 MXN</div>
-        <div class="modal-desc">
-          Estante de melamina con estantes ajustables y acabado en gris. Medidas: 1.20m x 0.40m x 1.80m.
-        </div>
+  <!-- Modal: Bremen -->
+  <div id="modal-bremen" class="modal-float oculto">
+    <div class="modal-float-content animate-modal">
+      <span class="modal-float-close">&times;</span>
+      <div class="slider-container" data-product="bremen">
+        <button class="slider-arrow left">&#8249;</button>
+        <img
+          src="img/Bremen/Bremen1.png"
+          alt="Bremen"
+          class="slider-img"
+        />
+        <button class="slider-arrow right">&#8250;</button>
+      </div>
+      <div class="slider-dots" data-product="bremen"></div>
+      <div class="modal-info">
+        <h3 class="modal-title">Bremen</h3>
+        <p class="modal-desc">
+          Estante de melamina con estantes ajustables y acabado en gris.
+          Medidas: 1.20m x 0.40m x 1.80m.
+        </p>
         <a
           href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Bremen"
-          class="modal-float-contact-btn"
+          class="btn btn--primary btn-whatsapp"
           target="_blank"
         >
           Contactar por WhatsApp
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Modal: Atenas -->
-    <div id="modal-atenas" class="modal-float oculto">
-      <div class="modal-float-content">
-        <span class="modal-float-close">&times;</span>
-        <div class="slider-container" data-product="atenas">
-          <button class="slider-arrow left">&#8249;</button>
-          <img src="img/Atenas/Atenas1.png" alt="Atenas" class="slider-img" />
-          <button class="slider-arrow right">&#8250;</button>
-        </div>
-        <div class="slider-dots" data-product="atenas"></div>
-        <div class="modal-title">Atenas</div>
-        <div class="modal-price">$2,800 MXN</div>
-        <div class="modal-desc">
-          Mueble de melamina con acabado en wengué y estantes de vidrio. Medidas: 1.50m x 0.45m x 0.70m.
-        </div>
+  <!-- Modal: Atenas -->
+  <div id="modal-atenas" class="modal-float oculto">
+    <div class="modal-float-content animate-modal">
+      <span class="modal-float-close">&times;</span>
+      <div class="slider-container" data-product="atenas">
+        <button class="slider-arrow left">&#8249;</button>
+        <img
+          src="img/Atenas/Atenas1.png"
+          alt="Atenas"
+          class="slider-img"
+        />
+        <button class="slider-arrow right">&#8250;</button>
+      </div>
+      <div class="slider-dots" data-product="atenas"></div>
+      <div class="modal-info">
+        <h3 class="modal-title">Atenas</h3>
+        <p class="modal-desc">
+          Mueble de melamina con acabado en wengué y estantes de vidrio. Medidas:
+          1.50m x 0.45m x 0.70m.
+        </p>
         <a
           href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Atenas"
-          class="modal-float-contact-btn"
+          class="btn btn--primary btn-whatsapp"
           target="_blank"
         >
           Contactar por WhatsApp
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Modal: Duisburgo -->
-    <div id="modal-duisburgo" class="modal-float oculto">
-      <div class="modal-float-content">
-        <span class="modal-float-close">&times;</span>
-        <div class="slider-container" data-product="duisburgo">
-          <button class="slider-arrow left">&#8249;</button>
-          <img src="img/Duisburgo/Duisburgo1.png" alt="Duisburgo" class="slider-img" />
-          <button class="slider-arrow right">&#8250;</button>
-        </div>
-        <div class="slider-dots" data-product="duisburgo"></div>
-        <div class="modal-title">Duisburgo</div>
-        <div class="modal-price">$1,900 MXN</div>
-        <div class="modal-desc">
-          Estantería de melamina blanca con puertas corredizas. Medidas: 1.60m x 0.40m x 1.80m.
-        </div>
+  <!-- Modal: Duisburgo -->
+  <div id="modal-duisburgo" class="modal-float oculto">
+    <div class="modal-float-content animate-modal">
+      <span class="modal-float-close">&times;</span>
+      <div class="slider-container" data-product="duisburgo">
+        <button class="slider-arrow left">&#8249;</button>
+        <img
+          src="img/Duisburgo/Duisburgo1.png"
+          alt="Duisburgo"
+          class="slider-img"
+        />
+        <button class="slider-arrow right">&#8250;</button>
+      </div>
+      <div class="slider-dots" data-product="duisburgo"></div>
+      <div class="modal-info">
+        <h3 class="modal-title">Duisburgo</h3>
+        <p class="modal-desc">
+          Estantería de melamina blanca con puertas corredizas. Medidas: 1.60m x
+          0.40m x 1.80m.
+        </p>
         <a
           href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Duisburgo"
-          class="modal-float-contact-btn"
+          class="btn btn--primary btn-whatsapp"
           target="_blank"
         >
           Contactar por WhatsApp
         </a>
       </div>
     </div>
-  </main>
+  </div>
+
+  <!-- Modal: Fredrikstad -->
+  <div id="modal-fredrikstad" class="modal-float oculto">
+    <div class="modal-float-content animate-modal">
+      <span class="modal-float-close">&times;</span>
+      <div class="slider-container" data-product="fredrikstad">
+        <button class="slider-arrow left">&#8249;</button>
+        <img
+          src="img/Fredrikstad/Fredrikstad1.png"
+          alt="Fredrikstad"
+          class="slider-img"
+        />
+        <button class="slider-arrow right">&#8250;]/button>
+      </div>
+      <div class="slider-dots" data-product="fredrikstad"></div>
+      <div class="modal-info">
+        <h3 class="modal-title">Fredrikstad</h3>
+        <p class="modal-desc">
+          Estantería robusta de melamina con acabado rústico. Medidas: 1.80m x
+          0.50m x 2.00m.
+        </p>
+        <a
+          href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Fredrikstad"
+          class="btn btn--primary btn-whatsapp"
+          target="_blank"
+        >
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Kallithea -->
+  <div id="modal-kallithea" class="modal-float oculto">
+    <div class="modal-float-content animate-modal">
+      <span class="modal-float-close">&times;</span>
+      <div class="slider-container" data-product="kallithea">
+        <button class="slider-arrow left">&#8249;</button>
+        <img
+          src="img/Kallithea/Kallithea1.png"
+          alt="Kallithea"
+          class="slider-img"
+        />
+        <button class="slider-arrow right">&#8250;"></button>
+      </div>
+      <div class="slider-dots" data-product="kallithea"></div>
+      <div class="modal-info">
+        <h3 class="modal-title">Kallithea</h3>
+        <p class="modal-desc">
+          Estantería de melamina en color gris con detalles metálicos. Medidas:
+          1.70m x 0.50m x 1.90m.
+        </p>
+        <a
+          href="https://wa.me/526624125786?text=Hola,%20estoy%20interesado%20en%20el%20modelo%20Kallithea"
+          class="btn btn--primary btn-whatsapp"
+          target="_blank"
+        >
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- ==============================
        FOOTER
-       ==============================
-  -->
-  <footer>
-    <p>
-      &copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para ofrecerte la mejor experiencia.
-    </p>
+       ============================== -->
+  <footer class="footer">
+    <div class="container footer__content">
+      <p>&copy; 2025 Hermanitos Muebles de Melamina | Todos los derechos reservados.</p>
+    </div>
   </footer>
 
   <!-- ==============================
        SCRIPTS: ABRIR/CERRAR MODALES + SLIDER
-       ==============================
-  -->
+       ============================== -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Mapeo de galerías por producto
       const galleries = {
         francfort: [
           "img/Francfort/Francfort1.png",
           "img/Francfort/Francfort2.png",
-          "img/Francfort/Francfort3.png"
+          "img/Francfort/Francfort3.png",
         ],
         hanover: [
           "img/Hanover/Hanover1.png",
@@ -235,48 +381,62 @@
           "img/Hanover/Hanover3.png",
           "img/Hanover/Hanover4.png",
           "img/Hanover/Hanover5.png",
-          "img/Hanover/Hanover6.png"
+          "img/Hanover/Hanover6.png",
         ],
         bremen: [
           "img/Bremen/Bremen1.png",
           "img/Bremen/Bremen2.png",
           "img/Bremen/Bremen3.png",
           "img/Bremen/Bremen4.png",
-          "img/Bremen/Bremen5.png"
+          "img/Bremen/Bremen5.png",
         ],
         atenas: [
           "img/Atenas/Atenas1.png",
           "img/Atenas/Atenas2.png",
           "img/Atenas/Atenas3.png",
           "img/Atenas/Atenas4.png",
-          "img/Atenas/Atenas5.png"
+          "img/Atenas/Atenas5.png",
         ],
         duisburgo: [
           "img/Duisburgo/Duisburgo1.png",
           "img/Duisburgo/Duisburgo2.png",
           "img/Duisburgo/Duisburgo3.png",
-          "img/Duisburgo/Duisburgo4.png"
-        ]
+          "img/Duisburgo/Duisburgo4.png",
+        ],
+        fredrikstad: [
+          "img/Fredrikstad/Fredrikstad1.png",
+          "img/Fredrikstad/Fredrikstad2.png",
+          "img/Fredrikstad/Fredrikstad3.png",
+          "img/Fredrikstad/Fredrikstad4.png",
+          "img/Fredrikstad/Fredrikstad5.png",
+          "img/Fredrikstad/Fredrikstad6.png",
+          "img/Fredrikstad/Fredrikstad7.png",
+          "img/Fredrikstad/Fredrikstad8.png",
+          "img/Fredrikstad/Fredrikstad9.png",
+        ],
+        kallithea: [
+          "img/Kallithea/Kallithea1.png",
+          "img/Kallithea/Kallithea2.png",
+          "img/Kallithea/Kallithea3.png",
+          "img/Kallithea/Kallithea4.png",
+          "img/Kallithea/Kallithea5.png",
+          "img/Kallithea/Kallithea6.png",
+          "img/Kallithea/Kallithea7.png",
+        ],
       };
 
-      // Estado actual de índice para cada galería
       const currentIndex = {};
 
-      // Función para inicializar el slider de un producto
       function initSlider(product) {
         const container = document.querySelector(
           `.slider-container[data-product="${product}"]`
         );
         if (!container) return;
 
-        const leftArrow = container.querySelector(".slider-arrow.left");
-        const rightArrow = container.querySelector(".slider-arrow.right");
-        const imgElement = container.querySelector(".slider-img");
         const dotsContainer = document.querySelector(
           `.slider-dots[data-product="${product}"]`
         );
 
-        // Crear puntos (dots) según la longitud de la galería
         galleries[product].forEach((_, idx) => {
           const dot = document.createElement("button");
           dot.classList.add("slider-dot");
@@ -289,17 +449,16 @@
           });
         });
 
-        // Inicializar índice
         currentIndex[product] = 0;
 
-        // Flecha derecha
+        const leftArrow = container.querySelector(".slider-arrow.left");
+        const rightArrow = container.querySelector(".slider-arrow.right");
+
         rightArrow.addEventListener("click", () => {
           let idx = currentIndex[product] + 1;
           if (idx >= galleries[product].length) idx = 0;
           updateSlide(product, idx);
         });
-
-        // Flecha izquierda
         leftArrow.addEventListener("click", () => {
           let idx = currentIndex[product] - 1;
           if (idx < 0) idx = galleries[product].length - 1;
@@ -307,7 +466,6 @@
         });
       }
 
-      // Función para actualizar la imagen y el punto activo
       function updateSlide(product, idx) {
         const container = document.querySelector(
           `.slider-container[data-product="${product}"]`
@@ -323,38 +481,43 @@
         currentIndex[product] = idx;
       }
 
-      // Inicializar sliders para todos los productos definidos en galleries
       Object.keys(galleries).forEach((product) => {
         initSlider(product);
       });
 
-      // Abrir modal al hacer clic en una tarjeta
+      // Abrir modal al hacer clic
       document.querySelectorAll(".cat-card").forEach((card) => {
         card.addEventListener("click", () => {
           const product = card.dataset.product;
           const modal = document.getElementById(`modal-${product}`);
-          if (!modal.classList.contains("oculto")) return;
-          // Reiniciar al primer índice
+          if (!modal) return;
           updateSlide(product, 0);
           modal.classList.remove("oculto");
         });
       });
 
-      // Cerrar modal al hacer clic en la X
-      document.querySelectorAll(".modal-float-close").forEach((closeBtn) => {
-        closeBtn.addEventListener("click", () => {
-          const modal = closeBtn.closest(".modal-float");
+      // Cerrar modal con la "X"
+      document.querySelectorAll(".modal-float-close").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const modal = btn.closest(".modal-float");
           modal.classList.add("oculto");
         });
       });
 
-      // Cerrar modal al hacer clic fuera del contenido
+      // Cerrar modal clic fuera de contenido
       document.querySelectorAll(".modal-float").forEach((modal) => {
         modal.addEventListener("click", (e) => {
-          if (e.target === modal) {
-            modal.classList.add("oculto");
-          }
+          if (e.target === modal) modal.classList.add("oculto");
         });
+      });
+
+      // Cerrar modal con Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          document
+            .querySelectorAll(".modal-float:not(.oculto)")
+            .forEach((m) => m.classList.add("oculto"));
+        }
       });
     });
   </script>
