@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HMM – Configurador de Muebles</title>
+  <!-- Vinculamos a tu styles.css existente -->
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* --------------------------------------------------
+       Estilos específicos para el Configurador
+       -------------------------------------------------- */
+    .configurador-container {
+      display: flex;
+      gap: 2rem;
+      padding: 2rem;
+      background-color: var(--color-bg-dark);
+      min-height: 80vh;
+    }
+    
+    /* Panel de Formulario (lado izquierdo) */
+    .config-form {
+      flex: 0 0 40%;
+      background-color: var(--color-bg-card);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px var(--shadow-light);
+      color: var(--color-text);
+    }
+    .config-form h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: var(--color-primary);
+    }
+    .config-form label {
+      display: block;
+      margin: 1rem 0 0.3rem;
+      font-weight: 600;
+    }
+    .config-form input[type="number"],
+    .config-form select,
+    .config-form input[type="color"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .config-form input[type="number"]::-webkit-inner-spin-button,
+    .config-form input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .config-form button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      color: var(--color-text);
+      background: var(--btn-gradient);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .config-form button:hover {
+      background: linear-gradient(90deg, #59a899 0%, #805ad5 100%);
+    }
+    
+    /* Panel de Vista Previa (lado derecho) */
+    .config-preview {
+      flex: 1;
+      background-color: #111;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 20px var(--shadow-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #furnitureCanvas {
+      background-color: #000;
+      border: 2px solid var(--color-bg-card);
+      border-radius: 8px;
+    }
+    
+    /* Títulos dentro del preview */
+    .preview-title {
+      color: var(--color-text);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .preview-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER (usa tus mismas clases para mantener la estética) -->
+  <header class="header">
+    <div class="container header__content">
+      <a href="index.html" class="logo">HMM</a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="configurador.html" class="nav-link nav-link--active">Configurador</a>
+        <a href="contacto.html" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONFIGURADOR -->
+  <main>
+    <div class="configurador-container">
+      <!-- PANEL IZQUIERDO: FORMULARIO -->
+      <form class="config-form" id="configForm">
+        <h2>Diseña tu propio mueble</h2>
+
+        <label for="anchoInput">Ancho (cm):</label>
+        <input type="number" id="anchoInput" name="ancho" min="20" max="300" value="100" required />
+
+        <label for="altoInput">Alto (cm):</label>
+        <input type="number" id="altoInput" name="alto" min="20" max="300" value="180" required />
+
+        <label for="repisasSelect">Número de repisas:</label>
+        <select id="repisasSelect" name="repisas">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4" selected>4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+
+        <label for="colorInput">Color de melamina:</label>
+        <input type="color" id="colorInput" name="color" value="#C19A6B" />
+
+        <button type="button" id="btnPreview">Ver Vista Previa</button>
+        <button type="button" id="btnGuardar">Guardar Configuración</button>
+      </form>
+
+      <!-- PANEL DERECHO: VISTA PREVIA DEL MUEBLE EN CANVAS -->
+      <div class="config-preview">
+        <div class="preview-container">
+          <div class="preview-title">Vista previa 2D</div>
+          <canvas id="furnitureCanvas" width="360" height="540"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__content">
+      <p>
+        &copy; 2025 Hermanitos Muebles de Melamina | Página desarrollada para
+        ofrecerte la mejor experiencia.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT para dibujar en el Canvas -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('furnitureCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Input elements
+      const anchoInput = document.getElementById('anchoInput');
+      const altoInput = document.getElementById('altoInput');
+      const repisasSelect = document.getElementById('repisasSelect');
+      const colorInput = document.getElementById('colorInput');
+      const btnPreview = document.getElementById('btnPreview');
+      const btnGuardar = document.getElementById('btnGuardar');
+
+      // Dimensiones del “mundo” (en centímetros) y canvas real (en píxeles)
+      function dibujarMueble() {
+        // Lectura de valores
+        const anchoCm = parseFloat(anchoInput.value) || 100;
+        const altoCm = parseFloat(altoInput.value) || 180;
+        const repisas = parseInt(repisasSelect.value, 10) || 4;
+        const colorMadera = colorInput.value || '#C19A6B';
+
+        // Limpia canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Definimos márgenes de dibujo dentro del canvas
+        const margenX = 20;
+        const margenY = 20;
+        const drawWidth = canvas.width - margenX * 2;
+        const drawHeight = canvas.height - margenY * 2;
+
+        // Calcula escala para que la relación ancho/alto se mantenga y quepa en el canvas
+        const ratioMueble = anchoCm / altoCm;
+        let escala;
+        if (drawWidth / drawHeight > ratioMueble) {
+          // El canvas es relativamente más ancho que el mueble → limitar por altura
+          escala = drawHeight / altoCm;
+        } else {
+          // El canvas es relativamente más alto que el mueble → limitar por ancho
+          escala = drawWidth / anchoCm;
+        }
+
+        // Calcula las dimensiones reales en píxeles
+        const mueblePxWidth = anchoCm * escala;
+        const mueblePxHeight = altoCm * escala;
+
+        // Calcula posición de dibujo (centrado)
+        const x0 = (canvas.width - mueblePxWidth) / 2;
+        const y0 = (canvas.height - mueblePxHeight) / 2;
+
+        // Dibuja rectángulo principal del mueble
+        ctx.fillStyle = colorMadera;
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.fillRect(x0, y0, mueblePxWidth, mueblePxHeight);
+        ctx.strokeRect(x0, y0, mueblePxWidth, mueblePxHeight);
+
+        // Dibuja las repisas (líneas horizontales internas)
+        ctx.beginPath();
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        for (let i = 1; i <= repisas; i++) {
+          const yRepisa = y0 + (mueblePxHeight * i) / (repisas + 1);
+          ctx.moveTo(x0, yRepisa);
+          ctx.lineTo(x0 + mueblePxWidth, yRepisa);
+        }
+        ctx.stroke();
+      }
+
+      // Al hacer clic en “Ver Vista Previa”, actualizamos el canvas
+      btnPreview.addEventListener('click', () => {
+        dibujarMueble();
+      });
+
+      // Al cargar la página dibujamos con valores por defecto
+      window.addEventListener('load', () => {
+        dibujarMueble();
+      });
+
+      // Botón “Guardar Configuración” (solo muestra alerta en este ejemplo)
+      btnGuardar.addEventListener('click', () => {
+        const anchoCm = anchoInput.value;
+        const altoCm = altoInput.value;
+        const repisas = repisasSelect.value;
+        const colorMadera = colorInput.value;
+        alert(
+          `Configuración guardada:\n` +
+          `Ancho: ${anchoCm} cm\n` +
+          `Alto: ${altoCm} cm\n` +
+          `Repisas: ${repisas}\n` +
+          `Color: ${colorMadera}`
+        );
+      });
+    })();
+  </script>
+</body>
+</html>
