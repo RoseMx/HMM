@@ -1,224 +1,209 @@
-/* =================================
-   1) RESET Y BASE (añade si no lo tienes)
-   ================================= */
-*,
-*::before,
-*::after {
+/* RESET Y BASE */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
-html, body {
+body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  scroll-behavior: smooth;
+  background: #232a34;
+  color: #f2f4f8;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-/* =================================
-   2) VARIABLES DE COLOR
-   ================================= */
-:root {
-  --color-primary: #59a899;      /* Verde vibrante para títulos y botones */
-  --color-secondary: #ff9f1c;    /* Naranja suave para acentos */
-  --color-bg: #f9f9f9;           /* Fondo claro general */
-  --color-card-bg: #ffffff;      /* Fondo blanco de las tarjetas */
-  --color-modal-bg: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente del modal */
-  --color-text: #333333;         /* Color de texto principal */
-  --color-light: #ffffff;        /* Blanco puro */
-  --shadow: rgba(0, 0, 0, 0.1);
-}
-
-.bg-light {
-  background-color: var(--color-bg);
-}
-
-/* =================================
-   3) HEADER Y NAVEGACIÓN
-   (puedes mantener tu código anterior)
-   ================================= */
-.header {
+/* HEADER */
+header {
   width: 100%;
-  background-color: var(--color-light);
-  padding: 1rem 0;
-  box-shadow: 0 2px 8px var(--shadow);
+  background-color: #000;
   position: sticky;
   top: 0;
   z-index: 100;
 }
-
-.header__content {
+header .container {
   width: 90vw;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 1rem 0;
 }
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--color-primary);
+header .logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
 }
-
-.nav a {
-  margin-left: 2rem;
-  font-size: 1rem;
+header .logo a {
+  color: #59a899;
+  text-decoration: none;
+}
+header nav {
+  display: flex;
+  gap: 2rem;
+}
+header nav a {
+  color: #f2f4f8;
   font-weight: 500;
-  color: var(--color-text);
   transition: color 0.2s ease;
+  text-decoration: none;
+}
+header nav a:hover,
+header nav a.active {
+  color: #59a899;
 }
 
-.nav a:hover,
-.nav a.active {
-  color: var(--color-primary);
+/* HERO */
+.hero {
+  width: 90vw;
+  max-width: 1200px;
+  height: 400px;
+  margin: 3rem auto;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
 }
-
-/* =================================
-   4) SECCIÓN CATÁLOGO
-   ================================= */
-.catalogo-section {
-  padding: 4rem 0 2rem;
-  background-color: var(--color-light);
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
-.section-title {
-  text-align: center;
-  font-size: 2.4rem;
-  color: var(--color-primary);
+.hero .hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), transparent);
+}
+.hero .hero-text {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: #f2f4f8;
+}
+.hero .hero-text h1 {
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
+.hero .hero-text p {
+  font-size: 1rem;
+  max-width: 500px;
+  line-height: 1.4;
+}
 
+/* SECTION TITLES */
+.section-title {
+  font-size: 2rem;
+  color: #59a899;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
 .section-subtitle {
   text-align: center;
   font-size: 1rem;
-  color: #666;
+  color: #cfd3d8;
   margin-bottom: 2rem;
 }
 
-/* Grid para las tarjetas */
-.catalogo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 2rem;
+/* CONTENEDOR GENERAL */
+.container {
   width: 90vw;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Tarjeta individual */
-.cat-card {
-  background-color: var(--color-card-bg);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px var(--shadow);
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* CATALOGO GRID */
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.8em;
+  margin: 0 auto;
+  padding: 0 1em;
 }
 
+/* TARJETA CATALOGO */
+.cat-card {
+  background: #232a34;
+  border-radius: 1em;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .cat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 20px var(--shadow);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Wrapper de la imagen para poder aplicar overlay */
-.cat-card-img-wrapper {
-  position: relative;
+.cat-img {
   width: 100%;
-  height: 0;
-  padding-bottom: 75%; /* Proporción 4:3 / Ajusta si prefieres otra */
+  height: 320px;
   overflow: hidden;
+  background-color: #181c23;
+  border-radius: 1em 1em 0 0;
 }
-
-.cat-card-img {
-  position: absolute;
-  top: 0;
-  left: 0;
+.cat-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
 }
-
-.cat-card:hover .cat-card-img {
+.cat-card:hover .cat-img img {
   transform: scale(1.05);
 }
 
-/* Overlay con nombre en la tarjeta */
-.cat-card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  opacity: 0;
+.cat-content {
+  padding: 1.2em;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  transition: opacity 0.3s ease;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4em;
+  text-align: center;
+}
+.cat-content h3 {
+  font-size: 1.3rem;
+  color: #59a899;
+  font-weight: 700;
+  margin-bottom: 0.4em;
 }
 
-.cat-card:hover .cat-card-overlay {
-  opacity: 1;
-}
-
-.cat-card-name {
-  color: var(--color-light);
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 4px var(--shadow);
-}
-
-/* =================================
-   5) MODAL FLOTANTE
-   ================================= */
+/* MODAL FLOTANTE */
 .modal-float {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--color-modal-bg);
+  background-color: rgba(0, 0, 0, 0.7);
   display: none;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   z-index: 200;
 }
-
 .modal-float.oculto {
   display: none;
 }
-
 .modal-float:not(.oculto) {
   display: flex;
 }
 
-/* Contenido del modal */
 .modal-float-content {
-  background-color: var(--color-light);
+  background-color: #0f131a;
   border-radius: 12px;
-  box-shadow: 0 4px 30px var(--shadow);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   max-width: 90vw;
   max-height: 90vh;
   width: 800px;
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
   overflow: hidden;
   position: relative;
   animation: fadeInModal 0.4s ease-out;
@@ -235,7 +220,6 @@ img {
   }
 }
 
-/* Botón de cerrar (X) */
 .modal-float-close {
   position: absolute;
   top: 1rem;
@@ -244,18 +228,14 @@ img {
   border: none;
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--color-secondary);
+  color: #ff9f1c;
   cursor: pointer;
   transition: color 0.2s ease;
 }
-
 .modal-float-close:hover {
-  color: var(--color-primary);
+  color: #59a899;
 }
 
-/* =================================
-   6) SLIDER INTERNO
-   ================================= */
 .slider-container {
   position: relative;
   background-color: #000;
@@ -263,15 +243,11 @@ img {
   align-items: center;
   justify-content: center;
 }
-
-/* Imagen del slider */
 .slider-img {
   max-width: 100%;
   max-height: 80vh;
   object-fit: contain;
 }
-
-/* Flechas del slider */
 .slider-arrow {
   position: absolute;
   top: 50%;
@@ -279,7 +255,7 @@ img {
   background-color: rgba(0, 0, 0, 0.4);
   border: none;
   font-size: 2rem;
-  color: var(--color-secondary);
+  color: #ff9f1c;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
@@ -289,21 +265,17 @@ img {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
 .slider-arrow:hover {
   background-color: rgba(0, 0, 0, 0.7);
-  color: var(--color-light);
+  color: #f2f4f8;
 }
-
 .slider-arrow.left {
   left: 1rem;
 }
-
 .slider-arrow.right {
   right: 1rem;
 }
 
-/* Puntos (dots) */
 .slider-dots {
   position: absolute;
   bottom: 1rem;
@@ -312,7 +284,6 @@ img {
   display: flex;
   gap: 0.6rem;
 }
-
 .slider-dot {
   width: 0.8rem;
   height: 0.8rem;
@@ -322,76 +293,80 @@ img {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
 .slider-dot.active {
-  background-color: var(--color-secondary);
+  background-color: #ff9f1c;
   transform: scale(1.2);
 }
 
-/* =================================
-   7) INFORMACIÓN DENTRO DEL MODAL
-   ================================= */
+/* INFORMACIÓN DENTRO DEL MODAL */
 .modal-info {
   padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--color-light);
+  background-color: #0f131a;
 }
-
 .modal-title {
   font-size: 2rem;
-  color: var(--color-primary);
+  color: #59a899;
   margin-bottom: 0.5rem;
 }
-
 .modal-price {
   font-size: 1.4rem;
-  color: var(--color-secondary);
+  color: #ff9f1c;
   margin-bottom: 1rem;
   font-weight: 600;
 }
-
 .modal-desc {
   font-size: 1rem;
-  color: #555;
+  color: #cfd3d8;
   line-height: 1.5;
   margin-bottom: 1.8rem;
 }
-
-/* Botón de WhatsApp (dentro del modal) */
 .btn-whatsapp {
   display: inline-block;
   text-align: center;
   background: linear-gradient(90deg, #25D366 0%, #1EB75C 100%);
-  color: var(--color-light);
+  color: #f2f4f8;
   padding: 0.9rem 1.5rem;
   border-radius: 50px;
   font-size: 1.1rem;
   font-weight: 600;
   transition: background 0.3s ease;
 }
-
 .btn-whatsapp:hover {
   background: linear-gradient(90deg, #1EB75C 0%, #17A653 100%);
 }
 
-/* =================================
-   8) FOOTER
-   (mantén tu diseño existente)
-   ================================= */
-.footer {
-  background-color: var(--color-light);
+/* FOOTER */
+footer {
+  background-color: #000;
   padding: 2rem 0;
   margin-top: 2rem;
-  box-shadow: 0 -2px 8px var(--shadow);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.5);
 }
-
-.footer__content {
+footer .container {
   width: 90vw;
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
   color: #777;
   font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container {
+    width: 98vw;
+    max-width: 99vw;
+  }
+  .hero {
+    width: 98vw;
+    max-width: 99vw;
+  }
+  .modal-float-content {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 }
