@@ -1,768 +1,94 @@
 /* =====================================================
-   1) RESET Y BASE
+   13) CONFIGURADOR DE MUEBLES
    ===================================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  scroll-behavior: smooth;
-  background-color: #0f131a; /* Fondo oscuro neutro */
-  color: #f2f4f8;            /* Texto claro general */
-  line-height: 1.6;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ul {
-  list-style: none;
-}
-
-.container {
-  width: 90vw;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* =====================================================
-   2) VARIABLES DE COLOR
-   ===================================================== */
-:root {
-  --color-primary: #805ad5;     /* Morado suave */
-  --color-secondary: #59a899;   /* Verde vibrante */
-  --color-bg-dark: #0f131a;     /* Fondo general oscuro */
-  --color-bg-card: #1c222b;     /* Tarjetas y modales */
-  --color-text: #f2f4f8;        /* Texto claro */
-  --color-text-muted: #cfd3d8;  /* Texto secundario */
-  --btn-gradient: linear-gradient(90deg, #805ad5 0%, #59a899 100%);
-  --shadow-light: rgba(0, 0, 0, 0.2);
-  --shadow-heavy: rgba(0, 0, 0, 0.4);
-  --blur-bg: rgba(15, 19, 26, 0.6);
-}
-
-/* =====================================================
-   3) HEADER Y NAVEGACIÓN
-   ===================================================== */
-.header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background-color: var(--blur-bg);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 2px 8px var(--shadow-heavy);
-  z-index: 100;
-}
-
-.header__content {
+.configurador-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-  padding: 0 1rem;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: var(--color-bg-dark);
+  min-height: 80vh;
 }
-
-.logo {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: color 0.2s ease;
-}
-
-.logo:hover {
-  color: var(--color-secondary);
-}
-
-.nav {
-  display: flex;
-  gap: 2.5rem;
-}
-
-.nav-link {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  position: relative;
-  padding: 0.5rem 0;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: var(--color-secondary);
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 3px;
-  background: var(--color-secondary);
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-.nav-link--active {
-  color: var(--color-secondary);
-}
-
-.nav-link--active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 3px;
-  background: var(--btn-gradient);
-  border-radius: 2px;
-}
-
-/* =====================================================
-   4) HERO PRINCIPAL
-   ===================================================== */
-.hero {
-  position: relative;
-  background-color: #1c222b; /* Puedes reemplazar por imagen con background: url(...) center/cover no-repeat; */
-  height: 60vh;
-  min-height: 400px;
-  display: flex;
-  align-items: center;
+.config-form {
+  flex: 0 0 40%;
+  background-color: var(--color-bg-card);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px var(--shadow-light);
   color: var(--color-text);
 }
-
-.hero__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(15, 19, 26, 0.6);
-}
-
-.hero__content {
-  position: relative;
-  z-index: 2;
-  text-align: left;
-  max-width: 600px;
-  margin-left: 1rem;
-}
-
-.hero__title {
-  font-size: 2.8rem;
-  line-height: 1.2;
+.config-form h2 {
   margin-bottom: 1rem;
+  font-size: 1.8rem;
   color: var(--color-primary);
 }
-
-.hero__subtitle {
-  font-size: 1.1rem;
-  color: var(--color-text);
-  margin-bottom: 2rem;
+.config-form label {
+  display: block;
+  margin: 1rem 0 0.3rem;
+  font-weight: 600;
 }
-
-.hero__actions {
-  display: flex;
-  gap: 1rem;
+.config-form input[type="number"],
+.config-form select,
+.config-form input[type="color"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
-
-.btn {
+.config-form button {
   display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
   font-size: 1rem;
-  font-weight: 600;
-  padding: 0.8rem 1.6rem;
-  border-radius: 9999px;
-  transition: background 0.3s ease, color 0.3s ease;
-  cursor: pointer;
-}
-
-.btn--primary {
+  color: var(--color-text);
   background: var(--btn-gradient);
-  color: var(--color-text);
-}
-
-.btn--primary:hover {
-  background: linear-gradient(90deg, #59a899 0%, #805ad5 100%);
-}
-
-.btn--outline {
-  background: transparent;
-  color: var(--color-text);
-  border: 2px solid var(--color-text);
-}
-
-.btn--outline:hover {
-  background: var(--color-text);
-  color: var(--color-bg-dark);
-}
-
-/* =====================================================
-   5) BENEFICIOS
-   ===================================================== */
-.beneficios {
-  padding: 3rem 0;
-}
-
-.beneficios__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.beneficio {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.beneficio__icon {
-  font-size: 1.4rem;
-  color: var(--color-secondary);
-}
-
-.beneficio__texto {
-  font-size: 1.05rem;
-  color: var(--color-text);
-}
-
-/* =====================================================
-   6) TESTIMONIOS
-   ===================================================== */
-.testimonios {
-  background-color: #121720;
-  padding: 4rem 0;
-}
-
-.testimonios .container {
-  text-align: center;
-}
-
-.testimonios .section-title {
-  font-size: 2.2rem;
-  color: var(--color-primary);
-  margin-bottom: 2rem;
-}
-
-.testimonios__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.testimonio-card {
-  background-color: var(--color-bg-card);
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 2px 12px var(--shadow-light);
-  position: relative;
-  overflow: hidden;
-}
-
-.testimonio-card::before {
-  content: '“';
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  font-size: 3rem;
-  color: var(--color-secondary);
-  opacity: 0.2;
-}
-
-.testimonio-card__texto {
-  font-size: 1rem;
-  color: var(--color-text);
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-}
-
-.testimonio-card__autor {
-  font-size: 0.95rem;
-  color: var(--color-secondary);
-  font-weight: 600;
-  text-align: right;
-}
-
-.autor__nombre {
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-/* =====================================================
-   7) CONTACTO
-   ===================================================== */
-.contacto-section {
-  padding: 4rem 0;
-  background-color: var(--color-bg-dark);
-}
-
-.contacto-card {
-  background-color: var(--color-bg-card);
-  border-radius: 8px;
-  padding: 2.5rem;
-  box-shadow: 0 4px 20px var(--shadow-light);
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.contacto-card .section-title {
-  margin-bottom: 1rem;
-}
-
-.contacto-text {
-  font-size: 1rem;
-  color: var(--color-text);
-  margin-bottom: 2rem;
-  line-height: 1.5;
-}
-
-.btn-contacto {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1.1rem;
-  padding: 0.9rem 1.5rem;
+  border: none;
   border-radius: 50px;
-  background: var(--btn-gradient);
-  color: var(--color-text);
+  cursor: pointer;
   transition: background 0.3s ease;
-  margin-bottom: 2rem;
 }
-
-.btn-contacto:hover {
+.config-form button:hover {
   background: linear-gradient(90deg, #59a899 0%, #805ad5 100%);
 }
 
-.whatsapp-icon {
-  width: 1.3rem;
-  height: 1.3rem;
-  fill: currentColor;
-}
-
-.contacto-extra {
-  font-size: 0.95rem;
-  color: var(--color-text);
-  line-height: 1.6;
-}
-
-.contacto-extra div {
-  margin-bottom: 0.6rem;
-}
-
-/* =====================================================
-   8) CATÁLOGO DE PRODUCTOS (REDISEÑO VISUAL)
-   ===================================================== */
-.catalogo-section {
-  padding: 4rem 0 2rem;
-  background-color: var(--color-bg-dark);
-}
-
-.catalogo-section .section-title {
-  text-align: center;
-  font-size: 2.4rem;
-  color: var(--color-primary);
-  margin-bottom: 0.5rem;
-}
-
-.catalogo-section .section-subtitle {
-  text-align: center;
-  font-size: 1rem;
-  color: var(--color-text-muted);
-  margin-bottom: 2.5rem;
-}
-
-/* Grid mejorado: más espacio entre filas y columnas */
-.catalogo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 2.5rem; /* más separación */
-  width: 90vw;
-  max-width: 1200px;
-  margin: 0 auto;
-  opacity: 0;                /* Para animación de aparición */
-  animation: fadeInGrid 0.8s ease-out forwards;
-}
-
-/* Animación de fade‐in para el grid completo */
-@keyframes fadeInGrid {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Tarjeta individual */
-.cat-card {
-  position: relative;
-  background-color: var(--color-bg-card);
+.config-preview {
+  flex: 1;
+  background-color: #111;
   border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px var(--shadow-light);
-  cursor: pointer;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.cat-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 8px 30px var(--shadow-light);
-}
-
-/* Wrapper de la imagen: proporción 3:2 */
-.cat-card-img-wrapper {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 66.6667%; /* ≈3:2, ajusta a 60% si prefieres 4:3 */
-  overflow: hidden;
-  background-color: #111; /* Color de reserva en caso de carga lenta */
-}
-
-.cat-card-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.85);        /* Imagen tenue por defecto */
-  transition: transform 0.6s ease, filter 0.4s ease;
-}
-
-.cat-card:hover .cat-card-img {
-  transform: scale(1.08);
-  filter: brightness(1); /* Imagen iluminada en hover */
-}
-
-/* Overlay permanente en la parte inferior con degradado */
-.cat-card-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4.5rem;                   /* altura para el texto */
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.6) 60%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 0.8rem;
-  transition: height 0.3s ease;
-}
-
-.cat-card:hover .cat-card-overlay {
-  height: 100px; /* se expande en hover */
-}
-
-.cat-card-name {
-  color: var(--color-text);
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-shadow: 0 2px 6px var(--shadow-light);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 90%;
-}
-
-/* Tooltip opcional si el nombre es muy largo */
-.cat-card[data-product] {
-  position: relative;
-}
-
-.cat-card[data-product] .cat-card-name:hover::after {
-  content: attr(data-product);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--color-bg-card);
-  color: var(--color-text);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  box-shadow: 0 2px 6px var(--shadow-light);
-  opacity: 0.9;
-  pointer-events: none;
-  z-index: 10;
-}
-
-/* =====================================================
-   9) MODAL FLOTANTE
-   ===================================================== */
-.modal-float {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: none;
-  align-items: center;
-  justify-content: center;
   padding: 1rem;
-  z-index: 200;
-}
-
-.modal-float.oculto {
-  display: none;
-}
-
-.modal-float:not(.oculto) {
-  display: flex;
-}
-
-.modal-float-content {
-  background-color: var(--color-bg-card);
-  border-radius: 12px;
-  box-shadow: 0 4px 30px var(--shadow-light);
-  max-width: 90vw;
-  max-height: 90vh;
-  width: 800px;
-  display: grid;
-  grid-template-columns: 60% 40%;
-  overflow: hidden;
-  position: relative;
-  animation: fadeInModal 0.4s ease-out;
-}
-
-@keyframes fadeInModal {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.modal-float-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.2rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--color-secondary);
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.modal-float-close:hover {
-  color: var(--color-primary);
-}
-
-/* =====================================================
-   10) SLIDER INTERNO
-   ===================================================== */
-.slider-container {
-  position: relative;
-  background-color: #000;
+  box-shadow: 0 4px 20px var(--shadow-light);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
-.slider-img {
-  max-width: 100%;
-  max-height: 80vh;
-  object-fit: contain;
-}
-
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.4);
-  border: none;
-  font-size: 2rem;
-  color: var(--color-secondary);
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.slider-arrow:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: var(--color-text);
-}
-
-.slider-arrow.left {
-  left: 1rem;
-}
-
-.slider-arrow.right {
-  right: 1rem;
-}
-
-.slider-dots {
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.6rem;
-}
-
-.slider-dot {
-  width: 0.8rem;
-  height: 0.8rem;
-  background-color: #bbb;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.slider-dot.active {
-  background-color: var(--color-secondary);
-  transform: scale(1.2);
-}
-
-/* =====================================================
-   11) INFORMACIÓN DENTRO DEL MODAL
-   ===================================================== */
-.modal-info {
-  padding: 2rem;
+.preview-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: var(--color-bg-card);
+  align-items: center;
 }
-
-.modal-title {
-  font-size: 2rem;
-  color: var(--color-primary);
+.preview-title {
+  color: var(--color-text);
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
-}
-
-.modal-desc {
-  font-size: 1rem;
-  color: var(--color-text);
-  line-height: 1.5;
-  margin-bottom: 1.8rem;
-}
-
-.btn-whatsapp {
-  display: inline-block;
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 0.9rem 1.5rem;
-  border-radius: 50px;
   text-align: center;
-  background: var(--btn-gradient);
-  color: var(--color-text);
-  transition: background 0.3s ease;
+}
+#furnitureCanvas {
+  background-color: #000;
+  border: 2px solid var(--color-bg-card);
+  border-radius: 8px;
 }
 
-.btn-whatsapp:hover {
-  background: linear-gradient(90deg, #59a899 0%, #805ad5 100%);
-}
-
-/* =====================================================
-   12) FOOTER
-   ===================================================== */
-.footer {
-  background-color: var(--color-bg-dark);
-  padding: 2rem 0;
-}
-
-.footer__content {
-  text-align: center;
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
-/* =====================================================
-   13) MEDIA QUERIES (RESPONSIVE)
-   ===================================================== */
+/* Ajustes responsive */
 @media (max-width: 768px) {
-  /* Ajuste grid catálogo a 2 columnas */
-  .catalogo-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  /* Modal en una sola columna */
-  .modal-float-content {
-    grid-template-columns: 1fr;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
-  /* Ajustes en hero */
-  .hero__title {
-    font-size: 2.2rem;
-  }
-  .hero__subtitle {
-    font-size: 1rem;
-  }
-  .hero__actions {
+  .configurador-container {
     flex-direction: column;
-    align-items: flex-start;
   }
-  .hero__actions .btn {
+  .config-form {
+    flex: 1;
+  }
+  .config-preview {
+    margin-top: 2rem;
     width: 100%;
-    text-align: center;
-  }
-  /* Ajustes testimonios */
-  .testimonios__grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Ajuste grid catálogo a 1 columna */
-  .catalogo-grid {
-    grid-template-columns: 1fr;
-  }
-  .section-title {
-    font-size: 2rem;
-  }
-  .section-subtitle {
-    font-size: 0.9rem;
-  }
-  /* Ajustes adicionales hero */
-  .hero__title {
-    font-size: 1.8rem;
-  }
-  .hero__subtitle {
-    font-size: 0.95rem;
-  }
-  /* Ajustes sección Contacto */
-  .contacto-card {
-    padding: 2rem 1rem;
-  }
-  .btn-contacto {
-    width: 100%;
-    justify-content: center;
-  }
-  .contacto-extra {
-    font-size: 0.9rem;
   }
 }
