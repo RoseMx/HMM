@@ -794,9 +794,16 @@ ul {
   padding: 0.3rem 0.6rem;
   border-radius: 50%;
 }
+/* Posicionamiento original de las flechas */
 .carousel__button--left {
   left: 0.5rem;
 }
 .carousel__button--right {
   right: 0.5rem;
 }
+/* ——————————————————————————————————————— */
+/* Ocultar por completo las flechas del carousel */
+.carousel__button {
+  display: none;
+}
+
