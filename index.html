@@ -14,85 +14,59 @@
     <div class="container header__content">
       <a href="index.html" class="logo">HMM</a>
       <nav class="nav">
-        <a href="index.html" class="nav-link nav-link--active">Inicio</a>
-        <a href="catalogo.html" class="nav-link">Catálogo</a>
-        <a href="contacto.html" class="nav-link">Contacto</a>
+        <!-- Tu navegación -->
       </nav>
     </div>
   </header>
 
   <!-- ==============================
-       HERO PRINCIPAL
+       SECCIONES PRINCIPALES (por ejemplo: inicio, catálogo, contacto, etc.)
        ============================== -->
-  <section class="hero">
-    <div class="hero__overlay"></div>
-    <div class="hero__content container">
-      <h1 class="hero__title">Transforma tu espacio<br>con muebles de melamina</h1>
-      <p class="hero__subtitle">
-        Descubre muebles modernos, duraderos y hechos a tu gusto. Eleva tu hogar con soluciones prácticas y elegantes.
-      </p>
-      <div class="hero__actions">
-        <a href="catalogo.html" class="btn btn--primary">Ver catálogo</a>
-        <a href="contacto.html" class="btn btn--outline">Solicita tu diseño</a>
-      </div>
-    </div>
-  </section>
+  <!-- Aquí va tu contenido actual… -->
 
   <!-- ==============================
-       BENEFICIOS
+       FORMULARIO DE PEDIDO
        ============================== -->
-  <section class="beneficios container">
-    <ul class="beneficios__list">
-      <li class="beneficio">
-        <span class="beneficio__icon">✔️</span>
-        <span class="beneficio__texto">Hechos a medida</span>
-      </li>
-      <li class="beneficio">
-        <span class="beneficio__icon">✔️</span>
-        <span class="beneficio__texto">Materiales de calidad</span>
-      </li>
-      <li class="beneficio">
-        <span class="beneficio__icon">✔️</span>
-        <span class="beneficio__texto">Envíos rápidos en Hermosillo</span>
-      </li>
-    </ul>
-  </section>
-
-  <!-- ==============================
-       TESTIMONIOS
-       ============================== -->
-  <section class="testimonios">
+  <section id="formulario" class="section section--formulario">
     <div class="container">
-      <h2 class="section-title">Casos de Éxito</h2>
-      <div class="testimonios__grid">
-        <!-- Testimonio 1 -->
-        <article class="testimonio-card">
-          <p class="testimonio-card__texto">
-            “El librero Hanover superó nuestras expectativas. La calidad es inmejorable y llegó a tiempo.”
-          </p>
-          <footer class="testimonio-card__autor">
-            — <span class="autor__nombre">Claudia</span>, cliente de Hermosillo
-          </footer>
-        </article>
-        <!-- Testimonio 2 -->
-        <article class="testimonio-card">
-          <p class="testimonio-card__texto">
-            “Pedí un closets Francfort personalizado y quedó perfecto en mi recámara. Altamente recomendable.”
-          </p>
-          <footer class="testimonio-card__autor">
-            — <span class="autor__nombre">Fernando</span>, arquitecto en Hermosillo
-          </footer>
-        </article>
-        <!-- Testimonio 3 -->
-        <article class="testimonio-card">
-          <p class="testimonio-card__texto">
-            “Mi estantería Berna es la mejor inversión. Resistente y con un acabado impecable.”
-          </p>
-          <footer class="testimonio-card__autor">
-            — <span class="autor__nombre">Mariela</span>, diseñadora de interiores
-          </footer>
-        </article>
-      </div>
+      <h2>Realiza tu pedido</h2>
+      <form id="pedidoForm">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="modelo">Modelo de mueble:</label>
+          <input type="text" id="modelo" name="modelo" required />
+        </div>
+        <div class="form-group">
+          <label for="medidas">Medidas (ancho × alto × fondo):</label>
+          <input
+            type="text"
+            id="medidas"
+            name="medidas"
+            placeholder="Ej. 200×60×90 cm"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="cantidad">Cantidad:</label>
+          <input type="number" id="cantidad" name="cantidad" min="1" required />
+        </div>
+        <div class="form-group">
+          <label for="modificaciones">Modificaciones / Observaciones:</label>
+          <textarea id="modificaciones" name="modificaciones" rows="3"></textarea>
+        </div>
+        <button type="submit">Generar Excel</button>
+      </form>
     </div>
   </section>
 
@@ -104,5 +78,42 @@
       <p>&copy; 2025 Hermanitos Muebles de Melamina | Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- ========= SCRIPTS PARA EL FORMULARIO ========== -->
+  <!-- Carga de SheetJS desde CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script>
+    document.getElementById('pedidoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // 1) Encabezados y datos
+      const filaEncabezados = [
+        'Nombre',
+        'Teléfono',
+        'Correo',
+        'Modelo',
+        'Medidas',
+        'Cantidad',
+        'Modificaciones'
+      ];
+      const filaDatos = [
+        document.getElementById('nombre').value,
+        document.getElementById('telefono').value,
+        document.getElementById('email').value,
+        document.getElementById('modelo').value,
+        document.getElementById('medidas').value,
+        document.getElementById('cantidad').value,
+        document.getElementById('modificaciones').value
+      ];
+
+      // 2) Crear libro y hoja
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.aoa_to_sheet([filaEncabezados, filaDatos]);
+      XLSX.utils.book_append_sheet(wb, ws, 'Pedido');
+
+      // 3) Descargar .xlsx
+      const nombreArchivo = 'pedido_' + new Date().toISOString().slice(0,10) + '.xlsx';
+      XLSX.writeFile(wb, nombreArchivo);
+    });
+  </script>
 </body>
 </html>
