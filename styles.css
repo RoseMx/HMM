@@ -766,3 +766,37 @@ ul {
     font-size: 0.9rem;
   }
 }
+/* Carousel de testimonios */
+.carousel {
+  position: relative;
+  margin: 2rem 0;
+}
+.carousel__track-container {
+  overflow: hidden;
+}
+.carousel__track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.carousel__slide {
+  min-width: 300px;
+  margin-right: 1rem;
+  scroll-snap-align: start;
+}
+.carousel__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50%;
+}
+.carousel__button--left {
+  left: 0.5rem;
+}
+.carousel__button--right {
+  right: 0.5rem;
+}
